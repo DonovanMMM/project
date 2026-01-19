@@ -19,7 +19,8 @@ def titles_of_christ_parser():
     return names 
 
 def book_of_mormon_searcher(titles=list):
-    counts = []
+    titles = titles_of_christ_parser()
+    counts = {}
     books = ["1 Nephi", "2 Nephi", "Jacob", "Enos", "Jarom", "Omni", "Words of Mormon", "Mosiah", "Alma", "Helaman", "3 Nephi", "4 Nephi", "Mormon", "Ether", "Moroni", "end_of_book"]
     is_past_intro = False
     is_past_chapter = False
@@ -30,10 +31,10 @@ def book_of_mormon_searcher(titles=list):
     with open(BOOK_OF_MORMON_FILEPATH, "r", encoding="utf-8") as book, open("test_file.txt", "w") as test:
         for text in book:
             if text.startswith(books[book_count] + " 1\n"):
-                print(books[book_count])
                 book_count += 1 
                 chapter_count = 1
                 verse_count = 1
+                test.write(current_verse)
                 current_verse = ""
                 is_past_intro = True
                 continue
@@ -56,7 +57,6 @@ def book_of_mormon_searcher(titles=list):
 
 
 def main():
-    titles = titles_of_christ_parser()
     book_of_mormon_searcher()
     
 
