@@ -18,9 +18,7 @@ def titles_of_christ_parser():
                     raise ValueError("Title has not been saved correctly")
     return names 
 
-def book_of_mormon_searcher(titles=list):
-    titles = titles_of_christ_parser()
-    counts = {}
+def book_of_mormon_searcher():
     books = ["1 Nephi", "2 Nephi", "Jacob", "Enos", "Jarom", "Omni", "Words of Mormon", "Mosiah", "Alma", "Helaman", "3 Nephi", "4 Nephi", "Mormon", "Ether", "Moroni", "end_of_book"]
     is_past_intro = False
     is_past_chapter = False
@@ -41,6 +39,7 @@ def book_of_mormon_searcher(titles=list):
             if is_past_intro:
                 if text.startswith(f"Chapter {chapter_count}\n"):
                     chapter_count += 1
+                    verse_count = 1
                     is_past_chapter = True
                     test.write(current_verse)
                     current_verse = ""
@@ -53,6 +52,7 @@ def book_of_mormon_searcher(titles=list):
                     continue
                 else:
                     current_verse += text
+        test.write(current_verse)
 
 
 
