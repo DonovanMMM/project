@@ -30,6 +30,7 @@ def book_of_mormon_searcher(titles=list):
     with open(BOOK_OF_MORMON_FILEPATH, "r", encoding="utf-8") as book, open("test_file.txt", "w") as test:
         for text in book:
             if text.startswith(books[book_count] + " 1\n"):
+                print(books[book_count])
                 book_count += 1 
                 chapter_count = 1
                 verse_count = 1
@@ -40,6 +41,8 @@ def book_of_mormon_searcher(titles=list):
                 if text.startswith(f"Chapter {chapter_count}\n"):
                     chapter_count += 1
                     is_past_chapter = True
+                    test.write(current_verse)
+                    current_verse = ""
                     continue
             if is_past_chapter:
                 if text.startswith(f" {verse_count}"):
