@@ -134,9 +134,15 @@ def title_of_christ_checker(titles):
     return titles
 
 def save_chosen_titles_of_christ(chosen_titles):
-    with open("chosen.titles.txt", "w") as chosen_titles_file:
-        chosen_titles_file.write(chosen_titles)
+    with open("chosen.titles.txt", "w", encoding="utf-8") as chosen_titles_file:
+        for i in chosen_titles:
+            chosen_titles_file.write(i + ",")
 
+def get_chosen_titles_of_christ(chosen_titles):
+    with open("chosen.titles.txt", "r", encoding="utf-8") as chosen_titles_file:
+        line = chosen_titles_file.readline()
+        titles = line.split(",")
+        return titles
 
 def title_counter(verses, titles):
     name_counts = {}
@@ -155,7 +161,6 @@ def title_counter(verses, titles):
     return name_counts, verse_instances
 
 def main():
-    save_chosen_titles_of_christ("testing123")
     verse_names = book_of_mormon_parser()
     titles = titles_of_christ_parser()
     counts, instances = title_counter(verse_names, titles)
