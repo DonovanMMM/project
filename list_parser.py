@@ -1,7 +1,7 @@
 TITLES_OF_CHRIST_FILEPATH = "titles_of_christ.txt"
 BOOK_OF_MORMON_FILEPATH = "book_of_mormon.txt"
 
-def normalize(s):
+def simplify_verse(s):
     return " ".join(s.lower().split())
 
 def titles_of_christ_parser():
@@ -16,7 +16,7 @@ def titles_of_christ_parser():
                             i = char
                             break
                     current_title = text[i+2:text.find(" - ")]
-                    names.append(normalize(current_title))
+                    names.append(simplify_verse(current_title))
                     if " - " in current_title:
                         raise ValueError(f"Title has not been saved correctly: {current_title}")
         return names 
@@ -52,7 +52,7 @@ def book_of_mormon_parser():
                 is_past_chapter = (line == f"{current_book_name} 1")
 
                 if current_verse.strip():
-                    verse_names[normalize(current_verse)] = f"{books[book_count-1]} {chapter_count}:{verse_count}"
+                    verse_names[simplify_verse(current_verse)] = f"{books[book_count-1]} {chapter_count}:{verse_count}"
                 current_verse = ""
                 continue
 
@@ -62,7 +62,7 @@ def book_of_mormon_parser():
                 is_past_chapter = True
 
                 if current_verse.strip():
-                    verse_names[normalize(current_verse)] = f"{books[book_count-1]} {chapter_count}:{verse_count}"
+                    verse_names[simplify_verse(current_verse)] = f"{books[book_count-1]} {chapter_count}:{verse_count}"
                 current_verse = ""
                 continue
 
@@ -73,7 +73,7 @@ def book_of_mormon_parser():
                 is_past_chapter = True
 
                 if current_verse.strip():
-                    verse_names[normalize(current_verse)] = f"{books[book_count-1]} {chapter_count}:{verse_count}"
+                    verse_names[simplify_verse(current_verse)] = f"{books[book_count-1]} {chapter_count}:{verse_count}"
                 current_verse = ""
                 continue
 
@@ -82,7 +82,7 @@ def book_of_mormon_parser():
                 continue
             if is_past_chapter and line == f"{books[book_count-1]} {chapter_count}:{verse_count}":
                 if current_verse.strip():
-                    verse_names[normalize(current_verse)] = f"{books[book_count-1]} {chapter_count}:{verse_count}"
+                    verse_names[simplify_verse(current_verse)] = f"{books[book_count-1]} {chapter_count}:{verse_count}"
                 verse_count += 1
                 current_verse = ""
                 continue
@@ -110,7 +110,7 @@ def book_of_mormon_parser():
 
         # append final verse
         if current_verse.strip():
-            verse_names[normalize(current_verse)] = f"{books[book_count-1]} {chapter_count}:{verse_count}"
+            verse_names[simplify_verse(current_verse)] = f"{books[book_count-1]} {chapter_count}:{verse_count}"
 
     return verse_names
 
@@ -124,20 +124,22 @@ def title_counter(verses, titles):
                 if j in name_counts:
                     current_count = i.count(j)
                     name_counts[j] += current_count
+                    verse_instances[j].append(verses[i])
                 else:
                     current_count = i.count(j)
                     name_counts[j] = current_count
-    return name_counts
+                    verse_instances[j] = [verses[i]]
+    return name_counts, verse_instances
 
 def main():
     verse_names = book_of_mormon_parser()
     titles = titles_of_christ_parser()
-    counts = title_counter(verse_names, titles)
+    counts, instances = title_counter(verse_names, titles)
     #longest = sorted(verses, key=len)[20:]
    # for v in longest:
        # print(len(v), repr(v))
     # 1) Are the strings identical (as sets)?
-    print(counts)
+    print(instances)
 
 
 if __name__ == "__main__":
