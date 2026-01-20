@@ -5,20 +5,23 @@ def normalize(s):
     return " ".join(s.lower().split())
 
 def titles_of_christ_parser():
-    names = []
-    with open(TITLES_OF_CHRIST_FILEPATH, "r", encoding="utf-8") as titles:
-        for text in titles:
-            if text.startswith("#"):
-                i = 0
-                for char in range(3, len(text)):
-                    if not text[char].isdigit():
-                        i = char
-                        break
-                current_title = text[i+2:text.find(" - ")]
-                names.append(normalize(current_title))
-                if " - " in current_title:
-                    raise ValueError("Title has not been saved correctly")
-    return names 
+    try:
+        names = []
+        with open(TITLES_OF_CHRIST_FILEPATH, "r", encoding="utf-8") as titles:
+            for text in titles:
+                if text.startswith("#"):
+                    i = 0
+                    for char in range(3, len(text)):
+                        if not text[char].isdigit():
+                            i = char
+                            break
+                    current_title = text[i+2:text.find(" - ")]
+                    names.append(normalize(current_title))
+                    if " - " in current_title:
+                        raise ValueError(f"Title has not been saved correctly: {current_title}")
+        return names 
+    except ValueError as e:
+        print(e)
 
 def book_of_mormon_parser():
     books = [
