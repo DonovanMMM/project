@@ -114,6 +114,29 @@ def book_of_mormon_parser():
 
     return verse_names
 
+def title_of_christ_checker(titles):
+    for i in titles.copy():
+        if titles[i] == 0:
+            del titles[i]
+            continue
+        success = False
+        while not success:
+            print(i)
+            current_user_response = input("Is this a title of Christ(y/n): ")
+            if current_user_response.lower().strip() == "y":
+                success = True
+                continue
+            elif current_user_response.lower().strip() == "n":
+                success = True
+                del titles[i]
+            else:
+                print('Response is invalid, please enter "y" or "n"')
+    return titles
+
+def save_chosen_titles_of_christ(chosen_titles):
+    with open("chosen.titles.txt", "w") as chosen_titles_file:
+        chosen_titles_file.write(chosen_titles)
+
 
 def title_counter(verses, titles):
     name_counts = {}
@@ -132,15 +155,17 @@ def title_counter(verses, titles):
     return name_counts, verse_instances
 
 def main():
+    save_chosen_titles_of_christ("testing123")
     verse_names = book_of_mormon_parser()
     titles = titles_of_christ_parser()
     counts, instances = title_counter(verse_names, titles)
+    titles_chosen = title_of_christ_checker(counts)
+    save_chosen_titles_of_christ(titles_chosen)
     #longest = sorted(verses, key=len)[20:]
    # for v in longest:
        # print(len(v), repr(v))
     # 1) Are the strings identical (as sets)?
-    print(instances)
-
+    print(titles_chosen)
 
 if __name__ == "__main__":
     main()
