@@ -36,7 +36,7 @@ def book_of_mormon_parser():
     chapter_count = 1
     verse_count = 1
     current_verse = ""
-    verses = []
+    verse_names = {}
 
     with open(BOOK_OF_MORMON_FILEPATH, "r", encoding="utf-8") as book:
         for text in book:
@@ -52,7 +52,7 @@ def book_of_mormon_parser():
                 is_past_chapter = (line == f"{current_book_name} 1")
 
                 if current_verse.strip():
-                    verses.append(normalize(current_verse))
+                    verse_names[normalize(current_verse)] = f"{books[book_count-1]} {chapter_count}:{verse_count}"
                 current_verse = ""
                 continue
 
@@ -62,7 +62,7 @@ def book_of_mormon_parser():
                 is_past_chapter = True
 
                 if current_verse.strip():
-                    verses.append(normalize(current_verse))
+                    verse_names[normalize(current_verse)] = f"{books[book_count-1]} {chapter_count}:{verse_count}"
                 current_verse = ""
                 continue
 
@@ -73,7 +73,7 @@ def book_of_mormon_parser():
                 is_past_chapter = True
 
                 if current_verse.strip():
-                    verses.append(normalize(current_verse))
+                    verse_names[normalize(current_verse)] = f"{books[book_count-1]} {chapter_count}:{verse_count}"
                 current_verse = ""
                 continue
 
@@ -82,7 +82,7 @@ def book_of_mormon_parser():
                 continue
             if is_past_chapter and line == f"{books[book_count-1]} {chapter_count}:{verse_count}":
                 if current_verse.strip():
-                    verses.append(normalize(current_verse))
+                    verse_names[normalize(current_verse)] = f"{books[book_count-1]} {chapter_count}:{verse_count}"
                 verse_count += 1
                 current_verse = ""
                 continue
@@ -110,13 +110,14 @@ def book_of_mormon_parser():
 
         # append final verse
         if current_verse.strip():
-            verses.append(normalize(current_verse))
+            verse_names[normalize(current_verse)] = f"{books[book_count-1]} {chapter_count}:{verse_count}"
 
-    return verses
+    return verse_names
 
 
 def title_counter(verses, titles):
     name_counts = {}
+    verse_instances = {}
     for i in verses:
         for j in titles:
             if j in i:
@@ -129,13 +130,15 @@ def title_counter(verses, titles):
     return name_counts
 
 def main():
-    verses = book_of_mormon_parser()
+    verse_names = book_of_mormon_parser()
     titles = titles_of_christ_parser()
-    counts = title_counter(verses, titles)
+    counts = title_counter(verse_names, titles)
     #longest = sorted(verses, key=len)[20:]
    # for v in longest:
        # print(len(v), repr(v))
+    # 1) Are the strings identical (as sets)?
     print(counts)
+
 
 if __name__ == "__main__":
     main()
