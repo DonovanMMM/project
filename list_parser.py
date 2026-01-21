@@ -138,7 +138,7 @@ def save_chosen_titles_of_christ(chosen_titles):
         for i in chosen_titles:
             chosen_titles_file.write(i + ",")
 
-def get_chosen_titles_of_christ(chosen_titles):
+def get_chosen_titles_of_christ():
     with open("chosen.titles.txt", "r", encoding="utf-8") as chosen_titles_file:
         line = chosen_titles_file.readline()
         titles = line.split(",")
@@ -164,8 +164,7 @@ def main():
     verse_names = book_of_mormon_parser()
     titles = titles_of_christ_parser()
     counts, instances = title_counter(verse_names, titles)
-    titles_chosen = title_of_christ_checker(counts)
-    save_chosen_titles_of_christ(titles_chosen)
+    titles_chosen = get_chosen_titles_of_christ()
     #longest = sorted(verses, key=len)[20:]
    # for v in longest:
        # print(len(v), repr(v))
