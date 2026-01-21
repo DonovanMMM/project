@@ -1,3 +1,6 @@
+from matplotlib import pyplot as plt # libraries allow me to create pie charts and display book of mormon information
+import numpy as np # "pip install matplotlib" command is neccessary for these imports to work
+
 TITLES_OF_CHRIST_FILEPATH = "titles_of_christ.txt"
 BOOK_OF_MORMON_FILEPATH = "book_of_mormon.txt"
 
@@ -151,7 +154,7 @@ def delete_chosen_title_of_christ(title_to_be_removed=str):
         line = chosen_titles_file.readline()
         chosen_titles = line.split(",")
     if title_to_be_removed not in chosen_titles:
-        raise ValueError("This title is not one of the chosen Christ titles.")
+        print(ValueError("This title is not one of the chosen Christ titles."))
     else:
         chosen_titles.remove(title_to_be_removed)
         with open("chosen.titles.txt", "w", encoding="utf-8") as new_chosen_titles_file:
@@ -174,19 +177,46 @@ def title_counter(verses, titles):
                     verse_instances[j] = [verses[i]]
     return name_counts, verse_instances
 
+def pie_chart_creator(counts=dict, amount_of_titles=int):
+    sorted_titles = sorted(counts.items(), key=lambda item: item[1])
+    shortened_dictionary = dict(sorted_titles[-amount_of_titles:])
+    upper_case_dictionary = {}
+    for key, value in shortened_dictionary.items():
+        new_key = str(key).title()
+        upper_case_dictionary[new_key] = value
+    titles = upper_case_dictionary.keys()
+    title_counts = upper_case_dictionary.values()
+    plt.figure(figsize=(6, 5))
+    plt.title("10 Most common titles of Jesus Christ in the Book of Mormon")
+    tot=sum(title_counts)/100.0
+    autopct=lambda x: "%d" % round(x*tot)
+    plt.pie(title_counts, labels=titles, shadow=True, colors=plt.cm.Accent.colors, autopct=autopct)
+
+    # show plot
+    plt.show()
+
+def get_counts_of_chosen_christ_titles(titles_chosen, counts):
+    new_counts = {}
+    for i in titles_chosen:
+        try:
+            new_counts[i] = counts[i]
+        except KeyError:
+            continue
+    return new_counts
+
 def main():
     verse_names = book_of_mormon_parser()
     titles = titles_of_christ_parser()
     counts, instances = title_counter(verse_names, titles)
     titles_chosen = get_chosen_titles_of_christ()
+    chosen_counts = get_counts_of_chosen_christ_titles(titles_chosen, counts)
+    pie_chart_creator(chosen_counts, 10)
+
     #longest = sorted(verses, key=len)[20:]
-   # for v in longest:
-       # print(len(v), repr(v))
+    # for v in longest:
+    # # print(len(v), repr(v))
     # 1) Are the strings identical (as sets)?
-    print(titles_chosen)
-    delete_chosen_title_of_christ("the power of god")
-    titles_chosen = get_chosen_titles_of_christ()
-    print(titles_chosen)
+
 
 if __name__ == "__main__":
     main()
