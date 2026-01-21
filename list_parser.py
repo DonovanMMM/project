@@ -143,6 +143,20 @@ def get_chosen_titles_of_christ():
         line = chosen_titles_file.readline()
         titles = line.split(",")
         return titles
+    
+def delete_chosen_title_of_christ(title_to_be_removed=str):
+    chosen_titles = []
+    title_to_be_removed = title_to_be_removed.lower().strip()
+    with open("chosen.titles.txt", "r", encoding="utf-8") as chosen_titles_file:
+        line = chosen_titles_file.readline()
+        chosen_titles = line.split(",")
+    if title_to_be_removed not in chosen_titles:
+        raise ValueError("This title is not one of the chosen Christ titles.")
+    else:
+        chosen_titles.remove(title_to_be_removed)
+        with open("chosen.titles.txt", "w", encoding="utf-8") as new_chosen_titles_file:
+            for i in chosen_titles:
+                new_chosen_titles_file.write(i + ",")
 
 def title_counter(verses, titles):
     name_counts = {}
@@ -169,6 +183,9 @@ def main():
    # for v in longest:
        # print(len(v), repr(v))
     # 1) Are the strings identical (as sets)?
+    print(titles_chosen)
+    delete_chosen_title_of_christ("the power of god")
+    titles_chosen = get_chosen_titles_of_christ()
     print(titles_chosen)
 
 if __name__ == "__main__":
