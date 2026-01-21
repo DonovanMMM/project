@@ -1,8 +1,8 @@
 from matplotlib import pyplot as plt # libraries allow me to create pie charts and display book of mormon information
 import numpy as np # "pip install matplotlib" command is neccessary for these imports to work
 
-TITLES_OF_CHRIST_FILEPATH = "titles_of_christ.txt"
-BOOK_OF_MORMON_FILEPATH = "book_of_mormon.txt"
+TITLES_OF_CHRIST_FILEPATH = "titles_of_christ.txt" # List of titles of Christ that I personally gathered during my mission
+BOOK_OF_MORMON_FILEPATH = "book_of_mormon.txt" # The Book of Mormon in .txt form
 
 def simplify_verse(s):
     return " ".join(s.lower().split())
@@ -177,7 +177,9 @@ def title_counter(verses, titles):
                     verse_instances[j] = [verses[i]]
     return name_counts, verse_instances
 
-def pie_chart_creator(counts=dict, amount_of_titles=int):
+def pie_chart_creator(counts=dict):
+    amount_of_titles = int(input("How many of the most common titles of Christ in the Book of Mormon would you like to be displayed? "))
+    pie_chart_size_increaser = amount_of_titles / 10
     sorted_titles = sorted(counts.items(), key=lambda item: item[1])
     shortened_dictionary = dict(sorted_titles[-amount_of_titles:])
     upper_case_dictionary = {}
@@ -186,12 +188,13 @@ def pie_chart_creator(counts=dict, amount_of_titles=int):
         upper_case_dictionary[new_key] = value
     titles = upper_case_dictionary.keys()
     title_counts = upper_case_dictionary.values()
-    plt.figure(figsize=(6, 5))
-    plt.title("10 Most common titles of Jesus Christ in the Book of Mormon")
+    plt.figure(figsize=(int(pie_chart_size_increaser*6), int(pie_chart_size_increaser*5)))
+    plt.title(f"{amount_of_titles} of The Most Common Titles of Jesus Christ in The Book of Mormon")
     tot=sum(title_counts)/100.0
     autopct=lambda x: "%d" % round(x*tot)
     plt.pie(title_counts, labels=titles, shadow=True, colors=plt.cm.Accent.colors, autopct=autopct)
-
+    plt.legend(titles, loc="upper left")
+    plt.axis('equal')
     # show plot
     plt.show()
 
@@ -205,12 +208,9 @@ def get_counts_of_chosen_christ_titles(titles_chosen, counts):
     return new_counts
 
 def main():
-    verse_names = book_of_mormon_parser()
-    titles = titles_of_christ_parser()
-    counts, instances = title_counter(verse_names, titles)
+    counts, instances = title_counter(book_of_mormon_parser(), titles_of_christ_parser())
     titles_chosen = get_chosen_titles_of_christ()
-    chosen_counts = get_counts_of_chosen_christ_titles(titles_chosen, counts)
-    pie_chart_creator(chosen_counts, 10)
+    pie_chart_creator(get_counts_of_chosen_christ_titles(titles_chosen, counts))
 
     #longest = sorted(verses, key=len)[20:]
     # for v in longest:
