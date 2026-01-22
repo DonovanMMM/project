@@ -179,8 +179,22 @@ def title_counter(verses, titles):
     return name_counts, verse_instances
 
 def pie_chart_creator(counts=dict):
-    amount_of_titles = int(input("How many of the most common titles of Christ in the Book of Mormon would you like to be displayed? "))
-    pie_chart_size_multiplier = amount_of_titles / 10
+    def get_pie_chart_slice_amount():
+        try:
+            amount_of_titles = int(input("How many of the most common titles of Christ in the Book of Mormon would you like to be displayed? "))
+            if amount_of_titles < 5:
+                print("Please enter 5 or more.")
+                get_pie_chart_slice_amount()
+            if amount_of_titles > 30:
+                print("Please enter 30 or less.")
+                get_pie_chart_slice_amount()
+            return amount_of_titles
+        except ValueError:
+            print("Please enter an integer.")
+            get_pie_chart_slice_amount()
+    
+    amount_of_titles = get_pie_chart_slice_amount()
+    pie_chart_size_multiplier = float(amount_of_titles / 10)
     sorted_titles = sorted(counts.items(), key=lambda item: item[1])
     shortened_dictionary = dict(sorted_titles[-amount_of_titles:])
     upper_case_dictionary = {}
@@ -189,11 +203,13 @@ def pie_chart_creator(counts=dict):
         upper_case_dictionary[new_key] = value
     titles = upper_case_dictionary.keys()
     title_counts = upper_case_dictionary.values()
+    explode  = [0] * amount_of_titles
+    explode[amount_of_titles - 1], explode[amount_of_titles - 2], explode[amount_of_titles - 3], explode[amount_of_titles - 4], explode[amount_of_titles - 5] = .1, .08, .06, .04, .02
     plt.figure(figsize=(int(pie_chart_size_multiplier*6), int(pie_chart_size_multiplier*5)))
     plt.title(f"{amount_of_titles} of The Most Common Titles of Jesus Christ in The Book of Mormon")
     tot=sum(title_counts)/100.0
     autopct=lambda x: "%d" % round(x*tot)
-    plt.pie(title_counts, labels=titles, shadow=True, colors=plt.cm.Accent.colors, autopct=autopct)
+    plt.pie(title_counts, labels=titles, colors=plt.cm.Accent.colors, autopct=autopct, explode=explode)
     plt.legend(titles, loc="upper left")
     plt.axis('equal')
     # show plot
