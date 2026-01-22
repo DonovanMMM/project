@@ -1,6 +1,9 @@
 from matplotlib import pyplot as plt # libraries allow me to create pie charts and display book of mormon information
-import plotly.express as px # Library for tracking user cursor, to display more information when hovering over pie graph
-# "pip install matplotlib" and "pip install plotly" commands are neccessary for these imports to work
+import tkinter
+import tktable
+import ctypes as ct
+
+# "pip install matplotlib" command is neccessary for the import to work
 
 TITLES_OF_CHRIST_FILEPATH = "titles_of_christ.txt" # List of titles of Christ that I personally gathered during my mission
 BOOK_OF_MORMON_FILEPATH = "book_of_mormon.txt" # The Book of Mormon in .txt form
@@ -178,7 +181,7 @@ def title_counter(verses, titles):
                     verse_instances[j] = [verses[i]]
     return name_counts, verse_instances
 
-def pie_chart_creator(counts=dict):
+def pie_chart_creator(counts=dict, amount_of_titles=20):
     def get_pie_chart_slice_amount():
         try:
             amount_of_titles = int(input("How many of the most common titles of Christ in the Book of Mormon would you like to be displayed? "))
@@ -193,7 +196,7 @@ def pie_chart_creator(counts=dict):
             print("Please enter an integer.")
             get_pie_chart_slice_amount()
     
-    amount_of_titles = get_pie_chart_slice_amount()
+    #amount_of_titles = get_pie_chart_slice_amount()
     pie_chart_size_multiplier = float(amount_of_titles / 10)
     sorted_titles = sorted(counts.items(), key=lambda item: item[1])
     shortened_dictionary = dict(sorted_titles[-amount_of_titles:])
@@ -225,10 +228,81 @@ def get_counts_of_chosen_christ_titles(titles_chosen, counts):
             continue
     return new_counts
 
+def build_gui():
+    def dark_title_bar(window):
+
+        window.update()
+        DWMWA_USE_IMMERSIVE_DARK_MODE = 20
+        set_window_attribute = ct.windll.dwmapi.DwmSetWindowAttribute
+        get_parent = ct.windll.user32.GetParent
+        hwnd = get_parent(window.winfo_id())
+        rendering_policy = DWMWA_USE_IMMERSIVE_DARK_MODE
+        value = 2
+        value = ct.c_int(value)
+        set_window_attribute(hwnd, rendering_policy, ct.byref(value),
+                            ct.sizeof(value))
+        
+        
+    window = tkinter.Tk()
+    dark_title_bar(window)
+    info = ["20", "TBD", "TBD"]
+    different_prompts = ["Enter an amount of common titles you want to see:", "TBD", "TBD"]
+
+    first_label = tkinter.Label(window, width=70,fg='black',bg="gray30",text=different_prompts[0], anchor="w",
+                                    font=('Arial',15))        
+    first_label.grid(row=1, column=0)
+    first_entry = tkinter.Entry(window, width=10,fg='black',bg="gray30",
+                                    font=('Arial',15,'bold'))
+                        
+    first_entry.grid(row=1, column=1)
+    first_entry.insert(tkinter.END, info[0])
+
+    def on_button_press():
+        amount_of_titles = int(first_entry.get())
+        window.destroy()
+        counts, instances = title_counter(book_of_mormon_parser(), titles_of_christ_parser())
+        titles_chosen = get_chosen_titles_of_christ()
+        pie_chart_creator(get_counts_of_chosen_christ_titles(titles_chosen, counts), amount_of_titles)
+        
+        
+    first_button = tkinter.Button(window, text="GO", command=on_button_press)
+    first_button.grid(row=1, column=2)
+
+    class Table:
+        def __init__(self,window):
+            # code for creating table
+            for i in range(1, 3):
+                for j in range(3):
+                    if j == 0:
+                        self.e = tkinter.Label(window, width=70,fg='black',bg="gray30",text=different_prompts[i], anchor="w",
+                                    font=('Arial',15))
+                        
+                        self.e.grid(row=i+1, column=j)
+                    elif j == 1:
+                        self.e = tkinter.Entry(window, width=10,fg='black',bg="gray30",
+                                    font=('Arial',15,'bold'))
+                        
+                        self.e.grid(row=i+1, column=j)
+                        self.e.insert(tkinter.END, info[i])
+                    else:
+                        inner_button = tkinter.Button(window, text="GO", command=pie_chart_creator)
+                        inner_button.grid(row=i+1, column=j)
+
+        
+    
+
+    window.title("Book of Mormon and Titles of Jesus Christ")
+    t = Table(window)
+    window.geometry("950x750")
+    window.configure(bg="gray25")
+    window.mainloop()
+
+
 def main():
     counts, instances = title_counter(book_of_mormon_parser(), titles_of_christ_parser())
     titles_chosen = get_chosen_titles_of_christ()
-    pie_chart_creator(get_counts_of_chosen_christ_titles(titles_chosen, counts))
+    #pie_chart_creator(get_counts_of_chosen_christ_titles(titles_chosen, counts))
+    build_gui()
 
     #longest = sorted(verses, key=len)[20:]
     # for v in longest:
