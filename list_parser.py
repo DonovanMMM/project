@@ -1,12 +1,12 @@
 from matplotlib import pyplot as plt # libraries allow me to create pie charts and display book of mormon information
 import tkinter
-import tktable
 import ctypes as ct
 
 # "pip install matplotlib" command is neccessary for the import to work
 
 TITLES_OF_CHRIST_FILEPATH = "titles_of_christ.txt" # List of titles of Christ that I personally gathered during my mission
 BOOK_OF_MORMON_FILEPATH = "book_of_mormon.txt" # The Book of Mormon in .txt form
+DWMWA_USE_IMMERSIVE_DARK_MODE = 20
 
 def simplify_verse(s):
     return " ".join(s.lower().split())
@@ -232,7 +232,6 @@ def build_gui():
     def dark_title_bar(window):
 
         window.update()
-        DWMWA_USE_IMMERSIVE_DARK_MODE = 20
         set_window_attribute = ct.windll.dwmapi.DwmSetWindowAttribute
         get_parent = ct.windll.user32.GetParent
         hwnd = get_parent(window.winfo_id())
@@ -294,14 +293,12 @@ def build_gui():
     window.title("Book of Mormon and Titles of Jesus Christ")
     t = Table(window)
     window.geometry("950x750")
+    window.iconbitmap("book_of_mormon.ico")
     window.configure(bg="gray25")
     window.mainloop()
 
 
 def main():
-    counts, instances = title_counter(book_of_mormon_parser(), titles_of_christ_parser())
-    titles_chosen = get_chosen_titles_of_christ()
-    #pie_chart_creator(get_counts_of_chosen_christ_titles(titles_chosen, counts))
     build_gui()
 
     #longest = sorted(verses, key=len)[20:]
