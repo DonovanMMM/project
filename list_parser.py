@@ -170,6 +170,9 @@ def delete_chosen_title_of_christ(title_to_be_removed=str):
 
 def title_counter(verses, titles):
     name_counts = {}
+    book_numbers = {"1 Nephi": 1, "2 Nephi" : 2, "Jacob" : 3, "Enos" : 4, "Jarom" : 5, "Omni" : 6,
+        "Words of Mormon": 7, "Mosiah": 8, "Alma": 9, "Helaman": 10,
+        "3 Nephi": 11, "4 Nephi": 12, "Mormon": 13, "Ether": 14, "Moroni": 15, "end_of_book": 16}
     verse_instances = {}
     for i in verses:
         for j in titles:
@@ -183,6 +186,24 @@ def title_counter(verses, titles):
                     name_counts[j] = current_count
                     verse_instances[j] = [verses[i]]
     return name_counts, verse_instances
+
+def counts_per_book(verse_instances=dict):
+    current_list = []
+    books = [
+        "1 Nephi", "2 Nephi", "Jacob", "Enos", "Jarom", "Omni",
+        "Words of Mormon", "Mosiah", "Alma", "Helaman",
+        "3 Nephi", "4 Nephi", "Mormon", "Ether", "Moroni", "end_of_book"
+    ]
+    new_dict = {}
+    for i in verse_instances.keys():
+        counts_per_book = [0] * 15
+        current_list = verse_instances[i]
+        for j in current_list:
+            for k in range(len(books)):
+                if books[k] in j:
+                    counts_per_book[k] += 1
+        new_dict[i] = counts_per_book
+    return new_dict
 
 def pie_chart_creator(counts=dict, amount_of_titles=20):
     def get_pie_chart_slice_amount():
@@ -293,7 +314,9 @@ def build_gui():
     window.mainloop()
 
 def main():
-    build_gui()
+    #build_gui()
+    counts, instances = title_counter(book_of_mormon_parser(), titles_of_christ_parser())
+    counts_per_book(instances)
 
     #longest = sorted(verses, key=len)[20:]
     # for v in longest:
