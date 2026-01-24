@@ -1,6 +1,9 @@
 from matplotlib import pyplot as plt # libraries allow me to create pie charts and display book of mormon information
-import tkinter
+import matplotlib as mpl
+mpl.use("TkAgg")
+import tkinter as tk
 import ctypes as ct
+import customtkinter as ctk
 
 # "pip install matplotlib" command is neccessary for the import to work
 
@@ -208,15 +211,14 @@ def pie_chart_creator(counts=dict, amount_of_titles=20):
     title_counts = upper_case_dictionary.values()
     explode  = [0] * amount_of_titles
     explode[amount_of_titles - 1], explode[amount_of_titles - 2], explode[amount_of_titles - 3], explode[amount_of_titles - 4], explode[amount_of_titles - 5] = .1, .08, .06, .04, .02
-    plt.figure(figsize=(int(pie_chart_size_multiplier*6), int(pie_chart_size_multiplier*5)))
+    mngr = plt.get_current_fig_manager()
+    mngr.window.wm_geometry("1080x750+360+0")
     plt.title(f"{amount_of_titles} of The Most Common Titles of Jesus Christ in The Book of Mormon")
     tot=sum(title_counts)/100.0
     autopct=lambda x: "%d" % round(x*tot)
     plt.pie(title_counts, labels=titles, colors=plt.cm.Accent.colors, autopct=autopct, explode=explode)
     plt.legend(titles, loc="upper left")
     plt.axis('equal')
-    # show plot
-
     plt.show()
 
 def get_counts_of_chosen_christ_titles(titles_chosen, counts):
@@ -230,7 +232,6 @@ def get_counts_of_chosen_christ_titles(titles_chosen, counts):
 
 def build_gui():
     def dark_title_bar(window):
-
         window.update()
         set_window_attribute = ct.windll.dwmapi.DwmSetWindowAttribute
         get_parent = ct.windll.user32.GetParent
@@ -238,23 +239,21 @@ def build_gui():
         rendering_policy = DWMWA_USE_IMMERSIVE_DARK_MODE
         value = 2
         value = ct.c_int(value)
-        set_window_attribute(hwnd, rendering_policy, ct.byref(value),
-                            ct.sizeof(value))
-        
-        
-    window = tkinter.Tk()
+        set_window_attribute(hwnd, rendering_policy, ct.byref(value), ct.sizeof(value))
+
+    ctk.set_appearance_mode("System")
+    ctk.set_default_color_theme("dark-blue") 
+    window = ctk.CTk()
     dark_title_bar(window)
     info = ["20", "TBD", "TBD"]
     different_prompts = ["Enter an amount of common titles you want to see:", "TBD", "TBD"]
 
-    first_label = tkinter.Label(window, width=70,fg='black',bg="gray30",text=different_prompts[0], anchor="w",
-                                    font=('Arial',15))        
+    first_label = ctk.CTkLabel(window, width=500,fg_color='black',bg_color="gray30",text=different_prompts[0], anchor="w", font=('Arial',15))        
+    first_entry = ctk.CTkEntry(window, width=45,fg_color='black',bg_color="gray30", font=('Arial',15,'bold'))
+
     first_label.grid(row=1, column=0)
-    first_entry = tkinter.Entry(window, width=10,fg='black',bg="gray30",
-                                    font=('Arial',15,'bold'))
-                        
     first_entry.grid(row=1, column=1)
-    first_entry.insert(tkinter.END, info[0])
+    first_entry.insert(tk.END, info[0])
 
     def on_button_press():
         amount_of_titles = int(first_entry.get())
@@ -263,8 +262,7 @@ def build_gui():
         titles_chosen = get_chosen_titles_of_christ()
         pie_chart_creator(get_counts_of_chosen_christ_titles(titles_chosen, counts), amount_of_titles)
         
-        
-    first_button = tkinter.Button(window, text="GO", command=on_button_press)
+    first_button = ctk.CTkButton(window, text="GO", command=on_button_press)
     first_button.grid(row=1, column=2)
 
     class Table:
@@ -273,30 +271,26 @@ def build_gui():
             for i in range(1, 3):
                 for j in range(3):
                     if j == 0:
-                        self.e = tkinter.Label(window, width=70,fg='black',bg="gray30",text=different_prompts[i], anchor="w",
+                        self.e = ctk.CTkLabel(window, width=500,fg_color='black',bg_color="gray30",text=different_prompts[i], anchor="w",
                                     font=('Arial',15))
                         
                         self.e.grid(row=i+1, column=j)
                     elif j == 1:
-                        self.e = tkinter.Entry(window, width=10,fg='black',bg="gray30",
+                        self.e = ctk.CTkEntry(window, width=45,fg_color='black',bg_color="gray30",
                                     font=('Arial',15,'bold'))
                         
                         self.e.grid(row=i+1, column=j)
-                        self.e.insert(tkinter.END, info[i])
+                        self.e.insert(ctk.END, info[i])
                     else:
-                        inner_button = tkinter.Button(window, text="GO", command=pie_chart_creator)
+                        inner_button = ctk.CTkButton(window, text="GO", command=pie_chart_creator)
                         inner_button.grid(row=i+1, column=j)
-
-        
-    
 
     window.title("Book of Mormon and Titles of Jesus Christ")
     t = Table(window)
-    window.geometry("950x750")
+    window.geometry("950x750+360+0")
     window.iconbitmap("book_of_mormon.ico")
     window.configure(bg="gray25")
     window.mainloop()
-
 
 def main():
     build_gui()
@@ -305,7 +299,6 @@ def main():
     # for v in longest:
     # # print(len(v), repr(v))
     # 1) Are the strings identical (as sets)?
-
 
 if __name__ == "__main__":
     main()
