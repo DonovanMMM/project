@@ -205,6 +205,35 @@ def counts_per_book(verse_instances=dict):
         new_dict[i] = counts_per_book
     return new_dict
 
+def line_chart_creator(line_info=dict, title="jesus christ"):
+    plt.subplots(figsize=(13, 6))
+    shortened_dictionary = {}
+    shortened_dictionary[title] = line_info[title]
+    upper_case_dictionary = {}
+    for key, value in shortened_dictionary.items():
+        new_key = str(key).title()
+        upper_case_dictionary[new_key] = value
+
+    y = upper_case_dictionary[title.title()]
+    x = [
+        "1 Nephi", "2 Nephi", "Jacob", "Enos", "Jarom", "Omni",
+        "W of M", "Mosiah", "Alma", "Helaman",
+        "3 Nephi", "4 Nephi", "Mormon", "Ether", "Moroni"
+    ]
+    plt.plot(x, y, label=f"{title.title()}", marker="o")
+    for xi in range(len((x))):
+        plt.annotate(f'{y[xi]}',
+                 (xi, y[xi]),
+                 textcoords="offset points",
+                 xytext=(0, 10),
+                 ha='center')
+    plt.xlabel("Books of The Book of Mormon")
+    plt.ylabel("Instances of current title")
+    plt.title("Instances of Jesus Christ's titles in each book of The Book of Mormon")
+    plt.legend()
+    plt.grid(True)
+    plt.show()
+
 def pie_chart_creator(counts=dict, amount_of_titles=20):
     def get_pie_chart_slice_amount():
         try:
@@ -316,7 +345,8 @@ def build_gui():
 def main():
     #build_gui()
     counts, instances = title_counter(book_of_mormon_parser(), titles_of_christ_parser())
-    counts_per_book(instances)
+    line_info = counts_per_book(instances)
+    line_chart_creator(line_info)
 
     #longest = sorted(verses, key=len)[20:]
     # for v in longest:
