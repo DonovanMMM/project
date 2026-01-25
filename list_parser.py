@@ -205,7 +205,7 @@ def counts_per_book(verse_instances=dict):
         new_dict[i] = counts_per_book
     return new_dict
 
-def line_chart_creator(line_info=dict, title="jesus christ"):
+def line_chart_creator(line_info=dict, title="christ"):
     plt.subplots(figsize=(13, 6))
     shortened_dictionary = {}
     shortened_dictionary[title] = line_info[title]
@@ -295,8 +295,8 @@ def build_gui():
     ctk.set_default_color_theme("dark-blue") 
     window = ctk.CTk()
     dark_title_bar(window)
-    info = ["20", "TBD", "TBD"]
-    different_prompts = ["Enter an amount of common titles you want to see:", "TBD", "TBD"]
+    info = ["20", "Jesus Christ", "TBD"]
+    different_prompts = ["Enter an amount of common titles you want to see:", "Pick a Title", "TBD"]
 
     first_label = ctk.CTkLabel(window, width=500,fg_color='black',bg_color="gray30",text=different_prompts[0], anchor="w", font=('Arial',15))        
     first_entry = ctk.CTkEntry(window, width=45,fg_color='black',bg_color="gray30", font=('Arial',15,'bold'))
@@ -315,10 +315,25 @@ def build_gui():
     first_button = ctk.CTkButton(window, text="GO", command=on_button_press)
     first_button.grid(row=1, column=2)
 
+    second_label = ctk.CTkLabel(window, width=500,fg_color='black',bg_color="gray30",text=different_prompts[1], anchor="w", font=('Arial',15))        
+    second_entry = ctk.CTkEntry(window, width=45,fg_color='black',bg_color="gray30", font=('Arial',15,'bold'))
+    second_label.grid(row=2, column=0)
+    second_entry.grid(row=2, column=1)
+    second_entry.insert(tk.END, info[1])
+
+    def on_second_button_press():
+        which_title = str(second_entry.get()).strip().lower()
+        window.destroy()
+        counts, instances = title_counter(book_of_mormon_parser(), titles_of_christ_parser())
+        line_chart_creator(counts_per_book(instances), which_title)
+
+    second_button = ctk.CTkButton(window, text="GO", command=on_second_button_press)
+    second_button.grid(row=2, column=2)
+
     class Table:
         def __init__(self,window):
             # code for creating table
-            for i in range(1, 3):
+            for i in range(2, 3):
                 for j in range(3):
                     if j == 0:
                         self.e = ctk.CTkLabel(window, width=500,fg_color='black',bg_color="gray30",text=different_prompts[i], anchor="w",
@@ -343,10 +358,10 @@ def build_gui():
     window.mainloop()
 
 def main():
-    #build_gui()
-    counts, instances = title_counter(book_of_mormon_parser(), titles_of_christ_parser())
-    line_info = counts_per_book(instances)
-    line_chart_creator(line_info)
+    build_gui()
+    #counts, instances = title_counter(book_of_mormon_parser(), titles_of_christ_parser())
+    #line_info = counts_per_book(instances)
+    #line_chart_creator(line_info)
 
     #longest = sorted(verses, key=len)[20:]
     # for v in longest:
