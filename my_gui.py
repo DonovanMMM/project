@@ -8,8 +8,6 @@ from list_parser import *
 
 # "pip install matplotlib" command is neccessary for the import to work
 
-TITLES_OF_CHRIST_FILEPATH = "C:\\Users\\Donov\\OneDrive\\Desktop\\book_of_mormon\\project\\titles_of_christ.txt" # List of titles of Christ that I personally gathered during my mission
-BOOK_OF_MORMON_FILEPATH = "C:\\Users\\Donov\\OneDrive\\Desktop\\book_of_mormon\\project\\book_of_mormon.txt" # The Book of Mormon in .txt form
 BOOK_OF_MORMON_ICON_FILEPATH = "C:\\Users\\Donov\\OneDrive\\Desktop\\book_of_mormon\\project\\book_of_mormon.ico"
 DWMWA_USE_IMMERSIVE_DARK_MODE = 20
 

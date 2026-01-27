@@ -2,8 +2,11 @@ from my_gui import *
 
 TITLES_OF_CHRIST_FILEPATH = "C:\\Users\\Donov\\OneDrive\\Desktop\\book_of_mormon\\project\\titles_of_christ.txt" # List of titles of Christ that I personally gathered during my mission
 BOOK_OF_MORMON_FILEPATH = "C:\\Users\\Donov\\OneDrive\\Desktop\\book_of_mormon\\project\\book_of_mormon.txt" # The Book of Mormon in .txt form
-BOOK_OF_MORMON_ICON_FILEPATH = "C:\\Users\\Donov\\OneDrive\\Desktop\\book_of_mormon\\project\\book_of_mormon.ico"
-DWMWA_USE_IMMERSIVE_DARK_MODE = 20
+BOOKS = [
+        "1 Nephi", "2 Nephi", "Jacob", "Enos", "Jarom", "Omni",
+        "Words of Mormon", "Mosiah", "Alma", "Helaman",
+        "3 Nephi", "4 Nephi", "Mormon", "Ether", "Moroni", "end_of_book"
+    ]
 
 def simplify_verse(s):
     return " ".join(s.lower().split())
@@ -28,12 +31,6 @@ def titles_of_christ_parser():
         print(e)
 
 def book_of_mormon_parser():
-    books = [
-        "1 Nephi", "2 Nephi", "Jacob", "Enos", "Jarom", "Omni",
-        "Words of Mormon", "Mosiah", "Alma", "Helaman",
-        "3 Nephi", "4 Nephi", "Mormon", "Ether", "Moroni", "end_of_book"
-    ]
-
     is_past_intro = False
     is_past_chapter = False
     book_count = 0
@@ -47,8 +44,8 @@ def book_of_mormon_parser():
             line = " ".join(text.split())
 
             # -------- BOOK HEADER --------
-            if line == books[book_count] or line == f"{books[book_count]} 1":
-                current_book_name = books[book_count]
+            if line == BOOKS[book_count] or line == f"{BOOKS[book_count]} 1":
+                current_book_name = BOOKS[book_count]
                 book_count += 1
                 chapter_count = 1
                 verse_count = 1
@@ -56,37 +53,37 @@ def book_of_mormon_parser():
                 is_past_chapter = (line == f"{current_book_name} 1")
 
                 if current_verse.strip():
-                    verse_names[simplify_verse(current_verse)] = f"{books[book_count-1]} {chapter_count}:{verse_count}"
+                    verse_names[simplify_verse(current_verse)] = f"{BOOKS[book_count-1]} {chapter_count}:{verse_count}"
                 current_verse = ""
                 continue
 
             # -------- START CURRENT CHAPTER (handles chapter 1) --------
-            if is_past_intro and line == f"{books[book_count-1]} {chapter_count}":
+            if is_past_intro and line == f"{BOOKS[book_count-1]} {chapter_count}":
                 verse_count = 1
                 is_past_chapter = True
 
                 if current_verse.strip():
-                    verse_names[simplify_verse(current_verse)] = f"{books[book_count-1]} {chapter_count}:{verse_count}"
+                    verse_names[simplify_verse(current_verse)] = f"{BOOKS[book_count-1]} {chapter_count}:{verse_count}"
                 current_verse = ""
                 continue
 
             # -------- MOVE TO NEXT CHAPTER --------
-            if is_past_intro and line == f"{books[book_count-1]} {chapter_count + 1}":
+            if is_past_intro and line == f"{BOOKS[book_count-1]} {chapter_count + 1}":
                 chapter_count += 1
                 verse_count = 1
                 is_past_chapter = True
 
                 if current_verse.strip():
-                    verse_names[simplify_verse(current_verse)] = f"{books[book_count-1]} {chapter_count}:{verse_count}"
+                    verse_names[simplify_verse(current_verse)] = f"{BOOKS[book_count-1]} {chapter_count}:{verse_count}"
                 current_verse = ""
                 continue
 
             # -------- VERSE MARKER --------
             if is_past_chapter and line.startswith("Chapter "):
                 continue
-            if is_past_chapter and line == f"{books[book_count-1]} {chapter_count}:{verse_count}":
+            if is_past_chapter and line == f"{BOOKS[book_count-1]} {chapter_count}:{verse_count}":
                 if current_verse.strip():
-                    verse_names[simplify_verse(current_verse)] = f"{books[book_count-1]} {chapter_count}:{verse_count}"
+                    verse_names[simplify_verse(current_verse)] = f"{BOOKS[book_count-1]} {chapter_count}:{verse_count}"
                 verse_count += 1
                 current_verse = ""
                 continue
@@ -99,22 +96,22 @@ def book_of_mormon_parser():
                 if upper == "THE WORDS OF MORMON":
                     continue
                 # skip chapter headers like "Alma 5" or "Moroni 10"
-                if line == f"{books[book_count-1]} {chapter_count}":
+                if line == f"{BOOKS[book_count-1]} {chapter_count}":
                     continue
-                if line == f"{books[book_count-1]} {chapter_count + 1}":
+                if line == f"{BOOKS[book_count-1]} {chapter_count + 1}":
                     continue
 
                 parts = line.split()
                 if len(parts) >= 2 and parts[-1].isdigit():
                     book_title = " ".join(parts[:-1])
-                    if book_title in books:
+                    if book_title in BOOKS:
                         continue
 
                 current_verse += " " + " ".join(text.split())
 
         # append final verse
         if current_verse.strip():
-            verse_names[simplify_verse(current_verse)] = f"{books[book_count-1]} {chapter_count}:{verse_count}"
+            verse_names[simplify_verse(current_verse)] = f"{BOOKS[book_count-1]} {chapter_count}:{verse_count}"
 
     return verse_names
 
@@ -164,9 +161,6 @@ def delete_chosen_title_of_christ(title_to_be_removed=str):
 
 def title_counter(verses, titles):
     name_counts = {}
-    book_numbers = {"1 Nephi": 1, "2 Nephi" : 2, "Jacob" : 3, "Enos" : 4, "Jarom" : 5, "Omni" : 6,
-        "Words of Mormon": 7, "Mosiah": 8, "Alma": 9, "Helaman": 10,
-        "3 Nephi": 11, "4 Nephi": 12, "Mormon": 13, "Ether": 14, "Moroni": 15, "end_of_book": 16}
     verse_instances = {}
     for i in verses:
         for j in titles:
@@ -183,18 +177,13 @@ def title_counter(verses, titles):
 
 def counts_per_book(verse_instances=dict):
     current_list = []
-    books = [
-        "1 Nephi", "2 Nephi", "Jacob", "Enos", "Jarom", "Omni",
-        "Words of Mormon", "Mosiah", "Alma", "Helaman",
-        "3 Nephi", "4 Nephi", "Mormon", "Ether", "Moroni", "end_of_book"
-    ]
     new_dict = {}
     for i in verse_instances.keys():
         counts_per_book = [0] * 15
         current_list = verse_instances[i]
         for j in current_list:
-            for k in range(len(books)):
-                if books[k] in j:
+            for k in range(len(BOOKS)):
+                if BOOKS[k] in j:
                     counts_per_book[k] += 1
         new_dict[i] = counts_per_book
     return new_dict
