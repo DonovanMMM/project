@@ -1,11 +1,10 @@
+import sys
 from matplotlib import pyplot as plt # libraries allow me to create pie charts and display book of mormon information
 import matplotlib as mpl
 mpl.use("TkAgg")
-import tkinter as tk
 import ctypes as ct
 import customtkinter as ctk
 from list_parser import *
-
 # "pip install matplotlib" command is neccessary for the import to work
 
 BOOK_OF_MORMON_ICON_FILEPATH = "C:\\Users\\Donov\\OneDrive\\Desktop\\book_of_mormon\\project\\book_of_mormon.ico"
@@ -101,15 +100,15 @@ def build_gui():
     ctk.set_default_color_theme("dark-blue") 
     window = ctk.CTk()
     dark_title_bar(window)
-    info = ["20", "Jesus Christ", "TBD"]
-    different_prompts = ["Enter an amount of common titles you want to see:", "Pick a Title", "TBD"]
+    info = ["20", "Jesus Christ", "Jesus Christ"]
+    different_prompts = ["Enter an amount of common titles you want to see:", "Pick a Title", "Search for word or phrase in The Book of Mormon"]
 
     first_label = ctk.CTkLabel(window, width=500,fg_color='black',bg_color="gray30",text=different_prompts[0], anchor="w", font=('Arial',15))        
     first_entry = ctk.CTkEntry(window, width=45,fg_color='black',bg_color="gray30", font=('Arial',15,'bold'))
 
     first_label.grid(row=1, column=0)
     first_entry.grid(row=1, column=1)
-    first_entry.insert(tk.END, info[0])
+    first_entry.insert(ctk.END, info[0])
 
     def on_button_press():
         amount_of_titles = int(first_entry.get())
@@ -117,6 +116,7 @@ def build_gui():
         counts, instances = title_counter(book_of_mormon_parser(), titles_of_christ_parser())
         titles_chosen = get_chosen_titles_of_christ()
         pie_chart_creator(get_counts_of_chosen_christ_titles(titles_chosen, counts), amount_of_titles)
+        sys.exit()
         
     first_button = ctk.CTkButton(window, text="GO", command=on_button_press)
     first_button.grid(row=1, column=2)
@@ -125,39 +125,31 @@ def build_gui():
     second_entry = ctk.CTkEntry(window, width=45,fg_color='black',bg_color="gray30", font=('Arial',15,'bold'))
     second_label.grid(row=2, column=0)
     second_entry.grid(row=2, column=1)
-    second_entry.insert(tk.END, info[1])
+    second_entry.insert(ctk.END, info[1])
 
     def on_second_button_press():
         which_title = str(second_entry.get()).strip().lower()
         window.destroy()
         counts, instances = title_counter(book_of_mormon_parser(), titles_of_christ_parser())
         line_chart_creator(counts_per_book(instances), which_title)
+        sys.exit()
 
     second_button = ctk.CTkButton(window, text="GO", command=on_second_button_press)
     second_button.grid(row=2, column=2)
 
-    class Table:
-        def __init__(self,window):
-            # code for creating table
-            for i in range(2, 3):
-                for j in range(3):
-                    if j == 0:
-                        self.e = ctk.CTkLabel(window, width=500,fg_color='black',bg_color="gray30",text=different_prompts[i], anchor="w",
-                                    font=('Arial',15))
-                        
-                        self.e.grid(row=i+1, column=j)
-                    elif j == 1:
-                        self.e = ctk.CTkEntry(window, width=45,fg_color='black',bg_color="gray30",
-                                    font=('Arial',15,'bold'))
-                        
-                        self.e.grid(row=i+1, column=j)
-                        self.e.insert(ctk.END, info[i])
-                    else:
-                        inner_button = ctk.CTkButton(window, text="GO", command=pie_chart_creator)
-                        inner_button.grid(row=i+1, column=j)
+    third_label = ctk.CTkLabel(window, width=500,fg_color='black',bg_color="gray30",text=different_prompts[2], anchor="w", font=('Arial',15))        
+    third_entry = ctk.CTkEntry(window, width=45,fg_color='black',bg_color="gray30", font=('Arial',15,'bold'))
+    third_label.grid(row=3, column=0)
+    third_entry.grid(row=3, column=1)
+    third_entry.insert(ctk.END, info[2])
+
+    def on_third_button_press():
+        pass
+
+    third_button = ctk.CTkButton(window, text="GO", command=on_third_button_press)
+    third_button.grid(row=3, column=2)
 
     window.title("Book of Mormon and Titles of Jesus Christ")
-    t = Table(window)
     window.geometry("950x750+360+0")
     window.iconbitmap(BOOK_OF_MORMON_ICON_FILEPATH)
     window.configure(bg="gray25")

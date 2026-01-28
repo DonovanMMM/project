@@ -1,4 +1,12 @@
 from my_gui import *
+from rich.progress import (
+    BarColumn,
+    MofNCompleteColumn,
+    Progress,
+    TextColumn,
+    TimeElapsedColumn,
+    TimeRemainingColumn,
+)
 
 TITLES_OF_CHRIST_FILEPATH = "C:\\Users\\Donov\\OneDrive\\Desktop\\book_of_mormon\\project\\titles_of_christ.txt" # List of titles of Christ that I personally gathered during my mission
 BOOK_OF_MORMON_FILEPATH = "C:\\Users\\Donov\\OneDrive\\Desktop\\book_of_mormon\\project\\book_of_mormon.txt" # The Book of Mormon in .txt form
@@ -7,25 +15,38 @@ BOOKS = [
         "Words of Mormon", "Mosiah", "Alma", "Helaman",
         "3 Nephi", "4 Nephi", "Mormon", "Ether", "Moroni", "end_of_book"
     ]
-
+1
 def simplify_verse(s):
     return " ".join(s.lower().split())
 
 def titles_of_christ_parser():
+    progress_bar = Progress(
+        TextColumn("Parsing Titles of Christ..."),
+    TextColumn("[progress.percentage]{task.percentage:>3.0f}%"),
+    BarColumn(),
+    MofNCompleteColumn(),
+    TextColumn("•"),
+    TimeElapsedColumn(),
+    TextColumn("/"),
+    TimeRemainingColumn(),
+)
     try:
         names = []
-        with open(TITLES_OF_CHRIST_FILEPATH, "r", encoding="utf-8") as titles:
-            for text in titles:
-                if text.startswith("#"):
-                    i = 0
-                    for char in range(3, len(text)):
-                        if not text[char].isdigit():
-                            i = char
-                            break
-                    current_title = text[i+2:text.find(" - ")]
-                    names.append(simplify_verse(current_title))
-                    if " - " in current_title:
-                        raise ValueError(f"Title has not been saved correctly: {current_title}")
+        with open(TITLES_OF_CHRIST_FILEPATH, "r", encoding="utf-8") as titles, progress_bar as p:
+            for i in p.track(range(2145)):
+                count = 0
+                for text in titles:
+                    count += 1
+                    if text.startswith("#"):
+                        i = 0
+                        for char in range(3, len(text)):
+                            if not text[char].isdigit():
+                                i = char
+                                break
+                        current_title = text[i+2:text.find(" - ")]
+                        names.append(simplify_verse(current_title))
+                        if " - " in current_title:
+                            raise ValueError(f"Title has not been saved correctly: {current_title}")
         return names 
     except ValueError as e:
         print(e)
@@ -38,81 +59,91 @@ def book_of_mormon_parser():
     verse_count = 1
     current_verse = ""
     verse_names = {}
+    progress_bar = Progress(
+        TextColumn("Parsing Book of Mormon..."),
+    TextColumn("[progress.percentage]{task.percentage:>3.0f}%"),
+    BarColumn(),
+    MofNCompleteColumn(),
+    TextColumn("•"),
+    TimeElapsedColumn(),
+    TextColumn("/"),
+    TimeRemainingColumn()
+)
 
-    with open(BOOK_OF_MORMON_FILEPATH, "r", encoding="utf-8") as book:
-        for text in book:
-            line = " ".join(text.split())
+    with open(BOOK_OF_MORMON_FILEPATH, "r", encoding="utf-8") as book, progress_bar as p:
+        for i in p.track(range(39854)):
+            for text in book:
+                line = " ".join(text.split())
 
-            # -------- BOOK HEADER --------
-            if line == BOOKS[book_count] or line == f"{BOOKS[book_count]} 1":
-                current_book_name = BOOKS[book_count]
-                book_count += 1
-                chapter_count = 1
-                verse_count = 1
-                is_past_intro = True
-                is_past_chapter = (line == f"{current_book_name} 1")
+                # -------- BOOK HEADER --------
+                if line == BOOKS[book_count] or line == f"{BOOKS[book_count]} 1":
+                    current_book_name = BOOKS[book_count]
+                    book_count += 1
+                    chapter_count = 1
+                    verse_count = 1
+                    is_past_intro = True
+                    is_past_chapter = (line == f"{current_book_name} 1")
 
-                if current_verse.strip():
-                    verse_names[simplify_verse(current_verse)] = f"{BOOKS[book_count-1]} {chapter_count}:{verse_count}"
-                current_verse = ""
-                continue
-
-            # -------- START CURRENT CHAPTER (handles chapter 1) --------
-            if is_past_intro and line == f"{BOOKS[book_count-1]} {chapter_count}":
-                verse_count = 1
-                is_past_chapter = True
-
-                if current_verse.strip():
-                    verse_names[simplify_verse(current_verse)] = f"{BOOKS[book_count-1]} {chapter_count}:{verse_count}"
-                current_verse = ""
-                continue
-
-            # -------- MOVE TO NEXT CHAPTER --------
-            if is_past_intro and line == f"{BOOKS[book_count-1]} {chapter_count + 1}":
-                chapter_count += 1
-                verse_count = 1
-                is_past_chapter = True
-
-                if current_verse.strip():
-                    verse_names[simplify_verse(current_verse)] = f"{BOOKS[book_count-1]} {chapter_count}:{verse_count}"
-                current_verse = ""
-                continue
-
-            # -------- VERSE MARKER --------
-            if is_past_chapter and line.startswith("Chapter "):
-                continue
-            if is_past_chapter and line == f"{BOOKS[book_count-1]} {chapter_count}:{verse_count}":
-                if current_verse.strip():
-                    verse_names[simplify_verse(current_verse)] = f"{BOOKS[book_count-1]} {chapter_count}:{verse_count}"
-                verse_count += 1
-                current_verse = ""
-                continue
-
-            # -------- VERSE TEXT --------
-            if is_past_chapter:
-                upper = line.upper()
-                if upper.startswith("THE BOOK OF "):
-                    continue
-                if upper == "THE WORDS OF MORMON":
-                    continue
-                # skip chapter headers like "Alma 5" or "Moroni 10"
-                if line == f"{BOOKS[book_count-1]} {chapter_count}":
-                    continue
-                if line == f"{BOOKS[book_count-1]} {chapter_count + 1}":
+                    if current_verse.strip():
+                        verse_names[simplify_verse(current_verse)] = f"{BOOKS[book_count-1]} {chapter_count}:{verse_count}"
+                    current_verse = ""
                     continue
 
-                parts = line.split()
-                if len(parts) >= 2 and parts[-1].isdigit():
-                    book_title = " ".join(parts[:-1])
-                    if book_title in BOOKS:
+                # -------- START CURRENT CHAPTER (handles chapter 1) --------
+                if is_past_intro and line == f"{BOOKS[book_count-1]} {chapter_count}":
+                    verse_count = 1
+                    is_past_chapter = True
+
+                    if current_verse.strip():
+                        verse_names[simplify_verse(current_verse)] = f"{BOOKS[book_count-1]} {chapter_count}:{verse_count}"
+                    current_verse = ""
+                    continue
+
+                # -------- MOVE TO NEXT CHAPTER --------
+                if is_past_intro and line == f"{BOOKS[book_count-1]} {chapter_count + 1}":
+                    chapter_count += 1
+                    verse_count = 1
+                    is_past_chapter = True
+
+                    if current_verse.strip():
+                        verse_names[simplify_verse(current_verse)] = f"{BOOKS[book_count-1]} {chapter_count}:{verse_count}"
+                    current_verse = ""
+                    continue
+
+                # -------- VERSE MARKER --------
+                if is_past_chapter and line.startswith("Chapter "):
+                    continue
+                if is_past_chapter and line == f"{BOOKS[book_count-1]} {chapter_count}:{verse_count}":
+                    if current_verse.strip():
+                        verse_names[simplify_verse(current_verse)] = f"{BOOKS[book_count-1]} {chapter_count}:{verse_count}"
+                    verse_count += 1
+                    current_verse = ""
+                    continue
+
+                # -------- VERSE TEXT --------
+                if is_past_chapter:
+                    upper = line.upper()
+                    if upper.startswith("THE BOOK OF "):
+                        continue
+                    if upper == "THE WORDS OF MORMON":
+                        continue
+                    # skip chapter headers like "Alma 5" or "Moroni 10"
+                    if line == f"{BOOKS[book_count-1]} {chapter_count}":
+                        continue
+                    if line == f"{BOOKS[book_count-1]} {chapter_count + 1}":
                         continue
 
-                current_verse += " " + " ".join(text.split())
+                    parts = line.split()
+                    if len(parts) >= 2 and parts[-1].isdigit():
+                        book_title = " ".join(parts[:-1])
+                        if book_title in BOOKS:
+                            continue
+
+                    current_verse += " " + " ".join(text.split())
 
         # append final verse
-        if current_verse.strip():
-            verse_names[simplify_verse(current_verse)] = f"{BOOKS[book_count-1]} {chapter_count}:{verse_count}"
-
+            if current_verse.strip():
+                verse_names[simplify_verse(current_verse)] = f"{BOOKS[book_count-1]} {chapter_count}:{verse_count}"
     return verse_names
 
 def title_of_christ_checker(titles):
