@@ -1,10 +1,12 @@
 import sys
+import time
 from matplotlib import pyplot as plt # libraries allow me to create pie charts and display book of mormon information
 import matplotlib as mpl
+from list_parser import *
 mpl.use("TkAgg")
 import ctypes as ct
 import customtkinter as ctk
-from list_parser import *
+from rich.progress import Progress, SpinnerColumn, TextColumn
 # "pip install matplotlib" command is neccessary for the import to work
 
 BOOK_OF_MORMON_ICON_FILEPATH = "C:\\Users\\Donov\\OneDrive\\Desktop\\book_of_mormon\\project\\book_of_mormon.ico"
@@ -115,7 +117,11 @@ def build_gui():
         window.destroy()
         counts, instances = title_counter(book_of_mormon_parser(), titles_of_christ_parser())
         titles_chosen = get_chosen_titles_of_christ()
+        start_time = time.perf_counter() # Record the start time
         pie_chart_creator(get_counts_of_chosen_christ_titles(titles_chosen, counts), amount_of_titles)
+        end_time = time.perf_counter()
+        elapsed_time = end_time - start_time
+        print(f"Function executed in {elapsed_time:.4f} seconds")
         sys.exit()
         
     first_button = ctk.CTkButton(window, text="GO", command=on_button_press)

@@ -8,6 +8,7 @@ from rich.progress import (
     TimeRemainingColumn,
 )
 
+CHOSEN_TITLES_FILEPATH = "C:\\Users\\Donov\\OneDrive\\Desktop\\book_of_mormon\\project\\chosen.titles.txt" # Filepath for chosen titles of Christ
 TITLES_OF_CHRIST_FILEPATH = "C:\\Users\\Donov\\OneDrive\\Desktop\\book_of_mormon\\project\\titles_of_christ.txt" # List of titles of Christ that I personally gathered during my mission
 BOOK_OF_MORMON_FILEPATH = "C:\\Users\\Donov\\OneDrive\\Desktop\\book_of_mormon\\project\\book_of_mormon.txt" # The Book of Mormon in .txt form
 BOOKS = [
@@ -166,12 +167,12 @@ def title_of_christ_checker(titles):
     return titles
 
 def save_chosen_titles_of_christ(chosen_titles):
-    with open("chosen.titles.txt", "w", encoding="utf-8") as chosen_titles_file:
+    with open(CHOSEN_TITLES_FILEPATH, "w", encoding="utf-8") as chosen_titles_file:
         for i in chosen_titles:
             chosen_titles_file.write(i + ",")
 
 def get_chosen_titles_of_christ():
-    with open("chosen.titles.txt", "r", encoding="utf-8") as chosen_titles_file:
+    with open(CHOSEN_TITLES_FILEPATH, "r", encoding="utf-8") as chosen_titles_file:
         line = chosen_titles_file.readline()
         titles = line.split(",")
         return titles
@@ -179,14 +180,14 @@ def get_chosen_titles_of_christ():
 def delete_chosen_title_of_christ(title_to_be_removed=str):
     chosen_titles = []
     title_to_be_removed = title_to_be_removed.lower().strip()
-    with open("chosen.titles.txt", "r", encoding="utf-8") as chosen_titles_file:
+    with open(CHOSEN_TITLES_FILEPATH, "r", encoding="utf-8") as chosen_titles_file:
         line = chosen_titles_file.readline()
         chosen_titles = line.split(",")
     if title_to_be_removed not in chosen_titles:
         print(ValueError("This title is not one of the chosen Christ titles."))
     else:
         chosen_titles.remove(title_to_be_removed)
-        with open("chosen.titles.txt", "w", encoding="utf-8") as new_chosen_titles_file:
+        with open(CHOSEN_TITLES_FILEPATH, "w", encoding="utf-8") as new_chosen_titles_file:
             for i in chosen_titles:
                 new_chosen_titles_file.write(i + ",")
 
