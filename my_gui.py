@@ -9,7 +9,7 @@ import customtkinter as ctk
 from rich.progress import Progress, SpinnerColumn, TextColumn
 # "pip install matplotlib" command is neccessary for the import to work
 
-BOOK_OF_MORMON_ICON_FILEPATH = "C:\\Users\\Donov\\OneDrive\\Desktop\\book_of_mormon\\project\\book_of_mormon.ico"
+BOOK_OF_MORMON_ICON_FILEPATH = "C:\\Users\\User\\OneDrive\\Desktop\\project\\book_of_mormon.ico"
 DWMWA_USE_IMMERSIVE_DARK_MODE = 20
 
 def line_chart_creator(line_info=dict, title="christ"):
