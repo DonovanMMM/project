@@ -1,29 +1,42 @@
 import sys
+import subprocess
 from pathlib import Path
 
-def show_dependency_error(error: ImportError):
-    install_command = f'"{sys.executable}" -m pip install -r requirements.txt'
-    details = [
-        f"Missing required library: {error}",
-        "",
-        "Install requirements with:",
-        install_command,
-    ]
-    if getattr(sys, "frozen", False):
-        details.extend([
-            "",
-            "Then rebuild the executable with PyInstaller.",
-        ])
-    message = "\n".join(details)
+def prompt_and_install_requirements(error: ImportError):
+    requirements_path = Path(getattr(sys, "_MEIPASS", Path(__file__).resolve().parent)) / "requirements.txt"
+    if requirements_path.exists():
+        install_command = [sys.executable, "-m", "pip", "install", "-r", str(requirements_path)]
+    else:
+        install_command = [sys.executable, "-m", "pip", "install", "matplotlib>=3.10", "customtkinter>=5.2", "rich>=14.0"]
+
+    question = (
+        f"Missing required library: {error}\n\n"
+        "Would you like to install the required dependencies now?"
+    )
     try:
         import tkinter as tk
         from tkinter import messagebox as tk_messagebox
         root = tk.Tk()
         root.withdraw()
-        tk_messagebox.showerror("Missing Dependencies", message)
+        should_install = tk_messagebox.askyesno("Missing Dependencies", question)
+        if should_install:
+            result = subprocess.run(install_command, capture_output=True, text=True)
+            if result.returncode == 0:
+                tk_messagebox.showinfo("Install Complete", "Dependencies installed successfully. Please relaunch the app.")
+            else:
+                error_output = (result.stderr or result.stdout or "Unknown install error").strip()
+                tk_messagebox.showerror("Install Failed", f"Could not install dependencies.\n\n{error_output}")
         root.destroy()
     except Exception:
-        print(message)
+        print(question)
+        response = input("Install now? (y/n): ").strip().lower()
+        if response == "y":
+            result = subprocess.run(install_command)
+            if result.returncode == 0:
+                print("Dependencies installed successfully. Please relaunch the app.")
+            else:
+                print("Could not install dependencies. Please run:")
+                print(" ".join(install_command))
 
 try:
     import matplotlib as mpl # type: ignore
@@ -31,7 +44,7 @@ try:
     from matplotlib import pyplot as plt # type: ignore # libraries allow me to create pie charts and display book of mormon information
     from list_parser import *
 except ImportError as e:
-    show_dependency_error(e)
+    prompt_and_install_requirements(e)
     sys.exit(1)
 import ctypes as ct
 import customtkinter as ctk # type: ignore

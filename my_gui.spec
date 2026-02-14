@@ -13,6 +13,7 @@ a = Analysis(
         ('titles_of_christ.txt', '.'),
         ('chosen.titles.txt', '.'),
         ('book_of_mormon.ico', '.'),
+        ('requirements.txt', '.'),
     ],
     hiddenimports=rich_hiddenimports,
     hookspath=[],

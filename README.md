@@ -6,6 +6,7 @@ Desktop GUI app for searching and analyzing references to Jesus Christ in the Bo
 1. Pie chart of the most common selected titles of Christ.
 2. Line chart showing where a selected title appears across books.
 3. Text search for any word or phrase with verse references.
+4. Missing dependency prompt in the executable, with optional automatic install.
 
 ## Tech Stack
 - Python 3.14
@@ -19,9 +20,9 @@ Desktop GUI app for searching and analyzing references to Jesus Christ in the Bo
 - Python 3.14 (tested with 3.14.2)
 - `pip` available in PATH
 - Python packages listed in `requirements.txt`:
-  - `matplotlib`
-  - `customtkinter`
-  - `rich`
+  - `matplotlib>=3.10`
+  - `customtkinter>=5.2`
+  - `rich>=14.0`
 
 ## Project Files
 - `my_gui.py`: GUI entry point
@@ -46,16 +47,17 @@ python my_gui.py
 
 ## Build Executable (Windows)
 ```powershell
-pyinstaller my_gui.spec --distpath dist_fixed2 --workpath build_fixed
+pyinstaller -y my_gui.spec --distpath dist --workpath build
 ```
 
 Executable output:
-- `dist_fixed2\my_gui\my_gui.exe`
+- `dist\my_gui\my_gui.exe`
 
 ## Troubleshooting
 - If the app closes immediately, run it from PowerShell to see the traceback:
-  - `.\dist_fixed2\my_gui\my_gui.exe`
+  - `.\dist\my_gui\my_gui.exe`
 - If PyInstaller says output folders are locked, close any running app instances and rebuild.
+- If a dependency is missing at startup, click `Yes` in the popup to let the app run pip and install requirements automatically.
 
 ## Screenshots
 <p>
