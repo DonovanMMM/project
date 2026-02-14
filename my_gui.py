@@ -1,16 +1,27 @@
 import sys
-import time
 from matplotlib import pyplot as plt # libraries allow me to create pie charts and display book of mormon information
 import matplotlib as mpl
 from list_parser import *
 mpl.use("TkAgg")
 import ctypes as ct
 import customtkinter as ctk
-from rich.progress import Progress, SpinnerColumn, TextColumn
+from tkinter.scrolledtext import ScrolledText
+from rich.progress import Progress
 # "pip install matplotlib" command is neccessary for the import to work
 
 BOOK_OF_MORMON_ICON_FILEPATH = "C:\\Users\\Donov\\OneDrive\\Desktop\\book_of_mormon\\project\\book_of_mormon.ico"
+SEARCH_TERM_FILEPATH = "C:\\Users\\Donov\\OneDrive\\Desktop\\book_of_mormon\\project\\search_term.txt"
 DWMWA_USE_IMMERSIVE_DARK_MODE = 20
+
+def dark_title_bar(window):
+        window.update()
+        set_window_attribute = ct.windll.dwmapi.DwmSetWindowAttribute
+        get_parent = ct.windll.user32.GetParent
+        hwnd = get_parent(window.winfo_id())
+        rendering_policy = DWMWA_USE_IMMERSIVE_DARK_MODE
+        value = 2
+        value = ct.c_int(value)
+        set_window_attribute(hwnd, rendering_policy, ct.byref(value), ct.sizeof(value))
 
 def line_chart_creator(line_info=dict, title="christ"):
     plt.subplots(figsize=(13, 6))
@@ -78,6 +89,23 @@ def pie_chart_creator(counts=dict, amount_of_titles=20):
     plt.axis('equal')
     plt.show()
 
+def searcher_creator(verses):
+    ctk.set_appearance_mode("System")
+    ctk.set_default_color_theme("dark-blue") 
+    root = ctk.CTk()
+    dark_title_bar(root)
+    textbox = ctk.CTkTextbox(root, width=950, height=750)
+    textbox.grid(column=0, row=0)
+    text = ""
+    for i in verses:
+        text += i[0] + "\n" + i[1] + "\n"
+    textbox.insert("0.0", text)
+    root.title("Book of Mormon Searcher")
+    root.geometry("950x750+360+0")
+    root.iconbitmap(BOOK_OF_MORMON_ICON_FILEPATH)
+    root.configure(bg="gray25")
+    root.mainloop()
+
 def get_counts_of_chosen_christ_titles(titles_chosen, counts):
     new_counts = {}
     for i in titles_chosen:
@@ -88,16 +116,6 @@ def get_counts_of_chosen_christ_titles(titles_chosen, counts):
     return new_counts
 
 def build_gui():
-    def dark_title_bar(window):
-        window.update()
-        set_window_attribute = ct.windll.dwmapi.DwmSetWindowAttribute
-        get_parent = ct.windll.user32.GetParent
-        hwnd = get_parent(window.winfo_id())
-        rendering_policy = DWMWA_USE_IMMERSIVE_DARK_MODE
-        value = 2
-        value = ct.c_int(value)
-        set_window_attribute(hwnd, rendering_policy, ct.byref(value), ct.sizeof(value))
-
     ctk.set_appearance_mode("System")
     ctk.set_default_color_theme("dark-blue") 
     window = ctk.CTk()
@@ -106,7 +124,7 @@ def build_gui():
     different_prompts = ["Enter an amount of common titles you want to see:", "Pick a Title", "Search for word or phrase in The Book of Mormon"]
 
     first_label = ctk.CTkLabel(window, width=500,fg_color='black',bg_color="gray30",text=different_prompts[0], anchor="w", font=('Arial',15))        
-    first_entry = ctk.CTkEntry(window, width=45,fg_color='black',bg_color="gray30", font=('Arial',15,'bold'))
+    first_entry = ctk.CTkEntry(window, width=125,fg_color='black',bg_color="gray30", font=('Arial',15,'bold'))
 
     first_label.grid(row=1, column=0)
     first_entry.grid(row=1, column=1)
@@ -115,20 +133,16 @@ def build_gui():
     def on_button_press():
         amount_of_titles = int(first_entry.get())
         window.destroy()
-        counts, instances = title_counter(book_of_mormon_parser(), titles_of_christ_parser())
+        counts, instances = title_counter(book_of_mormon_parser(), titles_of_christ_parser(TITLES_OF_CHRIST_FILEPATH))
         titles_chosen = get_chosen_titles_of_christ()
-        start_time = time.perf_counter() # Record the start time
         pie_chart_creator(get_counts_of_chosen_christ_titles(titles_chosen, counts), amount_of_titles)
-        end_time = time.perf_counter()
-        elapsed_time = end_time - start_time
-        print(f"Function executed in {elapsed_time:.4f} seconds")
         sys.exit()
         
     first_button = ctk.CTkButton(window, text="GO", command=on_button_press)
     first_button.grid(row=1, column=2)
 
     second_label = ctk.CTkLabel(window, width=500,fg_color='black',bg_color="gray30",text=different_prompts[1], anchor="w", font=('Arial',15))        
-    second_entry = ctk.CTkEntry(window, width=45,fg_color='black',bg_color="gray30", font=('Arial',15,'bold'))
+    second_entry = ctk.CTkEntry(window, width=125,fg_color='black',bg_color="gray30", font=('Arial',15,'bold'))
     second_label.grid(row=2, column=0)
     second_entry.grid(row=2, column=1)
     second_entry.insert(ctk.END, info[1])
@@ -136,7 +150,7 @@ def build_gui():
     def on_second_button_press():
         which_title = str(second_entry.get()).strip().lower()
         window.destroy()
-        counts, instances = title_counter(book_of_mormon_parser(), titles_of_christ_parser())
+        counts, instances = title_counter(book_of_mormon_parser(), titles_of_christ_parser(TITLES_OF_CHRIST_FILEPATH))
         line_chart_creator(counts_per_book(instances), which_title)
         sys.exit()
 
@@ -144,13 +158,27 @@ def build_gui():
     second_button.grid(row=2, column=2)
 
     third_label = ctk.CTkLabel(window, width=500,fg_color='black',bg_color="gray30",text=different_prompts[2], anchor="w", font=('Arial',15))        
-    third_entry = ctk.CTkEntry(window, width=45,fg_color='black',bg_color="gray30", font=('Arial',15,'bold'))
+    third_entry = ctk.CTkEntry(window, width=125,fg_color='black',bg_color="gray30", font=('Arial',15,'bold'))
     third_label.grid(row=3, column=0)
     third_entry.grid(row=3, column=1)
     third_entry.insert(ctk.END, info[2])
 
     def on_third_button_press():
-        pass
+        search_term = str(third_entry.get()).strip().lower()
+        verses_with_search_term = []
+        #counts, instances = title_counter(book_of_mormon_parser(), titles_of_christ_parser(TITLES_OF_CHRIST_FILEPATH))
+        #a = get_counts_of_chosen_christ_titles(search_term, counts)
+        with open(SEARCH_TERM_FILEPATH, "w") as search_file:
+            search_file.write("# 1. " + search_term + " ")
+        verses = book_of_mormon_parser()
+        counts, instances = title_counter(verses, titles_of_christ_parser(SEARCH_TERM_FILEPATH))
+        for i in instances[search_term]:
+            for j, k in verses.items():
+                if i == k:
+                    verses_with_search_term.append((k, j))
+        window.destroy()
+        searcher_creator(verses_with_search_term)
+        sys.exit()
 
     third_button = ctk.CTkButton(window, text="GO", command=on_third_button_press)
     third_button.grid(row=3, column=2)

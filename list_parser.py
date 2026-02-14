@@ -16,11 +16,11 @@ BOOKS = [
         "Words of Mormon", "Mosiah", "Alma", "Helaman",
         "3 Nephi", "4 Nephi", "Mormon", "Ether", "Moroni", "end_of_book"
     ]
-1
+
 def simplify_verse(s):
     return " ".join(s.lower().split())
 
-def titles_of_christ_parser():
+def titles_of_christ_parser(filepath):
     progress_bar = Progress(
         TextColumn("Parsing Titles of Christ..."),
     TextColumn("[progress.percentage]{task.percentage:>3.0f}%"),
@@ -33,7 +33,7 @@ def titles_of_christ_parser():
 )
     try:
         names = []
-        with open(TITLES_OF_CHRIST_FILEPATH, "r", encoding="utf-8") as titles, progress_bar as p:
+        with open(filepath, "r", encoding="utf-8") as titles, progress_bar as p:
             for i in p.track(range(2145)):
                 count = 0
                 for text in titles:
@@ -78,6 +78,8 @@ def book_of_mormon_parser():
 
                 # -------- BOOK HEADER --------
                 if line == BOOKS[book_count] or line == f"{BOOKS[book_count]} 1":
+                    if current_verse.strip():
+                        verse_names[simplify_verse(current_verse)] = f"{BOOKS[book_count-1]} {chapter_count}:{verse_count - 1}"
                     current_book_name = BOOKS[book_count]
                     book_count += 1
                     chapter_count = 1
@@ -85,29 +87,27 @@ def book_of_mormon_parser():
                     is_past_intro = True
                     is_past_chapter = (line == f"{current_book_name} 1")
 
-                    if current_verse.strip():
-                        verse_names[simplify_verse(current_verse)] = f"{BOOKS[book_count-1]} {chapter_count}:{verse_count}"
                     current_verse = ""
                     continue
 
                 # -------- START CURRENT CHAPTER (handles chapter 1) --------
                 if is_past_intro and line == f"{BOOKS[book_count-1]} {chapter_count}":
+                    if current_verse.strip():
+                        verse_names[simplify_verse(current_verse)] = f"{BOOKS[book_count-1]} {chapter_count}:{verse_count - 1}"
                     verse_count = 1
                     is_past_chapter = True
 
-                    if current_verse.strip():
-                        verse_names[simplify_verse(current_verse)] = f"{BOOKS[book_count-1]} {chapter_count}:{verse_count}"
                     current_verse = ""
                     continue
 
                 # -------- MOVE TO NEXT CHAPTER --------
                 if is_past_intro and line == f"{BOOKS[book_count-1]} {chapter_count + 1}":
+                    if current_verse.strip():
+                        verse_names[simplify_verse(current_verse)] = f"{BOOKS[book_count-1]} {chapter_count}:{verse_count - 1}"
                     chapter_count += 1
                     verse_count = 1
                     is_past_chapter = True
 
-                    if current_verse.strip():
-                        verse_names[simplify_verse(current_verse)] = f"{BOOKS[book_count-1]} {chapter_count}:{verse_count}"
                     current_verse = ""
                     continue
 
@@ -116,7 +116,7 @@ def book_of_mormon_parser():
                     continue
                 if is_past_chapter and line == f"{BOOKS[book_count-1]} {chapter_count}:{verse_count}":
                     if current_verse.strip():
-                        verse_names[simplify_verse(current_verse)] = f"{BOOKS[book_count-1]} {chapter_count}:{verse_count}"
+                        verse_names[simplify_verse(current_verse)] = f"{BOOKS[book_count-1]} {chapter_count}:{verse_count - 1}"
                     verse_count += 1
                     current_verse = ""
                     continue
@@ -144,7 +144,7 @@ def book_of_mormon_parser():
 
         # append final verse
             if current_verse.strip():
-                verse_names[simplify_verse(current_verse)] = f"{BOOKS[book_count-1]} {chapter_count}:{verse_count}"
+                verse_names[simplify_verse(current_verse)] = f"{BOOKS[book_count-1]} {chapter_count}:{verse_count - 1}"
     return verse_names
 
 def title_of_christ_checker(titles):
@@ -171,8 +171,8 @@ def save_chosen_titles_of_christ(chosen_titles):
         for i in chosen_titles:
             chosen_titles_file.write(i + ",")
 
-def get_chosen_titles_of_christ():
-    with open(CHOSEN_TITLES_FILEPATH, "r", encoding="utf-8") as chosen_titles_file:
+def get_chosen_titles_of_christ(title_filepath=CHOSEN_TITLES_FILEPATH):
+    with open(title_filepath, "r", encoding="utf-8") as chosen_titles_file:
         line = chosen_titles_file.readline()
         titles = line.split(",")
         return titles
