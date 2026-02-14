@@ -3,8 +3,6 @@ from rich.progress import (
     MofNCompleteColumn,
     Progress,
     TextColumn,
-    TimeElapsedColumn,
-    TimeRemainingColumn,
 )
 from pathlib import Path
 
