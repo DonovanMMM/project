@@ -10,7 +10,7 @@ from rich.progress import (
 
 CHOSEN_TITLES_FILEPATH = "C:\\Users\\User\\OneDrive\\Desktop\\project\\chosen.titles.txt" # Filepath for chosen titles of Christ
 TITLES_OF_CHRIST_FILEPATH = "C:\\Users\\User\\OneDrive\\Desktop\\project\\titles_of_christ.txt" # List of titles of Christ that I personally gathered during my mission
-BOOK_OF_MORMON_FILEPATH = "C:\\Users\\User\OneDrive\\Desktop\\project\\book_of_mormon.txt" # The Book of Mormon in .txt form
+BOOK_OF_MORMON_FILEPATH = "C:\\Users\\User\\OneDrive\\Desktop\\project\\book_of_mormon.txt" # The Book of Mormon in .txt form
 
 BOOKS = [
         "1 Nephi", "2 Nephi", "Jacob", "Enos", "Jarom", "Omni",
