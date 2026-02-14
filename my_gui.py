@@ -1,13 +1,37 @@
 import sys
 from pathlib import Path
+
+def show_dependency_error(error: ImportError):
+    install_command = f'"{sys.executable}" -m pip install -r requirements.txt'
+    details = [
+        f"Missing required library: {error}",
+        "",
+        "Install requirements with:",
+        install_command,
+    ]
+    if getattr(sys, "frozen", False):
+        details.extend([
+            "",
+            "Then rebuild the executable with PyInstaller.",
+        ])
+    message = "\n".join(details)
+    try:
+        import tkinter as tk
+        from tkinter import messagebox as tk_messagebox
+        root = tk.Tk()
+        root.withdraw()
+        tk_messagebox.showerror("Missing Dependencies", message)
+        root.destroy()
+    except Exception:
+        print(message)
+
 try:
-    from matplotlib import pyplot as plt # type: ignore # libraries allow me to create pie charts and display book of mormon information
     import matplotlib as mpl # type: ignore
-    from list_parser import *
     mpl.use("TkAgg")
+    from matplotlib import pyplot as plt # type: ignore # libraries allow me to create pie charts and display book of mormon information
+    from list_parser import *
 except ImportError as e:
-    print(f"Missing required library: {e}")
-    print("Please run: pip install -r requirements.txt")
+    show_dependency_error(e)
     sys.exit(1)
 import ctypes as ct
 import customtkinter as ctk # type: ignore
