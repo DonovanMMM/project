@@ -1,14 +1,19 @@
-from rich.progress import (
+from rich.progress import ( # type: ignore
     BarColumn,
     MofNCompleteColumn,
     Progress,
     TextColumn,
 )
 from pathlib import Path
+import sys
 
-CHOSEN_TITLES_FILEPATH = str(Path(__file__).resolve().parent / "chosen.titles.txt") # Filepath for chosen titles of Christ
-TITLES_OF_CHRIST_FILEPATH = str(Path(__file__).resolve().parent / "titles_of_christ.txt") # List of titles of Christ that I personally gathered during my mission
-BOOK_OF_MORMON_FILEPATH = str(Path(__file__).resolve().parent / "book_of_mormon.txt") # The Book of Mormon in .txt form
+def resource_path(filename: str) -> str:
+    base_path = Path(getattr(sys, "_MEIPASS", Path(__file__).resolve().parent))
+    return str(base_path / filename)
+
+CHOSEN_TITLES_FILEPATH = resource_path("chosen.titles.txt") # Filepath for chosen titles of Christ
+TITLES_OF_CHRIST_FILEPATH = resource_path("titles_of_christ.txt") # List of titles of Christ that I personally gathered during my mission
+BOOK_OF_MORMON_FILEPATH = resource_path("book_of_mormon.txt") # The Book of Mormon in .txt form
 BOOKS = [
         "1 Nephi", "2 Nephi", "Jacob", "Enos", "Jarom", "Omni",
         "Words of Mormon", "Mosiah", "Alma", "Helaman",

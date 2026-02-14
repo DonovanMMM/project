@@ -1,9 +1,8 @@
 import sys
 from pathlib import Path
-
 try:
-    from matplotlib import pyplot as plt # libraries allow me to create pie charts and display book of mormon information
-    import matplotlib as mpl
+    from matplotlib import pyplot as plt # type: ignore # libraries allow me to create pie charts and display book of mormon information
+    import matplotlib as mpl # type: ignore
     from list_parser import *
     mpl.use("TkAgg")
 except ImportError as e:
@@ -11,12 +10,22 @@ except ImportError as e:
     print("Please run: pip install -r requirements.txt")
     sys.exit(1)
 import ctypes as ct
-import customtkinter as ctk
+import customtkinter as ctk # type: ignore
 from tkinter import messagebox
 # "pip install matplotlib" command is neccessary for the import to work
 
-BOOK_OF_MORMON_ICON_FILEPATH = str(Path(__file__).resolve().parent / "book_of_mormon.ico")
+def resource_path(filename: str) -> str:
+    base_path = Path(getattr(sys, "_MEIPASS", Path(__file__).resolve().parent))
+    return str(base_path / filename)
+
+BOOK_OF_MORMON_ICON_FILEPATH = resource_path("book_of_mormon.ico")
 DWMWA_USE_IMMERSIVE_DARK_MODE = 20
+
+def safe_set_icon(window, icon_path: str):
+    try:
+        window.iconbitmap(icon_path)
+    except Exception:
+        pass
 
 def dark_title_bar(window):
         window.update_idletasks()
@@ -38,7 +47,7 @@ def line_chart_creator(line_info=dict, title="christ"):
     mngr = plt.get_current_fig_manager()
     mngr.window.title("Line Chart")
     mngr.window.wm_geometry("1080x750+360+0")
-    mngr.window.iconbitmap(BOOK_OF_MORMON_ICON_FILEPATH)
+    safe_set_icon(mngr.window, BOOK_OF_MORMON_ICON_FILEPATH)
     mngr.window.after(10, lambda: dark_title_bar(mngr.window))
     shortened_dictionary = {}
     shortened_dictionary[title] = line_info[title]
@@ -81,8 +90,7 @@ def pie_chart_creator(counts=dict, amount_of_titles=20):
         except ValueError:
             print("Please enter an integer.")
             get_pie_chart_slice_amount()
-    
-    #amount_of_titles = get_pie_chart_slice_amount()
+
     sorted_titles = sorted(counts.items(), key=lambda item: item[1])
     shortened_dictionary = dict(sorted_titles[-amount_of_titles:])
     upper_case_dictionary = {}
@@ -96,7 +104,7 @@ def pie_chart_creator(counts=dict, amount_of_titles=20):
     mngr = plt.get_current_fig_manager()
     mngr.window.title("Pie Chart")
     mngr.window.wm_geometry("1080x750+360+0")
-    mngr.window.iconbitmap(BOOK_OF_MORMON_ICON_FILEPATH)
+    safe_set_icon(mngr.window, BOOK_OF_MORMON_ICON_FILEPATH)
     mngr.window.after(10, lambda: dark_title_bar(mngr.window))
     plt.title(f"{amount_of_titles} of The Most Common Titles of Jesus Christ in The Book of Mormon")
     tot=sum(title_counts)/100.0
@@ -139,8 +147,8 @@ def searcher_creator(parent, verses, search_term):
             start = end
     top.title("Book of Mormon Searcher")
     top.geometry("950x750+360+0")
-    top.iconbitmap(BOOK_OF_MORMON_ICON_FILEPATH)
-    top.after(50, lambda: top.iconbitmap(BOOK_OF_MORMON_ICON_FILEPATH))
+    safe_set_icon(top, BOOK_OF_MORMON_ICON_FILEPATH)
+    top.after(50, lambda: safe_set_icon(top, BOOK_OF_MORMON_ICON_FILEPATH))
     top.configure(bg="gray25")
     top.after(10, lambda: dark_title_bar(top))
     top.transient(parent)
@@ -220,7 +228,7 @@ def build_gui():
 
     window.title("Book of Mormon and Titles of Jesus Christ")
     window.geometry("950x750+360+0")
-    window.iconbitmap(BOOK_OF_MORMON_ICON_FILEPATH)
+    safe_set_icon(window, BOOK_OF_MORMON_ICON_FILEPATH)
     window.configure(bg="gray25")
 
     def close_app():
