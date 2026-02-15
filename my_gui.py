@@ -1,16 +1,36 @@
 import sys
 import subprocess
+import importlib
 from pathlib import Path
 
-def prompt_and_install_requirements(error: ImportError):
+REQUIRED_DEPENDENCIES = {
+    "matplotlib": "matplotlib>=3.10",
+    "customtkinter": "customtkinter>=5.2",
+    "rich": "rich>=14.0",
+}
+
+def get_missing_dependencies() -> list[str]:
+    missing = []
+    for module_name in REQUIRED_DEPENDENCIES:
+        try:
+            importlib.import_module(module_name)
+        except ImportError:
+            missing.append(module_name)
+    return missing
+
+def prompt_and_install_requirements(missing_modules: list[str]):
     requirements_path = Path(getattr(sys, "_MEIPASS", Path(__file__).resolve().parent)) / "requirements.txt"
+    package_specs = [REQUIRED_DEPENDENCIES[name] for name in missing_modules if name in REQUIRED_DEPENDENCIES]
+
+    install_command = []
     if requirements_path.exists():
         install_command = [sys.executable, "-m", "pip", "install", "-r", str(requirements_path)]
     else:
-        install_command = [sys.executable, "-m", "pip", "install", "matplotlib>=3.10", "customtkinter>=5.2", "rich>=14.0"]
+        install_command = [sys.executable, "-m", "pip", "install", *package_specs]
 
     question = (
-        f"Missing required library: {error}\n\n"
+        f"Missing required dependencies: {', '.join(missing_modules)}\n\n"
+        f"Python interpreter:\n{sys.executable}\n\n"
         "Would you like to install the required dependencies now?"
     )
     try:
@@ -35,8 +55,13 @@ def prompt_and_install_requirements(error: ImportError):
             if result.returncode == 0:
                 print("Dependencies installed successfully. Please relaunch the app.")
             else:
-                print("Could not install dependencies. Please run:")
+                print("Could not install dependencies. Please run one of these commands:")
                 print(" ".join(install_command))
+
+missing_dependencies = get_missing_dependencies()
+if missing_dependencies:
+    prompt_and_install_requirements(missing_dependencies)
+    sys.exit(1)
 
 try:
     import matplotlib as mpl # type: ignore
@@ -44,7 +69,15 @@ try:
     from matplotlib import pyplot as plt # type: ignore # libraries allow me to create pie charts and display book of mormon information
     from list_parser import *
 except ImportError as e:
-    prompt_and_install_requirements(e)
+    try:
+        import tkinter as tk
+        from tkinter import messagebox as tk_messagebox
+        root = tk.Tk()
+        root.withdraw()
+        tk_messagebox.showerror("Startup Error", f"Import failed: {e}\n\nThis is not a standard missing-package error.")
+        root.destroy()
+    except Exception:
+        print(f"Import failed: {e}")
     sys.exit(1)
 import ctypes as ct
 import customtkinter as ctk # type: ignore
@@ -94,11 +127,7 @@ def line_chart_creator(line_info=dict, title="christ"):
         upper_case_dictionary[new_key] = value
 
     y = upper_case_dictionary[title.title()]
-    x = [
-        "1 Nephi", "2 Nephi", "Jacob", "Enos", "Jarom", "Omni",
-        "W of M", "Mosiah", "Alma", "Helaman",
-        "3 Nephi", "4 Nephi", "Mormon", "Ether", "Moroni"
-    ]
+    x = BOOKS
     plt.plot(x, y, label=f"{title.title()}", marker="o")
     for xi in range(len((x))):
         plt.annotate(f'{y[xi]}',
@@ -114,20 +143,6 @@ def line_chart_creator(line_info=dict, title="christ"):
     plt.show()
 
 def pie_chart_creator(counts=dict, amount_of_titles=20):
-    def get_pie_chart_slice_amount():
-        try:
-            amount_of_titles = int(input("How many of the most common titles of Christ in the Book of Mormon would you like to be displayed? "))
-            if amount_of_titles < 5:
-                print("Please enter 5 or more.")
-                get_pie_chart_slice_amount()
-            if amount_of_titles > 30:
-                print("Please enter 30 or less.")
-                get_pie_chart_slice_amount()
-            return amount_of_titles
-        except ValueError:
-            print("Please enter an integer.")
-            get_pie_chart_slice_amount()
-
     sorted_titles = sorted(counts.items(), key=lambda item: item[1])
     shortened_dictionary = dict(sorted_titles[-amount_of_titles:])
     upper_case_dictionary = {}
