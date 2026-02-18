@@ -1,0 +1,500 @@
+Date/Time:       2026-02-15 01:30:56 
+Command line:    C:\Users\Donov\AppData\Local\Programs\Python\Python314\Scripts\briefcase run android
+
+OS Release:      Windows 11
+OS Version:      10.0.26200
+Architecture:    AMD64
+Platform:        Windows-11-10.0.26200-SP0
+
+Python exe:      C:\Users\Donov\AppData\Local\Programs\Python\Python314\python.exe
+Python version:  3.14.2 (tags/v3.14.2:df79316, Dec  5 2025, 17:18:21) [MSC v.1944 64 bit (AMD64)]
+Virtual env:     False
+Conda env:       False
+
+Briefcase:       0.3.26
+Target platform: android
+Target format:   gradle
+
+Environment Variables:
+	ALLUSERSPROFILE=C:\ProgramData
+	APPDATA=C:\Users\Donov\AppData\Roaming
+	COMMONPROGRAMFILES=C:\Program Files\Common Files
+	COMMONPROGRAMFILES(X86)=C:\Program Files (x86)\Common Files
+	COMMONPROGRAMW6432=C:\Program Files\Common Files
+	COMPUTERNAME=MORTY
+	COMSPEC=C:\Windows\system32\cmd.exe
+	DRIVERDATA=C:\Windows\System32\Drivers\DriverData
+	EFC_10004_1592913036=1
+	HOMEDRIVE=C:
+	HOMEPATH=\Users\Donov
+	JAVA_HOME=C:\Program Files\Eclipse Adoptium\jdk-17.0.18.8-hotspot
+	LOCALAPPDATA=C:\Users\Donov\AppData\Local
+	LOGONSERVER=\\MORTY
+	NUMBER_OF_PROCESSORS=8
+	ONEDRIVE=C:\Users\Donov\OneDrive
+	ONEDRIVECONSUMER=C:\Users\Donov\OneDrive
+	OS=Windows_NT
+	PATH=C:\Program Files\Eclipse Adoptium\jdk-17.0.18.8-hotspot\bin;C:\Program Files\Eclipse Adoptium\jdk-17.0.18.8-hotspot\bin;C:\Program Files\Eclipse Adoptium\jdk-17\bin;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\Windows\System32\OpenSSH\;C:\Program Files\Git\cmd;C:\Users\Donov\AppData\Local\Programs\Python\Python314\Scripts\;C:\Users\Donov\AppData\Local\Programs\Python\Python314\;C:\Users\Donov\AppData\Local\Programs\Python\Launcher\;C:\Users\Donov\AppData\Local\Microsoft\WindowsApps;C:\Users\Donov\AppData\Local\Programs\Microsoft VS Code\bin;C:\Users\Donov\AppData\Local\Microsoft\WinGet\Packages\Gyan.FFmpeg_Microsoft.Winget.Source_8wekyb3d8bbwe\ffmpeg-8.0.1-full_build\bin;
+	PATHEXT=.COM;.EXE;.BAT;.CMD;.VBS;.VBE;.JS;.JSE;.WSF;.WSH;.MSC;.CPL
+	PROCESSOR_ARCHITECTURE=AMD64
+	PROCESSOR_IDENTIFIER=AMD64 Family 26 Model 104 Stepping 0, AuthenticAMD
+	PROCESSOR_LEVEL=26
+	PROCESSOR_REVISION=6800
+	PROGRAMDATA=C:\ProgramData
+	PROGRAMFILES=C:\Program Files
+	PROGRAMFILES(X86)=C:\Program Files (x86)
+	PROGRAMW6432=C:\Program Files
+	PSMODULEPATH=C:\Users\Donov\OneDrive\Documents\WindowsPowerShell\Modules;C:\Program Files\WindowsPowerShell\Modules;C:\Windows\system32\WindowsPowerShell\v1.0\Modules
+	PUBLIC=C:\Users\Public
+	SESSIONNAME=Console
+	SYSTEMDRIVE=C:
+	SYSTEMROOT=C:\Windows
+	TEMP=C:\Users\Donov\AppData\Local\Temp
+	TMP=C:\Users\Donov\AppData\Local\Temp
+	USERDOMAIN=MORTY
+	USERDOMAIN_ROAMINGPROFILE=MORTY
+	USERNAME=Donov
+	USERPROFILE=C:\Users\Donov
+	WINDIR=C:\Windows
+
+pyproject.toml:
+[tool.briefcase]
+project_name = "Book of Mormon Mobile"
+bundle = "org.donov"
+version = "0.1.0"
+url = "https://example.com/book-of-mormon-mobile"
+license.file = "LICENSE"
+author = "Donov"
+author_email = "donov@example.com"
+
+[tool.briefcase.app.mobile_app]
+formal_name = "Book of Mormon Mobile"
+description = "Mobile app for Book of Mormon search and title analysis."
+long_description = "A BeeWare/Toga mobile interface that reuses list_parser.py logic."
+sources = [
+    "mobile_app",
+    "list_parser.py",
+    "book_of_mormon.txt",
+    "titles_of_christ.txt",
+    "chosen.titles.txt",
+    "book_of_mormon.ico",
+]
+requires = [
+    "toga>=0.4.8",
+    "rich>=14.0",
+]
+
+[tool.briefcase.app.mobile_app.android.gradle]
+build_gradle_dependencies = [
+    "androidx.appcompat:appcompat:1.7.0",
+    "androidx.constraintlayout:constraintlayout:2.2.0",
+    "androidx.swiperefreshlayout:swiperefreshlayout:1.1.0",
+    "androidx.vectordrawable:vectordrawable:1.2.0",
+    "androidx.vectordrawable:vectordrawable-animated:1.2.0",
+]
+
+Briefcase Log:
+[01:30:43]                                                                                                                                                               java.py:111
+           [Java JDK] Evaluating JAVA_HOME...                                                                                                                            java.py:111
+           JAVA_HOME=C:\Program Files\Eclipse Adoptium\jdk-17.0.18.8-hotspot                                                                                             java.py:112
+                                                                                                                                                                   subprocess.py:839
+           >>> Running Command:                                                                                                                                    subprocess.py:839
+           >>>     'C:\Program Files\Eclipse Adoptium\jdk-17.0.18.8-hotspot\bin\javac' -version                                                                    subprocess.py:839
+           >>> Working Directory:                                                                                                                                  subprocess.py:839
+           >>>     C:\Users\Donov\OneDrive\Desktop\Book_of_Mormon                                                                                                  subprocess.py:839
+           >>> Command Output:                                                                                                                                     subprocess.py:839
+           >>>     javac 17.0.18                                                                                                                                   subprocess.py:839
+           >>> Return code: 0                                                                                                                                      subprocess.py:839
+                                                                                                                                                                   subprocess.py:839
+           Using JDK at C:\Program Files\Eclipse Adoptium\jdk-17.0.18.8-hotspot                                                                                          java.py:263
+           Using Android SDK at C:\Users\Donov\AppData\Local\BeeWare\briefcase\Cache\tools\android_sdk                                                            android_sdk.py:376
+           Android emulator is already installed.                                                                                                                 android_sdk.py:653
+[01:30:44]                                                                                                                                                         subprocess.py:839
+           >>> Running Command:                                                                                                                                    subprocess.py:839
+           >>>     'C:\Users\Donov\AppData\Local\BeeWare\briefcase\Cache\tools\android_sdk\platform-tools\adb.exe' devices -l                                      subprocess.py:839
+           >>> Working Directory:                                                                                                                                  subprocess.py:839
+           >>>     C:\Users\Donov\OneDrive\Desktop\Book_of_Mormon                                                                                                  subprocess.py:839
+           >>> Command Output:                                                                                                                                     subprocess.py:839
+           >>>     List of devices attached                                                                                                                        subprocess.py:839
+           >>>     emulator-5554          device product:sdk_phone64_x86_64 model:Android_SDK_built_for_x86_64 device:emulator64_x86_64 transport_id:1102          subprocess.py:839
+           >>>     emulator-5556          device product:sdk_gphone64_x86_64 model:sdk_gphone64_x86_64 device:emu64xa transport_id:1229                            subprocess.py:839
+           >>>                                                                                                                                                     subprocess.py:839
+           >>> Return code: 0                                                                                                                                      subprocess.py:839
+                                                                                                                                                                   subprocess.py:839
+                                                                                                                                                                   subprocess.py:839
+           >>> Running Command:                                                                                                                                    subprocess.py:839
+           >>>     'C:\Users\Donov\AppData\Local\BeeWare\briefcase\Cache\tools\android_sdk\platform-tools\adb.exe' -s emulator-5554 emu avd name                   subprocess.py:839
+           >>> Working Directory:                                                                                                                                  subprocess.py:839
+           >>>     C:\Users\Donov\OneDrive\Desktop\Book_of_Mormon                                                                                                  subprocess.py:839
+           >>> Command Output:                                                                                                                                     subprocess.py:839
+           >>>     phone_1                                                                                                                                         subprocess.py:839
+           >>>                                                                                                                                                     subprocess.py:839
+           >>>     OK                                                                                                                                              subprocess.py:839
+           >>>                                                                                                                                                     subprocess.py:839
+           >>> Return code: 0                                                                                                                                      subprocess.py:839
+                                                                                                                                                                   subprocess.py:839
+                                                                                                                                                                   subprocess.py:839
+           >>> Running Command:                                                                                                                                    subprocess.py:839
+           >>>     'C:\Users\Donov\AppData\Local\BeeWare\briefcase\Cache\tools\android_sdk\platform-tools\adb.exe' -s emulator-5556 emu avd name                   subprocess.py:839
+           >>> Working Directory:                                                                                                                                  subprocess.py:839
+           >>>     C:\Users\Donov\OneDrive\Desktop\Book_of_Mormon                                                                                                  subprocess.py:839
+           >>> Command Output:                                                                                                                                     subprocess.py:839
+           >>>     phone_vulkan                                                                                                                                    subprocess.py:839
+           >>>                                                                                                                                                     subprocess.py:839
+           >>>     OK                                                                                                                                              subprocess.py:839
+           >>>                                                                                                                                                     subprocess.py:839
+           >>> Return code: 0                                                                                                                                      subprocess.py:839
+                                                                                                                                                                   subprocess.py:839
+                                                                                                                                                                   subprocess.py:839
+           >>> Running Command:                                                                                                                                    subprocess.py:839
+           >>>     'C:\Users\Donov\AppData\Local\BeeWare\briefcase\Cache\tools\android_sdk\emulator\emulator.exe' -list-avds                                       subprocess.py:839
+           >>> Working Directory:                                                                                                                                  subprocess.py:839
+           >>>     C:\Users\Donov\OneDrive\Desktop\Book_of_Mormon                                                                                                  subprocess.py:839
+           >>> Command Output:                                                                                                                                     subprocess.py:839
+           >>>     phone_1                                                                                                                                         subprocess.py:839
+           >>>     phone_vulkan                                                                                                                                    subprocess.py:839
+           >>> Return code: 0                                                                                                                                      subprocess.py:839
+                                                                                                                                                                   subprocess.py:839
+                                                                                                                                                                      console.py:719
+                                                                                                                                                                      console.py:720
+           -- Android device ------------------------------------------------------------                                                                             console.py:721
+                                                                                                                                                                      console.py:955
+           Select Android device to use:                                                                                                                              console.py:956
+                                                                                                                                                                      console.py:957
+             1) @phone_1 (running emulator)                                                                                                                           console.py:971
+             2) @phone_vulkan (running emulator)                                                                                                                      console.py:971
+             3) Create a new Android emulator                                                                                                                         console.py:971
+                                                                                                                                                                      console.py:973
+[01:30:51] Android device:                                                                                                                                            console.py:976
+           User input: 2                                                                                                                                              console.py:976
+                                                                                                                                                                 android_sdk.py:1084
+           In future, you can specify this device by running:                                                                                                    android_sdk.py:1084
+                                                                                                                                                                 android_sdk.py:1084
+               $ briefcase run android -d "@phone_vulkan"                                                                                                        android_sdk.py:1084
+                                                                                                                                                                       gradle.py:456
+           [mobile_app] Starting app on @phone_vulkan (running emulator) (device ID emulator-5556)                                                                     gradle.py:456
+                                                                                                                                                                       gradle.py:468
+           [mobile_app] Installing app...                                                                                                                              gradle.py:468
+           Stopping old versions of the app... started                                                                                                                 gradle.py:469
+                                                                                                                                                                   subprocess.py:839
+           >>> Running Command:                                                                                                                                    subprocess.py:839
+           >>>     'C:\Users\Donov\AppData\Local\BeeWare\briefcase\Cache\tools\android_sdk\platform-tools\adb.exe' -s emulator-5556 shell am force-stop            subprocess.py:839
+           org.donov.mobile_app                                                                                                                                                     
+           >>> Working Directory:                                                                                                                                  subprocess.py:839
+           >>>     C:\Users\Donov\OneDrive\Desktop\Book_of_Mormon                                                                                                  subprocess.py:839
+           >>> Return code: 0                                                                                                                                      subprocess.py:839
+                                                                                                                                                                   subprocess.py:839
+[01:30:52] Stopping old versions of the app... done                                                                                                                    gradle.py:469
+           Installing new app version... started                                                                                                                       gradle.py:473
+                                                                                                                                                                   subprocess.py:839
+           >>> Running Command:                                                                                                                                    subprocess.py:839
+           >>>     'C:\Users\Donov\AppData\Local\BeeWare\briefcase\Cache\tools\android_sdk\platform-tools\adb.exe' -s emulator-5556 install -r                     subprocess.py:839
+           'C:\Users\Donov\OneDrive\Desktop\Book_of_Mormon\build\mobile_app\android\gradle\app\build\outputs\apk\debug\app-debug.apk'                                               
+           >>> Working Directory:                                                                                                                                  subprocess.py:839
+           >>>     C:\Users\Donov\OneDrive\Desktop\Book_of_Mormon                                                                                                  subprocess.py:839
+[01:30:54] >>> Command Output:                                                                                                                                     subprocess.py:839
+           >>>     Performing Streamed Install                                                                                                                     subprocess.py:839
+           >>>     adb.exe: failed to install                                                                                                                      subprocess.py:839
+           C:\Users\Donov\OneDrive\Desktop\Book_of_Mormon\build\mobile_app\android\gradle\app\build\outputs\apk\debug\app-debug.apk:                                                
+           >>>     Exception occurred while executing 'install':                                                                                                   subprocess.py:839
+           >>>     java.lang.NullPointerException: Attempt to invoke virtual method 'void android.content.pm.PackageManagerInternal.freeStorage(java.lang.String,  subprocess.py:839
+           long, int)' on a null object reference                                                                                                                                   
+           >>>             at com.android.server.StorageManagerService.allocateBytes(StorageManagerService.java:4205)                                              subprocess.py:839
+           >>>             at android.os.storage.StorageManager.allocateBytes(StorageManager.java:2321)                                                            subprocess.py:839
+           >>>             at android.os.storage.StorageManager.allocateBytes(StorageManager.java:2400)                                                            subprocess.py:839
+           >>>             at com.android.server.pm.PackageI                                                                                                       subprocess.py:839
+           >>> Return code: 1                                                                                                                                      subprocess.py:839
+                                                                                                                                                                   subprocess.py:839
+           Installing new app version... errored                                                                                                                       gradle.py:473
+                                                                                                                                                                      __main__.py:42
+           Unable to install APK C:\Users\Donov\OneDrive\Desktop\Book_of_Mormon\build\mobile_app\android\gradle\app\build\outputs\apk\debug\app-debug.apk on          __main__.py:43
+           emulator-5556                                                                                                                                                            
+           Saving log... started                                                                                                                                      console.py:443
+
+Main thread traceback:
+╭─────────────────────────────────────────────────────────────────────── Traceback (most recent call last) ────────────────────────────────────────────────────────────────────────╮
+│ C:\Users\Donov\AppData\Local\Programs\Python\Python314\Lib\site-packages\briefcase\integrations\android_sdk.py:1504 in install_apk                                               │
+│                                                                                                                                                                                  │
+│   1501 │   │   :returns: `None` on success; raises an exception on failure.                                                                                                      │
+│   1502 │   │   """                                                                                                                                                               │
+│   1503 │   │   try:                                                                                                                                                              │
+│ ❱ 1504 │   │   │   self.run("install", "-r", apk_path)                                                                                                                           │
+│   1505 │   │   except subprocess.CalledProcessError as e:                                                                                                                        │
+│   1506 │   │   │   raise BriefcaseCommandError(                                                                                                                                  │
+│   1507 │   │   │   │   f"Unable to install APK {apk_path} on {self.device}"                                                                                                      │
+│                                                                                                                                                                                  │
+│ ╭────────────────────────────────────────────────────────────────────── locals ──────────────────────────────────────────────────────────────────────╮                           │
+│ │ apk_path = WindowsPath('C:/Users/Donov/OneDrive/Desktop/Book_of_Mormon/build/mobile_app/android/gradle/app/build/outputs/apk/debug/app-debug.apk') │                           │
+│ │     self = <briefcase.integrations.android_sdk.ADB object at 0x000001D8E4AA8CD0>                                                                   │                           │
+│ ╰────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╯                           │
+│                                                                                                                                                                                  │
+│ C:\Users\Donov\AppData\Local\Programs\Python\Python314\Lib\site-packages\briefcase\integrations\android_sdk.py:1479 in run                                                       │
+│                                                                                                                                                                                  │
+│   1476 │   │   # checking that they are valid, then parsing output to notice errors.                                                                                             │
+│   1477 │   │   # This keeps performance good in the success case.                                                                                                                │
+│   1478 │   │   try:                                                                                                                                                              │
+│ ❱ 1479 │   │   │   output = self.tools.subprocess.check_output(                                                                                                                  │
+│   1480 │   │   │   │   [self.tools.android_sdk.adb_path, "-s", self.device, *arguments],                                                                                         │
+│   1481 │   │   │   │   quiet=quiet,                                                                                                                                              │
+│   1482 │   │   │   )                                                                                                                                                             │
+│                                                                                                                                                                                  │
+│ ╭──────────────────────────────────────────────────────────────────────────────── locals ────────────────────────────────────────────────────────────────────────────────╮       │
+│ │ arguments = ('install', '-r', WindowsPath('C:/Users/Donov/OneDrive/Desktop/Book_of_Mormon/build/mobile_app/android/gradle/app/build/outputs/apk/debug/app-debug.apk')) │       │
+│ │     quiet = 0                                                                                                                                                          │       │
+│ │      self = <briefcase.integrations.android_sdk.ADB object at 0x000001D8E4AA8CD0>                                                                                      │       │
+│ ╰────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╯       │
+│                                                                                                                                                                                  │
+│ C:\Users\Donov\AppData\Local\Programs\Python\Python314\Lib\site-packages\briefcase\integrations\subprocess.py:145 in inner                                                       │
+│                                                                                                                                                                                  │
+│   142 │   │   │   with sub.tools.console.release_console_control():                                                                                                              │
+│   143 │   │   │   │   return sub_method(sub, args, *wrapped_args, **wrapped_kwargs)                                                                                              │
+│   144 │   │   else:                                                                                                                                                              │
+│ ❱ 145 │   │   │   return sub_method(sub, args, *wrapped_args, **wrapped_kwargs)                                                                                                  │
+│   146 │                                                                                                                                                                          │
+│   147 │   return inner                                                                                                                                                           │
+│   148                                                                                                                                                                            │
+│                                                                                                                                                                                  │
+│ ╭─────────────────────────────────────────────────────────────────────────────── locals ────────────────────────────────────────────────────────────────────────────────╮        │
+│ │                    args = [                                                                                                                                           │        │
+│ │                           │   WindowsPath('C:/Users/Donov/AppData/Local/BeeWare/briefcase/Cache/tools/android_sdk/platform-tools/adb.exe'),                           │        │
+│ │                           │   '-s',                                                                                                                                   │        │
+│ │                           │   'emulator-5556',                                                                                                                        │        │
+│ │                           │   'install',                                                                                                                              │        │
+│ │                           │   '-r',                                                                                                                                   │        │
+│ │                           │   WindowsPath('C:/Users/Donov/OneDrive/Desktop/Book_of_Mormon/build/mobile_app/android/gradle/app/build/outputs/apk/debug/app-debug.apk') │        │
+│ │                           ]                                                                                                                                           │        │
+│ │              executable = 'C:\\Users\\Donov\\AppData\\Local\\BeeWare\\briefcase\\Cache\\tools\\android_sdk\\platform-'+13                                             │        │
+│ │ remove_dynamic_elements = False                                                                                                                                       │        │
+│ │                     sub = <briefcase.integrations.subprocess.Subprocess object at 0x000001D8E4927E00>                                                                 │        │
+│ │            wrapped_args = ()                                                                                                                                          │        │
+│ │          wrapped_kwargs = {'quiet': 0}                                                                                                                                │        │
+│ ╰───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╯        │
+│                                                                                                                                                                                  │
+│ C:\Users\Donov\AppData\Local\Programs\Python\Python314\Lib\site-packages\briefcase\integrations\subprocess.py:653 in check_output                                                │
+│                                                                                                                                                                                  │
+│   650 │   │   │   self._log_environment(kwargs.get("env"))                                                                                                                       │
+│   651 │   │                                                                                                                                                                      │
+│   652 │   │   try:                                                                                                                                                               │
+│ ❱ 653 │   │   │   cmd_output = self._subprocess.check_output(                                                                                                                    │
+│   654 │   │   │   │   [str(arg) for arg in args], **self.final_kwargs(**kwargs)                                                                                                  │
+│   655 │   │   │   )                                                                                                                                                              │
+│   656 │   │   except subprocess.CalledProcessError as e:                                                                                                                         │
+│                                                                                                                                                                                  │
+│ ╭─────────────────────────────────────────────────────────────────────── locals ───────────────────────────────────────────────────────────────────────╮                         │
+│ │   args = [                                                                                                                                           │                         │
+│ │          │   WindowsPath('C:/Users/Donov/AppData/Local/BeeWare/briefcase/Cache/tools/android_sdk/platform-tools/adb.exe'),                           │                         │
+│ │          │   '-s',                                                                                                                                   │                         │
+│ │          │   'emulator-5556',                                                                                                                        │                         │
+│ │          │   'install',                                                                                                                              │                         │
+│ │          │   '-r',                                                                                                                                   │                         │
+│ │          │   WindowsPath('C:/Users/Donov/OneDrive/Desktop/Book_of_Mormon/build/mobile_app/android/gradle/app/build/outputs/apk/debug/app-debug.apk') │                         │
+│ │          ]                                                                                                                                           │                         │
+│ │ kwargs = {'stderr': -2}                                                                                                                              │                         │
+│ │  quiet = 0                                                                                                                                           │                         │
+│ │   self = <briefcase.integrations.subprocess.Subprocess object at 0x000001D8E4927E00>                                                                 │                         │
+│ ╰──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╯                         │
+│                                                                                                                                                                                  │
+│ C:\Users\Donov\AppData\Local\Programs\Python\Python314\Lib\subprocess.py:472 in check_output                                                                                     │
+│                                                                                                                                                                                  │
+│    469 │   │   │   empty = b''                                                                                                                                                   │
+│    470 │   │   kwargs['input'] = empty                                                                                                                                           │
+│    471 │                                                                                                                                                                         │
+│ ❱  472 │   return run(*popenargs, stdout=PIPE, timeout=timeout, check=True,                                                                                                      │
+│    473 │   │   │      **kwargs).stdout                                                                                                                                           │
+│    474                                                                                                                                                                           │
+│    475                                                                                                                                                                           │
+│                                                                                                                                                                                  │
+│ ╭─────────────────────────────────────────────────────── locals ───────────────────────────────────────────────────────╮                                                         │
+│ │        kw = 'check'                                                                                                  │                                                         │
+│ │    kwargs = {'stderr': -2, 'text': True, 'encoding': 'cp437', 'errors': 'backslashreplace'}                          │                                                         │
+│ │ popenargs = (                                                                                                        │                                                         │
+│ │             │   [                                                                                                    │                                                         │
+│ │             │   │   'C:\\Users\\Donov\\AppData\\Local\\BeeWare\\briefcase\\Cache\\tools\\android_sdk\\platform-'+13, │                                                         │
+│ │             │   │   '-s',                                                                                            │                                                         │
+│ │             │   │   'emulator-5556',                                                                                 │                                                         │
+│ │             │   │   'install',                                                                                       │                                                         │
+│ │             │   │   '-r',                                                                                            │                                                         │
+│ │             │   │   'C:\\Users\\Donov\\OneDrive\\Desktop\\Book_of_Mormon\\build\\mobile_app\\android\\gradle\\a'+40  │                                                         │
+│ │             │   ],                                                                                                   │                                                         │
+│ │             )                                                                                                        │                                                         │
+│ │   timeout = None                                                                                                     │                                                         │
+│ ╰──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╯                                                         │
+│                                                                                                                                                                                  │
+│ C:\Users\Donov\AppData\Local\Programs\Python\Python314\Lib\subprocess.py:577 in run                                                                                              │
+│                                                                                                                                                                                  │
+│    574 │   │   │   raise                                                                                                                                                         │
+│    575 │   │   retcode = process.poll()                                                                                                                                          │
+│    576 │   │   if check and retcode:                                                                                                                                             │
+│ ❱  577 │   │   │   raise CalledProcessError(retcode, process.args,                                                                                                               │
+│    578 │   │   │   │   │   │   │   │   │    output=stdout, stderr=stderr)                                                                                                        │
+│    579 │   return CompletedProcess(process.args, retcode, stdout, stderr)                                                                                                        │
+│    580                                                                                                                                                                           │
+│                                                                                                                                                                                  │
+│ ╭───────────────────────────────────────────────────────── locals ──────────────────────────────────────────────────────────╮                                                    │
+│ │ capture_output = False                                                                                                    │                                                    │
+│ │          check = True                                                                                                     │                                                    │
+│ │          input = None                                                                                                     │                                                    │
+│ │         kwargs = {'stdout': -1, 'stderr': -2, 'text': True, 'encoding': 'cp437', 'errors': 'backslashreplace'}            │                                                    │
+│ │      popenargs = (                                                                                                        │                                                    │
+│ │                  │   [                                                                                                    │                                                    │
+│ │                  │   │   'C:\\Users\\Donov\\AppData\\Local\\BeeWare\\briefcase\\Cache\\tools\\android_sdk\\platform-'+13, │                                                    │
+│ │                  │   │   '-s',                                                                                            │                                                    │
+│ │                  │   │   'emulator-5556',                                                                                 │                                                    │
+│ │                  │   │   'install',                                                                                       │                                                    │
+│ │                  │   │   '-r',                                                                                            │                                                    │
+│ │                  │   │   'C:\\Users\\Donov\\OneDrive\\Desktop\\Book_of_Mormon\\build\\mobile_app\\android\\gradle\\a'+40  │                                                    │
+│ │                  │   ],                                                                                                   │                                                    │
+│ │                  )                                                                                                        │                                                    │
+│ │        process = <Popen: returncode: 1 args: ['C:\\Users\\Donov\\AppData\\Local\\BeeWare\\bri...>                         │                                                    │
+│ │        retcode = 1                                                                                                        │                                                    │
+│ │         stderr = None                                                                                                     │                                                    │
+│ │         stdout = 'Performing Streamed Install\nadb.exe: failed to install C:\\Users\\Donov\\OneDrive\\D'+609              │                                                    │
+│ │        timeout = None                                                                                                     │                                                    │
+│ ╰───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╯                                                    │
+╰──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╯
+CalledProcessError: Command '['C:\\Users\\Donov\\AppData\\Local\\BeeWare\\briefcase\\Cache\\tools\\android_sdk\\platform-tools\\adb.exe', '-s', 'emulator-5556', 'install', '-r', 'C:\\Users\\Donov\\OneDrive\\Desktop\\Book_of_Mormon\\build\\mobile_app\\android\\gradle\\app\\build\\outputs\\apk\\debug\\app-debug.apk']' returned non-zero exit status 1.
+
+The above exception was the direct cause of the following exception:
+
+╭─────────────────────────────────────────────────────────────────────── Traceback (most recent call last) ────────────────────────────────────────────────────────────────────────╮
+│ C:\Users\Donov\AppData\Local\Programs\Python\Python314\Lib\site-packages\briefcase\__main__.py:27 in main                                                                        │
+│                                                                                                                                                                                  │
+│   24 │   │   │   Path.cwd() / "pyproject.toml",                                                                                                                                  │
+│   25 │   │   │   overrides=overrides,                                                                                                                                            │
+│   26 │   │   )                                                                                                                                                                   │
+│ ❱ 27 │   │   command(**options)                                                                                                                                                  │
+│   28 │   except HelpText as e:                                                                                                                                                   │
+│   29 │   │   console.info()                                                                                                                                                      │
+│   30 │   │   console.info(str(e))                                                                                                                                                │
+│                                                                                                                                                                                  │
+│ ╭─────────────────────────────────────────────────────────────────────────────────── locals ───────────────────────────────────────────────────────────────────────────────────╮ │
+│ │       command = <briefcase.platforms.android.gradle.GradleRunCommand object at 0x000001D8E4927230>                                                                           │ │
+│ │       console = <briefcase.console.Console object at 0x000001D8E4925A90>                                                                                                     │ │
+│ │             e = BriefcaseCommandError('Unable to install APK                                                                                                                 │ │
+│ │                 C:\\Users\\Donov\\OneDrive\\Desktop\\Book_of_Mormon\\build\\mobile_app\\android\\gradle\\app\\build\\outputs\\apk\\debug\\app-debug.apk on emulator-5556')   │ │
+│ │ extra_cmdline = []                                                                                                                                                           │ │
+│ │       options = {                                                                                                                                                            │ │
+│ │                 │   'appname': None,                                                                                                                                         │ │
+│ │                 │   'update': False,                                                                                                                                         │ │
+│ │                 │   'update_requirements': False,                                                                                                                            │ │
+│ │                 │   'update_support': False,                                                                                                                                 │ │
+│ │                 │   'update_stub': False,                                                                                                                                    │ │
+│ │                 │   'update_resources': False,                                                                                                                               │ │
+│ │                 │   'no_update': False,                                                                                                                                      │ │
+│ │                 │   'test_mode': False,                                                                                                                                      │ │
+│ │                 │   'device_or_avd': None,                                                                                                                                   │ │
+│ │                 │   'extra_emulator_args': None,                                                                                                                             │ │
+│ │                 │   ... +4                                                                                                                                                   │ │
+│ │                 }                                                                                                                                                            │ │
+│ │     overrides = {}                                                                                                                                                           │ │
+│ │        result = 200                                                                                                                                                          │ │
+│ ╰──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╯ │
+│                                                                                                                                                                                  │
+│ C:\Users\Donov\AppData\Local\Programs\Python\Python314\Lib\site-packages\briefcase\commands\run.py:409 in __call__                                                               │
+│                                                                                                                                                                                  │
+│   406 │   │   │   │   "(apps defining 'external_package_path') cannot be run."                                                                                                   │
+│   407 │   │   │   )                                                                                                                                                              │
+│   408 │   │                                                                                                                                                                      │
+│ ❱ 409 │   │   state = self.run_app(                                                                                                                                              │
+│   410 │   │   │   app,                                                                                                                                                           │
+│   411 │   │   │   passthrough=[] if passthrough is None else passthrough,                                                                                                        │
+│   412 │   │   │   **full_options(state, options),                                                                                                                                │
+│                                                                                                                                                                                  │
+│ ╭─────────────────────────────────────────────────────────────────────────── locals ────────────────────────────────────────────────────────────────────────────╮                │
+│ │                 app = <org.donov.mobile-app v0.1.0 AppConfig>                                                                                                 │                │
+│ │             appname = None                                                                                                                                    │                │
+│ │            debugger = None                                                                                                                                    │                │
+│ │       debugger_host = None                                                                                                                                    │                │
+│ │       debugger_port = None                                                                                                                                    │                │
+│ │           exec_file = WindowsPath('C:/Users/Donov/OneDrive/Desktop/Book_of_Mormon/build/mobile_app/android/gradle/app/build/outputs/apk/debug/app-debug.apk') │                │
+│ │           no_update = False                                                                                                                                   │                │
+│ │             options = {'device_or_avd': None, 'extra_emulator_args': None, 'shutdown_on_exit': False, 'forward_ports': None, 'reverse_ports': None}           │                │
+│ │         passthrough = []                                                                                                                                      │                │
+│ │                self = <briefcase.platforms.android.gradle.GradleRunCommand object at 0x000001D8E4927230>                                                      │                │
+│ │               state = None                                                                                                                                    │                │
+│ │       template_file = WindowsPath('C:/Users/Donov/OneDrive/Desktop/Book_of_Mormon/build/mobile_app/android/gradle')                                           │                │
+│ │           test_mode = False                                                                                                                                   │                │
+│ │              update = False                                                                                                                                   │                │
+│ │ update_requirements = False                                                                                                                                   │                │
+│ │    update_resources = False                                                                                                                                   │                │
+│ │         update_stub = False                                                                                                                                   │                │
+│ │      update_support = False                                                                                                                                   │                │
+│ ╰───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╯                │
+│                                                                                                                                                                                  │
+│ C:\Users\Donov\AppData\Local\Programs\Python\Python314\Lib\site-packages\briefcase\platforms\android\gradle.py:474 in run_app                                                    │
+│                                                                                                                                                                                  │
+│   471 │   │   │                                                                                                                                                                  │
+│   472 │   │   │   # Install the latest APK file onto the device.                                                                                                                 │
+│   473 │   │   │   with self.console.wait_bar("Installing new app version..."):                                                                                                   │
+│ ❱ 474 │   │   │   │   adb.install_apk(self.binary_path(app))                                                                                                                     │
+│   475 │   │   │                                                                                                                                                                  │
+│   476 │   │   │   forward_ports = forward_ports or []                                                                                                                            │
+│   477 │   │   │   reverse_ports = reverse_ports or []                                                                                                                            │
+│                                                                                                                                                                                  │
+│ ╭───────────────────────────────────────────────── locals ─────────────────────────────────────────────────╮                                                                     │
+│ │                 adb = <briefcase.integrations.android_sdk.ADB object at 0x000001D8E4AA8CD0>              │                                                                     │
+│ │                 app = <org.donov.mobile-app v0.1.0 AppConfig>                                            │                                                                     │
+│ │                 avd = 'phone_vulkan'                                                                     │                                                                     │
+│ │              device = 'emulator-5556'                                                                    │                                                                     │
+│ │       device_or_avd = None                                                                               │                                                                     │
+│ │ extra_emulator_args = None                                                                               │                                                                     │
+│ │       forward_ports = None                                                                               │                                                                     │
+│ │              kwargs = {}                                                                                 │                                                                     │
+│ │               label = 'app'                                                                              │                                                                     │
+│ │                name = '@phone_vulkan (running emulator)'                                                 │                                                                     │
+│ │             package = 'org.donov.mobile_app'                                                             │                                                                     │
+│ │         passthrough = []                                                                                 │                                                                     │
+│ │       reverse_ports = None                                                                               │                                                                     │
+│ │                self = <briefcase.platforms.android.gradle.GradleRunCommand object at 0x000001D8E4927230> │                                                                     │
+│ │    shutdown_on_exit = False                                                                              │                                                                     │
+│ ╰──────────────────────────────────────────────────────────────────────────────────────────────────────────╯                                                                     │
+│                                                                                                                                                                                  │
+│ C:\Users\Donov\AppData\Local\Programs\Python\Python314\Lib\site-packages\briefcase\integrations\android_sdk.py:1506 in install_apk                                               │
+│                                                                                                                                                                                  │
+│   1503 │   │   try:                                                                                                                                                              │
+│   1504 │   │   │   self.run("install", "-r", apk_path)                                                                                                                           │
+│   1505 │   │   except subprocess.CalledProcessError as e:                                                                                                                        │
+│ ❱ 1506 │   │   │   raise BriefcaseCommandError(                                                                                                                                  │
+│   1507 │   │   │   │   f"Unable to install APK {apk_path} on {self.device}"                                                                                                      │
+│   1508 │   │   │   ) from e                                                                                                                                                      │
+│   1509                                                                                                                                                                           │
+│                                                                                                                                                                                  │
+│ ╭────────────────────────────────────────────────────────────────────── locals ──────────────────────────────────────────────────────────────────────╮                           │
+│ │ apk_path = WindowsPath('C:/Users/Donov/OneDrive/Desktop/Book_of_Mormon/build/mobile_app/android/gradle/app/build/outputs/apk/debug/app-debug.apk') │                           │
+│ │     self = <briefcase.integrations.android_sdk.ADB object at 0x000001D8E4AA8CD0>                                                                   │                           │
+│ ╰────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╯                           │
+╰──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╯
+BriefcaseCommandError: Unable to install APK C:\Users\Donov\OneDrive\Desktop\Book_of_Mormon\build\mobile_app\android\gradle\app\build\outputs\apk\debug\app-debug.apk on emulator-5556
+           Collecting extra information for log... started                                                                                                            console.py:481
+                                                                                                                                                                      console.py:485
+           Extra information:                                                                                                                                         console.py:486
+                                                                                                                                                                   subprocess.py:839
+           >>> Running Command:                                                                                                                                    subprocess.py:839
+           >>>     'C:\Users\Donov\AppData\Local\BeeWare\briefcase\Cache\tools\android_sdk\cmdline-tools\19.0\bin\sdkmanager.bat' --list_installed                 subprocess.py:839
+           >>> Working Directory:                                                                                                                                  subprocess.py:839
+           >>>     C:\Users\Donov\OneDrive\Desktop\Book_of_Mormon                                                                                                  subprocess.py:839
+           >>> Environment Overrides:                                                                                                                              subprocess.py:839
+           >>>     ANDROID_HOME=C:\Users\Donov\AppData\Local\BeeWare\briefcase\Cache\tools\android_sdk                                                             subprocess.py:839
+           >>>     ANDROID_SDK_ROOT=C:\Users\Donov\AppData\Local\BeeWare\briefcase\Cache\tools\android_sdk                                                         subprocess.py:839
+           >>>     JAVA_HOME=C:\Program Files\Eclipse Adoptium\jdk-17.0.18.8-hotspot                                                                               subprocess.py:839
+[01:30:56] >>> Command Output:                                                                                                                                     subprocess.py:839
+           >>>     Loading package information...                                                                                                                  subprocess.py:839
+           >>>     Loading local repository...                                                                                                                     subprocess.py:839
+           >>>     [=========                              ] 25% Loading local repository...                                                                       subprocess.py:839
+           >>>     [=========                              ] 25% Fetch remote repository...                                                                        subprocess.py:839
+           >>>     [=======================================] 100% Fetch remote repository...                                                                       subprocess.py:839
+           >>>                                                                                                                                                     subprocess.py:839
+           >>>     Installed packages:                                                                                                                             subprocess.py:839
+           >>>       Path                                        | Version | Description                                | Location                                 subprocess.py:839
+           >>>       -------                                     | ------- | -------                                    | -------                                  subprocess.py:839
+           >>>       build-tools;35.0.0                          | 35.0.0  | Android SDK Build-Tools 35                 | build-tools\35.0.0                       subprocess.py:839
+           >>>       emulator                                    | 36.4.9  | Android Emulator                           | emulator                                 subprocess.py:839
+           >>>       platform-tools                              | 36.0.2  | Android SDK Platform-Tools                 | platform-tools                           subprocess.py:839
+           >>>       platforms;android-35                        | 2       | Android SDK Platform 35                    | platforms\android-35                     subprocess.py:839
+           >>>       system-images;android-31;default;x86_64     | 5       | Intel x86_64 Atom System Image             | system-images\android-31\default\x86_64  subprocess.py:839
+           >>>       system-images;android-35;google_apis;x86_64 | 9       | Google APIs Intel x86_64 Atom System Image |                                          subprocess.py:839
+           system-images\android-35\google_apis\x86_64                                                                                                                              
+           >>>                                                                                                                                                     subprocess.py:839
+           >>> Return code: 0                                                                                                                                      subprocess.py:839
+                                                                                                                                                                   subprocess.py:839
+           Collecting extra information for log... done                                                                                                               console.py:481

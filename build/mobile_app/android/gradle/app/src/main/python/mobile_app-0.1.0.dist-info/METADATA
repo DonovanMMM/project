@@ -1,0 +1,11 @@
+Metadata-Version: 2.1
+Briefcase-Version: 0.3.26
+Name: mobile_app
+Formal-Name: Book of Mormon Mobile
+App-ID: org.donov.mobile-app
+Version: 0.1.0
+Home-page: https://example.com/book-of-mormon-mobile
+Download-URL: https://example.com/book-of-mormon-mobile
+Author: Donov
+Author-email: donov@example.com
+Summary: Mobile app for Book of Mormon search and title analysis.

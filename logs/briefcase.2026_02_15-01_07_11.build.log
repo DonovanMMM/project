@@ -1,0 +1,422 @@
+Date/Time:       2026-02-15 01:07:12 
+Command line:    C:\Users\Donov\AppData\Local\Programs\Python\Python314\Scripts\briefcase build android
+
+OS Release:      Windows 11
+OS Version:      10.0.26200
+Architecture:    AMD64
+Platform:        Windows-11-10.0.26200-SP0
+
+Python exe:      C:\Users\Donov\AppData\Local\Programs\Python\Python314\python.exe
+Python version:  3.14.2 (tags/v3.14.2:df79316, Dec  5 2025, 17:18:21) [MSC v.1944 64 bit (AMD64)]
+Virtual env:     False
+Conda env:       False
+
+Briefcase:       0.3.26
+Target platform: android
+Target format:   gradle
+
+Environment Variables:
+	ALLUSERSPROFILE=C:\ProgramData
+	APPDATA=C:\Users\Donov\AppData\Roaming
+	COMMONPROGRAMFILES=C:\Program Files\Common Files
+	COMMONPROGRAMFILES(X86)=C:\Program Files (x86)\Common Files
+	COMMONPROGRAMW6432=C:\Program Files\Common Files
+	COMPUTERNAME=MORTY
+	COMSPEC=C:\Windows\system32\cmd.exe
+	DRIVERDATA=C:\Windows\System32\Drivers\DriverData
+	EFC_10004_1592913036=1
+	HOMEDRIVE=C:
+	HOMEPATH=\Users\Donov
+	JAVA_HOME=C:\Program Files\Eclipse Adoptium\jdk-17.0.18.8-hotspot
+	LOCALAPPDATA=C:\Users\Donov\AppData\Local
+	LOGONSERVER=\\MORTY
+	NUMBER_OF_PROCESSORS=8
+	ONEDRIVE=C:\Users\Donov\OneDrive
+	ONEDRIVECONSUMER=C:\Users\Donov\OneDrive
+	OS=Windows_NT
+	PATH=C:\Program Files\Eclipse Adoptium\jdk-17.0.18.8-hotspot\bin;C:\Program Files\Eclipse Adoptium\jdk-17.0.18.8-hotspot\bin;C:\Program Files\Eclipse Adoptium\jdk-17\bin;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\Windows\System32\OpenSSH\;C:\Program Files\Git\cmd;C:\Users\Donov\AppData\Local\Programs\Python\Python314\Scripts\;C:\Users\Donov\AppData\Local\Programs\Python\Python314\;C:\Users\Donov\AppData\Local\Programs\Python\Launcher\;C:\Users\Donov\AppData\Local\Microsoft\WindowsApps;C:\Users\Donov\AppData\Local\Programs\Microsoft VS Code\bin;C:\Users\Donov\AppData\Local\Microsoft\WinGet\Packages\Gyan.FFmpeg_Microsoft.Winget.Source_8wekyb3d8bbwe\ffmpeg-8.0.1-full_build\bin;
+	PATHEXT=.COM;.EXE;.BAT;.CMD;.VBS;.VBE;.JS;.JSE;.WSF;.WSH;.MSC;.CPL
+	PROCESSOR_ARCHITECTURE=AMD64
+	PROCESSOR_IDENTIFIER=AMD64 Family 26 Model 104 Stepping 0, AuthenticAMD
+	PROCESSOR_LEVEL=26
+	PROCESSOR_REVISION=6800
+	PROGRAMDATA=C:\ProgramData
+	PROGRAMFILES=C:\Program Files
+	PROGRAMFILES(X86)=C:\Program Files (x86)
+	PROGRAMW6432=C:\Program Files
+	PSMODULEPATH=C:\Users\Donov\OneDrive\Documents\WindowsPowerShell\Modules;C:\Program Files\WindowsPowerShell\Modules;C:\Windows\system32\WindowsPowerShell\v1.0\Modules
+	PUBLIC=C:\Users\Public
+	SESSIONNAME=Console
+	SYSTEMDRIVE=C:
+	SYSTEMROOT=C:\Windows
+	TEMP=C:\Users\Donov\AppData\Local\Temp
+	TMP=C:\Users\Donov\AppData\Local\Temp
+	USERDOMAIN=MORTY
+	USERDOMAIN_ROAMINGPROFILE=MORTY
+	USERNAME=Donov
+	USERPROFILE=C:\Users\Donov
+	WINDIR=C:\Windows
+
+pyproject.toml:
+[tool.briefcase]
+project_name = "Book of Mormon Mobile"
+bundle = "org.donov"
+version = "0.1.0"
+url = "https://example.com/book-of-mormon-mobile"
+license.file = "LICENSE"
+author = "Donov"
+author_email = "donov@example.com"
+
+[tool.briefcase.app.mobile_app]
+formal_name = "Book of Mormon Mobile"
+description = "Mobile app for Book of Mormon search and title analysis."
+long_description = "A BeeWare/Toga mobile interface that reuses list_parser.py logic."
+sources = [
+    "mobile_app",
+    "list_parser.py",
+    "book_of_mormon.txt",
+    "titles_of_christ.txt",
+    "chosen.titles.txt",
+    "book_of_mormon.ico",
+]
+requires = [
+    "toga>=0.4.8",
+    "rich>=14.0",
+]
+
+[tool.briefcase.app.mobile_app.android.gradle]
+build_gradle_dependencies = [
+    "androidx.appcompat:appcompat:1.7.0",
+    "androidx.constraintlayout:constraintlayout:2.2.0",
+    "androidx.swiperefreshlayout:swiperefreshlayout:1.1.0",
+    "androidx.vectordrawable:vectordrawable:1.2.0",
+    "androidx.vectordrawable:vectordrawable-animated:1.2.0",
+]
+
+Briefcase Log:
+[01:07:08]                                                                                                                                                               java.py:111
+           [Java JDK] Evaluating JAVA_HOME...                                                                                                                            java.py:111
+           JAVA_HOME=C:\Program Files\Eclipse Adoptium\jdk-17.0.18.8-hotspot                                                                                             java.py:112
+                                                                                                                                                                   subprocess.py:839
+           >>> Running Command:                                                                                                                                    subprocess.py:839
+           >>>     'C:\Program Files\Eclipse Adoptium\jdk-17.0.18.8-hotspot\bin\javac' -version                                                                    subprocess.py:839
+           >>> Working Directory:                                                                                                                                  subprocess.py:839
+           >>>     C:\Users\Donov\OneDrive\Desktop\Book_of_Mormon                                                                                                  subprocess.py:839
+           >>> Command Output:                                                                                                                                     subprocess.py:839
+           >>>     javac 17.0.18                                                                                                                                   subprocess.py:839
+           >>> Return code: 0                                                                                                                                      subprocess.py:839
+                                                                                                                                                                   subprocess.py:839
+           Using JDK at C:\Program Files\Eclipse Adoptium\jdk-17.0.18.8-hotspot                                                                                          java.py:263
+           Using Android SDK at C:\Users\Donov\AppData\Local\BeeWare\briefcase\Cache\tools\android_sdk                                                            android_sdk.py:376
+                                                                                                                                                                       gradle.py:349
+           [mobile_app] Updating app metadata...                                                                                                                       gradle.py:349
+           Setting main module... started                                                                                                                              gradle.py:331
+           Setting main module... done                                                                                                                                 gradle.py:331
+                                                                                                                                                                       gradle.py:352
+           [mobile_app] Building Android APK...                                                                                                                        gradle.py:352
+           Building... started                                                                                                                                         gradle.py:353
+           Android emulator is already installed.                                                                                                                 android_sdk.py:653
+                                                                                                                                                                   subprocess.py:839
+           >>> Running Command:                                                                                                                                    subprocess.py:839
+           >>>     'C:\Users\Donov\OneDrive\Desktop\Book_of_Mormon\build\mobile_app\android\gradle\gradlew.bat' --console plain assembleDebug                      subprocess.py:839
+           >>> Working Directory:                                                                                                                                  subprocess.py:839
+           >>>     C:\Users\Donov\OneDrive\Desktop\Book_of_Mormon\build\mobile_app\android\gradle                                                                  subprocess.py:839
+           >>> Environment Overrides:                                                                                                                              subprocess.py:839
+           >>>     ANDROID_HOME=C:\Users\Donov\AppData\Local\BeeWare\briefcase\Cache\tools\android_sdk                                                             subprocess.py:839
+           >>>     ANDROID_SDK_ROOT=C:\Users\Donov\AppData\Local\BeeWare\briefcase\Cache\tools\android_sdk                                                         subprocess.py:839
+           >>>     JAVA_HOME=C:\Program Files\Eclipse Adoptium\jdk-17.0.18.8-hotspot                                                                               subprocess.py:839
+[01:07:10] > Task :app:preBuild UP-TO-DATE                                                                                                                         subprocess.py:196
+           > Task :app:preDebugBuild UP-TO-DATE                                                                                                                    subprocess.py:196
+           > Task :app:mergeDebugNativeDebugMetadata NO-SOURCE                                                                                                     subprocess.py:196
+           > Task :app:extractDebugPythonBuildPackages FAILED                                                                                                      subprocess.py:196
+                                                                                                                                                                   subprocess.py:196
+           [Incubating] Problems report is available at:                                                                                                           subprocess.py:196
+           file:///C:/Users/Donov/OneDrive/Desktop/Book_of_Mormon/build/mobile_app/android/gradle/build/reports/problems/problems-report.html                                       
+                                                                                                                                                                   subprocess.py:196
+           FAILURE: Build failed with an exception.                                                                                                                subprocess.py:196
+                                                                                                                                                                   subprocess.py:196
+           * What went wrong:                                                                                                                                      subprocess.py:196
+           Execution failed for task ':app:extractDebugPythonBuildPackages'.                                                                                       subprocess.py:196
+           > Cannot access output property 'outputDir' of task ':app:extractDebugPythonBuildPackages'. Accessing unreadable inputs or outputs is not supported.    subprocess.py:196
+           Declare the task as untracked by using Task.doNotTrackState(). For more information, please refer to                                                                     
+           https://docs.gradle.org/8.13/userguide/incremental_build.html#sec:disable-state-tracking in the Gradle documentation.                                                    
+              > java.io.IOException: Cannot snapshot                                                                                                               subprocess.py:196
+           C:\Users\Donov\OneDrive\Desktop\Book_of_Mormon\build\mobile_app\android\gradle\app\build\python\env\debug\pyvenv.cfg: not a regular file                                 
+                                                                                                                                                                   subprocess.py:196
+           * Try:                                                                                                                                                  subprocess.py:196
+           > Run with --stacktrace option to get the stack trace.                                                                                                  subprocess.py:196
+           > Run with --info or --debug option to get more log output.                                                                                             subprocess.py:196
+           > Run with --scan to get full insights.                                                                                                                 subprocess.py:196
+           > Get more help at https://help.gradle.org.                                                                                                             subprocess.py:196
+                                                                                                                                                                   subprocess.py:196
+           Deprecated Gradle features were used in this build, making it incompatible with Gradle 9.0.                                                             subprocess.py:196
+                                                                                                                                                                   subprocess.py:196
+           You can use '--warning-mode all' to show the individual deprecation warnings and determine if they come from your own scripts or plugins.               subprocess.py:196
+                                                                                                                                                                   subprocess.py:196
+           For more on this, please refer to https://docs.gradle.org/8.13/userguide/command_line_interface.html#sec:command_line_warnings in the Gradle            subprocess.py:196
+           documentation.                                                                                                                                                           
+                                                                                                                                                                   subprocess.py:196
+           BUILD FAILED in 2s                                                                                                                                      subprocess.py:196
+           1 actionable task: 1 executed                                                                                                                           subprocess.py:196
+           >>> Return code: 1                                                                                                                                      subprocess.py:839
+                                                                                                                                                                   subprocess.py:839
+           Building... errored                                                                                                                                         gradle.py:353
+[01:07:11]                                                                                                                                                            __main__.py:42
+           Error while building project.                                                                                                                              __main__.py:43
+           Saving log... started                                                                                                                                      console.py:443
+
+Main thread traceback:
+╭─────────────────────────────────────────────────────────────────────── Traceback (most recent call last) ────────────────────────────────────────────────────────────────────────╮
+│ C:\Users\Donov\AppData\Local\Programs\Python\Python314\Lib\site-packages\briefcase\platforms\android\gradle.py:355 in build_app                                                  │
+│                                                                                                                                                                                  │
+│   352 │   │   self.console.info("Building Android APK...", prefix=app.app_name)                                                                                                  │
+│   353 │   │   with self.console.wait_bar("Building..."):                                                                                                                         │
+│   354 │   │   │   try:                                                                                                                                                           │
+│ ❱ 355 │   │   │   │   self.run_gradle(app, ["assembleDebug"])                                                                                                                    │
+│   356 │   │   │   except subprocess.CalledProcessError as e:                                                                                                                     │
+│   357 │   │   │   │   raise BriefcaseCommandError("Error while building project.") from e                                                                                        │
+│   358                                                                                                                                                                            │
+│                                                                                                                                                                                  │
+│ ╭─────────────────────────────────────────── locals ────────────────────────────────────────────╮                                                                                │
+│ │    app = <org.donov.mobile-app v0.1.0 AppConfig>                                              │                                                                                │
+│ │ kwargs = {}                                                                                   │                                                                                │
+│ │   self = <briefcase.platforms.android.gradle.GradleBuildCommand object at 0x0000021DD6157230> │                                                                                │
+│ ╰───────────────────────────────────────────────────────────────────────────────────────────────╯                                                                                │
+│                                                                                                                                                                                  │
+│ C:\Users\Donov\AppData\Local\Programs\Python\Python314\Lib\site-packages\briefcase\platforms\android\gradle.py:120 in run_gradle                                                 │
+│                                                                                                                                                                                  │
+│   117 │   │   self.tools.android_sdk.verify_emulator()                                                                                                                           │
+│   118 │   │                                                                                                                                                                      │
+│   119 │   │   gradlew = "gradlew.bat" if self.tools.host_os == "Windows" else "gradlew"                                                                                          │
+│ ❱ 120 │   │   self.tools.subprocess.run(                                                                                                                                         │
+│   121 │   │   │   # Windows needs the full path to `gradlew`; macOS & Linux can find it                                                                                          │
+│   122 │   │   │   # via `./gradlew`. For simplicity of implementation, we always provide                                                                                         │
+│   123 │   │   │   # the full path.                                                                                                                                               │
+│                                                                                                                                                                                  │
+│ ╭──────────────────────────────────────────── locals ────────────────────────────────────────────╮                                                                               │
+│ │     app = <org.donov.mobile-app v0.1.0 AppConfig>                                              │                                                                               │
+│ │    args = ['assembleDebug']                                                                    │                                                                               │
+│ │ gradlew = 'gradlew.bat'                                                                        │                                                                               │
+│ │    self = <briefcase.platforms.android.gradle.GradleBuildCommand object at 0x0000021DD6157230> │                                                                               │
+│ ╰────────────────────────────────────────────────────────────────────────────────────────────────╯                                                                               │
+│                                                                                                                                                                                  │
+│ C:\Users\Donov\AppData\Local\Programs\Python\Python314\Lib\site-packages\briefcase\integrations\subprocess.py:143 in inner                                                       │
+│                                                                                                                                                                                  │
+│   140 │   │   # Run subprocess command with or without console control                                                                                                           │
+│   141 │   │   if remove_dynamic_elements:                                                                                                                                        │
+│   142 │   │   │   with sub.tools.console.release_console_control():                                                                                                              │
+│ ❱ 143 │   │   │   │   return sub_method(sub, args, *wrapped_args, **wrapped_kwargs)                                                                                              │
+│   144 │   │   else:                                                                                                                                                              │
+│   145 │   │   │   return sub_method(sub, args, *wrapped_args, **wrapped_kwargs)                                                                                                  │
+│   146                                                                                                                                                                            │
+│                                                                                                                                                                                  │
+│ ╭─────────────────────────────────────────────────────────────────────────────────── locals ───────────────────────────────────────────────────────────────────────────────────╮ │
+│ │                    args = [WindowsPath('C:/Users/Donov/OneDrive/Desktop/Book_of_Mormon/build/mobile_app/android/gradle/gradlew.bat'), '--console', 'plain', 'assembleDebug'] │ │
+│ │              executable = 'C:\\Users\\Donov\\OneDrive\\Desktop\\Book_of_Mormon\\build\\mobile_app\\android\\gradle\\g'+10                                                    │ │
+│ │ remove_dynamic_elements = True                                                                                                                                               │ │
+│ │                     sub = <briefcase.integrations.subprocess.Subprocess object at 0x0000021DD6157E00>                                                                        │ │
+│ │            wrapped_args = ()                                                                                                                                                 │ │
+│ │          wrapped_kwargs = {                                                                                                                                                  │ │
+│ │                           │   'env': {                                                                                                                                       │ │
+│ │                           │   │   'ANDROID_HOME': 'C:\\Users\\Donov\\AppData\\Local\\BeeWare\\briefcase\\Cache\\tools\\android_sdk',                                         │ │
+│ │                           │   │   'ANDROID_SDK_ROOT': 'C:\\Users\\Donov\\AppData\\Local\\BeeWare\\briefcase\\Cache\\tools\\android_sdk',                                     │ │
+│ │                           │   │   'JAVA_HOME': 'C:\\Program Files\\Eclipse Adoptium\\jdk-17.0.18.8-hotspot'                                                                  │ │
+│ │                           │   },                                                                                                                                             │ │
+│ │                           │   'cwd': WindowsPath('C:/Users/Donov/OneDrive/Desktop/Book_of_Mormon/build/mobile_app/android/gradle'),                                          │ │
+│ │                           │   'check': True,                                                                                                                                 │ │
+│ │                           │   'encoding': 'CP1252'                                                                                                                           │ │
+│ │                           }                                                                                                                                                  │ │
+│ ╰──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╯ │
+│                                                                                                                                                                                  │
+│ C:\Users\Donov\AppData\Local\Programs\Python\Python314\Lib\site-packages\briefcase\integrations\subprocess.py:539 in run                                                         │
+│                                                                                                                                                                                  │
+│   536 │   │   # caller sets stream_output=False, then ensure_console_is_safe() will                                                                                              │
+│   537 │   │   # disable any dynamic console elements while the command runs.                                                                                                     │
+│   538 │   │   if stream_output:                                                                                                                                                  │
+│ ❱ 539 │   │   │   return self._run_and_stream_output(args, filter_func=filter_func, **kwargs)                                                                                    │
+│   540 │   │                                                                                                                                                                      │
+│   541 │   │   # Can't filter non-streamed output.                                                                                                                                │
+│   542 │   │   if filter_func:                                                                                                                                                    │
+│                                                                                                                                                                                  │
+│ ╭────────────────────────────────────────────────────────────────────────────── locals ──────────────────────────────────────────────────────────────────────────────╮           │
+│ │          args = [WindowsPath('C:/Users/Donov/OneDrive/Desktop/Book_of_Mormon/build/mobile_app/android/gradle/gradlew.bat'), '--console', 'plain', 'assembleDebug'] │           │
+│ │   filter_func = None                                                                                                                                               │           │
+│ │        kwargs = {                                                                                                                                                  │           │
+│ │                 │   'env': {                                                                                                                                       │           │
+│ │                 │   │   'ANDROID_HOME': 'C:\\Users\\Donov\\AppData\\Local\\BeeWare\\briefcase\\Cache\\tools\\android_sdk',                                         │           │
+│ │                 │   │   'ANDROID_SDK_ROOT': 'C:\\Users\\Donov\\AppData\\Local\\BeeWare\\briefcase\\Cache\\tools\\android_sdk',                                     │           │
+│ │                 │   │   'JAVA_HOME': 'C:\\Program Files\\Eclipse Adoptium\\jdk-17.0.18.8-hotspot'                                                                  │           │
+│ │                 │   },                                                                                                                                             │           │
+│ │                 │   'cwd': WindowsPath('C:/Users/Donov/OneDrive/Desktop/Book_of_Mormon/build/mobile_app/android/gradle'),                                          │           │
+│ │                 │   'check': True,                                                                                                                                 │           │
+│ │                 │   'encoding': 'CP1252'                                                                                                                           │           │
+│ │                 }                                                                                                                                                  │           │
+│ │          self = <briefcase.integrations.subprocess.Subprocess object at 0x0000021DD6157E00>                                                                        │           │
+│ │ stream_output = True                                                                                                                                               │           │
+│ ╰────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╯           │
+│                                                                                                                                                                                  │
+│ C:\Users\Donov\AppData\Local\Programs\Python\Python314\Lib\site-packages\briefcase\integrations\subprocess.py:616 in _run_and_stream_output                                      │
+│                                                                                                                                                                                  │
+│   613 │   │   self._log_return_code(return_code)                                                                                                                                 │
+│   614 │   │                                                                                                                                                                      │
+│   615 │   │   if check and return_code:                                                                                                                                          │
+│ ❱ 616 │   │   │   raise subprocess.CalledProcessError(return_code, args, stderr=stderr)                                                                                          │
+│   617 │   │                                                                                                                                                                      │
+│   618 │   │   return subprocess.CompletedProcess(args, return_code, stderr=stderr)                                                                                               │
+│   619                                                                                                                                                                            │
+│                                                                                                                                                                                  │
+│ ╭───────────────────────────────────────────────────────────────────────────── locals ─────────────────────────────────────────────────────────────────────────────╮             │
+│ │        args = [WindowsPath('C:/Users/Donov/OneDrive/Desktop/Book_of_Mormon/build/mobile_app/android/gradle/gradlew.bat'), '--console', 'plain', 'assembleDebug'] │             │
+│ │       check = True                                                                                                                                               │             │
+│ │ filter_func = None                                                                                                                                               │             │
+│ │      kwargs = {                                                                                                                                                  │             │
+│ │               │   'env': {                                                                                                                                       │             │
+│ │               │   │   'ANDROID_HOME': 'C:\\Users\\Donov\\AppData\\Local\\BeeWare\\briefcase\\Cache\\tools\\android_sdk',                                         │             │
+│ │               │   │   'ANDROID_SDK_ROOT': 'C:\\Users\\Donov\\AppData\\Local\\BeeWare\\briefcase\\Cache\\tools\\android_sdk',                                     │             │
+│ │               │   │   'JAVA_HOME': 'C:\\Program Files\\Eclipse Adoptium\\jdk-17.0.18.8-hotspot'                                                                  │             │
+│ │               │   },                                                                                                                                             │             │
+│ │               │   'cwd': WindowsPath('C:/Users/Donov/OneDrive/Desktop/Book_of_Mormon/build/mobile_app/android/gradle'),                                          │             │
+│ │               │   'encoding': 'CP1252',                                                                                                                          │             │
+│ │               │   'stdout': -1,                                                                                                                                  │             │
+│ │               │   'stderr': -2,                                                                                                                                  │             │
+│ │               │   'bufsize': 1                                                                                                                                   │             │
+│ │               }                                                                                                                                                  │             │
+│ │     process = <Popen: returncode: 1 args: ['C:\\Users\\Donov\\OneDrive\\Desktop\\Book_of_M...>                                                                   │             │
+│ │ return_code = 1                                                                                                                                                  │             │
+│ │        self = <briefcase.integrations.subprocess.Subprocess object at 0x0000021DD6157E00>                                                                        │             │
+│ │      stderr = None                                                                                                                                               │             │
+│ ╰──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╯             │
+╰──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╯
+CalledProcessError: Command '[WindowsPath('C:/Users/Donov/OneDrive/Desktop/Book_of_Mormon/build/mobile_app/android/gradle/gradlew.bat'), '--console', 'plain', 'assembleDebug']' returned non-zero exit status 1.
+
+The above exception was the direct cause of the following exception:
+
+╭─────────────────────────────────────────────────────────────────────── Traceback (most recent call last) ────────────────────────────────────────────────────────────────────────╮
+│ C:\Users\Donov\AppData\Local\Programs\Python\Python314\Lib\site-packages\briefcase\__main__.py:27 in main                                                                        │
+│                                                                                                                                                                                  │
+│   24 │   │   │   Path.cwd() / "pyproject.toml",                                                                                                                                  │
+│   25 │   │   │   overrides=overrides,                                                                                                                                            │
+│   26 │   │   )                                                                                                                                                                   │
+│ ❱ 27 │   │   command(**options)                                                                                                                                                  │
+│   28 │   except HelpText as e:                                                                                                                                                   │
+│   29 │   │   console.info()                                                                                                                                                      │
+│   30 │   │   console.info(str(e))                                                                                                                                                │
+│                                                                                                                                                                                  │
+│ ╭─────────────────────────────────────────────── locals ───────────────────────────────────────────────╮                                                                         │
+│ │       command = <briefcase.platforms.android.gradle.GradleBuildCommand object at 0x0000021DD6157230> │                                                                         │
+│ │       console = <briefcase.console.Console object at 0x0000021DD6155A90>                             │                                                                         │
+│ │             e = BriefcaseCommandError('Error while building project.')                               │                                                                         │
+│ │ extra_cmdline = []                                                                                   │                                                                         │
+│ │       options = {                                                                                    │                                                                         │
+│ │                 │   'update': False,                                                                 │                                                                         │
+│ │                 │   'update_requirements': False,                                                    │                                                                         │
+│ │                 │   'update_support': False,                                                         │                                                                         │
+│ │                 │   'update_stub': False,                                                            │                                                                         │
+│ │                 │   'update_resources': False,                                                       │                                                                         │
+│ │                 │   'no_update': False,                                                              │                                                                         │
+│ │                 │   'test_mode': False                                                               │                                                                         │
+│ │                 }                                                                                    │                                                                         │
+│ │     overrides = {}                                                                                   │                                                                         │
+│ │        result = 200                                                                                  │                                                                         │
+│ ╰──────────────────────────────────────────────────────────────────────────────────────────────────────╯                                                                         │
+│                                                                                                                                                                                  │
+│ C:\Users\Donov\AppData\Local\Programs\Python\Python314\Lib\site-packages\briefcase\commands\build.py:159 in __call__                                                             │
+│                                                                                                                                                                                  │
+│   156 │   │                                                                                                                                                                      │
+│   157 │   │   state = None                                                                                                                                                       │
+│   158 │   │   for _, app_obj in sorted(apps_to_build.items()):                                                                                                                   │
+│ ❱ 159 │   │   │   state = self._build_app(                                                                                                                                       │
+│   160 │   │   │   │   app_obj,                                                                                                                                                   │
+│   161 │   │   │   │   update=update,                                                                                                                                             │
+│   162 │   │   │   │   update_requirements=update_requirements,                                                                                                                   │
+│                                                                                                                                                                                  │
+│ ╭────────────────────────────────────────────────── locals ──────────────────────────────────────────────────╮                                                                   │
+│ │                   _ = 'mobile_app'                                                                         │                                                                   │
+│ │                 app = None                                                                                 │                                                                   │
+│ │            app_name = None                                                                                 │                                                                   │
+│ │             app_obj = <org.donov.mobile-app v0.1.0 AppConfig>                                              │                                                                   │
+│ │       apps_to_build = {'mobile_app': <org.donov.mobile-app v0.1.0 AppConfig>}                              │                                                                   │
+│ │            debugger = None                                                                                 │                                                                   │
+│ │           no_update = False                                                                                │                                                                   │
+│ │             options = {}                                                                                   │                                                                   │
+│ │                self = <briefcase.platforms.android.gradle.GradleBuildCommand object at 0x0000021DD6157230> │                                                                   │
+│ │               state = None                                                                                 │                                                                   │
+│ │           test_mode = False                                                                                │                                                                   │
+│ │              update = False                                                                                │                                                                   │
+│ │ update_requirements = False                                                                                │                                                                   │
+│ │    update_resources = False                                                                                │                                                                   │
+│ │         update_stub = False                                                                                │                                                                   │
+│ │      update_support = False                                                                                │                                                                   │
+│ ╰────────────────────────────────────────────────────────────────────────────────────────────────────────────╯                                                                   │
+│                                                                                                                                                                                  │
+│ C:\Users\Donov\AppData\Local\Programs\Python\Python314\Lib\site-packages\briefcase\commands\build.py:92 in _build_app                                                            │
+│                                                                                                                                                                                  │
+│    89 │   │                                                                                                                                                                      │
+│    90 │   │   self.verify_app(app)                                                                                                                                               │
+│    91 │   │                                                                                                                                                                      │
+│ ❱  92 │   │   state = self.build_app(app, **full_options(state, options))                                                                                                        │
+│    93 │   │                                                                                                                                                                      │
+│    94 │   │   qualifier = " (test mode)" if app.test_mode else ""                                                                                                                │
+│    95 │   │   qualifier += " (debug mode)" if app.debugger else ""                                                                                                               │
+│                                                                                                                                                                                  │
+│ ╭────────────────────────────────────────────────── locals ──────────────────────────────────────────────────╮                                                                   │
+│ │                 app = <org.donov.mobile-app v0.1.0 AppConfig>                                              │                                                                   │
+│ │           no_update = False                                                                                │                                                                   │
+│ │             options = {}                                                                                   │                                                                   │
+│ │                self = <briefcase.platforms.android.gradle.GradleBuildCommand object at 0x0000021DD6157230> │                                                                   │
+│ │               state = None                                                                                 │                                                                   │
+│ │              update = False                                                                                │                                                                   │
+│ │ update_requirements = False                                                                                │                                                                   │
+│ │    update_resources = False                                                                                │                                                                   │
+│ │         update_stub = False                                                                                │                                                                   │
+│ │      update_support = False                                                                                │                                                                   │
+│ ╰────────────────────────────────────────────────────────────────────────────────────────────────────────────╯                                                                   │
+│                                                                                                                                                                                  │
+│ C:\Users\Donov\AppData\Local\Programs\Python\Python314\Lib\site-packages\briefcase\platforms\android\gradle.py:357 in build_app                                                  │
+│                                                                                                                                                                                  │
+│   354 │   │   │   try:                                                                                                                                                           │
+│   355 │   │   │   │   self.run_gradle(app, ["assembleDebug"])                                                                                                                    │
+│   356 │   │   │   except subprocess.CalledProcessError as e:                                                                                                                     │
+│ ❱ 357 │   │   │   │   raise BriefcaseCommandError("Error while building project.") from e                                                                                        │
+│   358                                                                                                                                                                            │
+│   359                                                                                                                                                                            │
+│   360 class GradleRunCommand(GradleMixin, RunCommand):                                                                                                                           │
+│                                                                                                                                                                                  │
+│ ╭─────────────────────────────────────────── locals ────────────────────────────────────────────╮                                                                                │
+│ │    app = <org.donov.mobile-app v0.1.0 AppConfig>                                              │                                                                                │
+│ │ kwargs = {}                                                                                   │                                                                                │
+│ │   self = <briefcase.platforms.android.gradle.GradleBuildCommand object at 0x0000021DD6157230> │                                                                                │
+│ ╰───────────────────────────────────────────────────────────────────────────────────────────────╯                                                                                │
+╰──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╯
+BriefcaseCommandError: Error while building project.
+           Collecting extra information for log... started                                                                                                            console.py:481
+                                                                                                                                                                      console.py:485
+           Extra information:                                                                                                                                         console.py:486
+                                                                                                                                                                   subprocess.py:839
+           >>> Running Command:                                                                                                                                    subprocess.py:839
+           >>>     'C:\Users\Donov\AppData\Local\BeeWare\briefcase\Cache\tools\android_sdk\cmdline-tools\19.0\bin\sdkmanager.bat' --list_installed                 subprocess.py:839
+           >>> Working Directory:                                                                                                                                  subprocess.py:839
+           >>>     C:\Users\Donov\OneDrive\Desktop\Book_of_Mormon                                                                                                  subprocess.py:839
+           >>> Environment Overrides:                                                                                                                              subprocess.py:839
+           >>>     ANDROID_HOME=C:\Users\Donov\AppData\Local\BeeWare\briefcase\Cache\tools\android_sdk                                                             subprocess.py:839
+           >>>     ANDROID_SDK_ROOT=C:\Users\Donov\AppData\Local\BeeWare\briefcase\Cache\tools\android_sdk                                                         subprocess.py:839
+           >>>     JAVA_HOME=C:\Program Files\Eclipse Adoptium\jdk-17.0.18.8-hotspot                                                                               subprocess.py:839
+[01:07:12] >>> Command Output:                                                                                                                                     subprocess.py:839
+           >>>     Loading package information...                                                                                                                  subprocess.py:839
+           >>>     Loading local repository...                                                                                                                     subprocess.py:839
+           >>>     [=========                              ] 25% Loading local repository...                                                                       subprocess.py:839
+           >>>     [=========                              ] 25% Fetch remote repository...                                                                        subprocess.py:839
+           >>>     [=======================================] 100% Fetch remote repository...                                                                       subprocess.py:839
+           >>>                                                                                                                                                     subprocess.py:839
+           >>>     Installed packages:                                                                                                                             subprocess.py:839
+           >>>       Path                                    | Version | Description                    | Location                                                 subprocess.py:839
+           >>>       -------                                 | ------- | -------                        | -------                                                  subprocess.py:839
+           >>>       build-tools;35.0.0                      | 35.0.0  | Android SDK Build-Tools 35     | build-tools\35.0.0                                       subprocess.py:839
+           >>>       emulator                                | 36.4.9  | Android Emulator               | emulator                                                 subprocess.py:839
+           >>>       platform-tools                          | 36.0.2  | Android SDK Platform-Tools     | platform-tools                                           subprocess.py:839
+           >>>       platforms;android-35                    | 2       | Android SDK Platform 35        | platforms\android-35                                     subprocess.py:839
+           >>>       system-images;android-31;default;x86_64 | 5       | Intel x86_64 Atom System Image | system-images\android-31\default\x86_64                  subprocess.py:839
+           >>>                                                                                                                                                     subprocess.py:839
+           >>> Return code: 0                                                                                                                                      subprocess.py:839
+                                                                                                                                                                   subprocess.py:839
+           Collecting extra information for log... done                                                                                                               console.py:481

@@ -2,6 +2,7 @@ import sys
 import subprocess
 import importlib
 from pathlib import Path
+#taskkill /F /IM emulator.exe /IM qemu-system-x86_64.exe /IM adb.exe powershell -ExecutionPolicy Bypass -File "C:\dev\Book_of_Mormon_local\run_mobile_fixed.ps1"
 
 REQUIRED_DEPENDENCIES = {
     "matplotlib": "matplotlib>=3.10",
@@ -127,7 +128,8 @@ def line_chart_creator(line_info=dict, title="christ"):
         upper_case_dictionary[new_key] = value
 
     y = upper_case_dictionary[title.title()]
-    x = BOOKS
+    # Keep axis labels aligned with parsed counts (exclude sentinel labels like "end_of_book").
+    x = BOOKS[: len(y)]
     plt.plot(x, y, label=f"{title.title()}", marker="o")
     for xi in range(len((x))):
         plt.annotate(f'{y[xi]}',

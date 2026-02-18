@@ -1,0 +1,35 @@
+[tool.briefcase]
+project_name = "Book of Mormon Mobile"
+bundle = "org.donov"
+version = "0.1.0"
+url = "https://example.com/book-of-mormon-mobile"
+license.file = "LICENSE"
+author = "Donov"
+author_email = "donov@example.com"
+
+[tool.briefcase.app.mobile_app]
+formal_name = "Book of Mormon Mobile"
+description = "Mobile app for Book of Mormon search and title analysis."
+long_description = "A BeeWare/Toga mobile interface that reuses list_parser.py logic."
+sources = [
+    "mobile_app",
+    "list_parser.py",
+    "book_of_mormon.txt",
+    "titles_of_christ.txt",
+    "chosen.titles.txt",
+    "book_of_mormon.ico",
+]
+requires = [
+    "toga>=0.4.8",
+    "rich>=14.0",
+]
+
+[tool.briefcase.app.mobile_app.android.gradle]
+build_gradle_dependencies = [
+    "androidx.appcompat:appcompat:1.7.0",
+]
+
+[tool.briefcase.app.mobile_app.android]
+permissions = [
+    "INTERNET",
+]

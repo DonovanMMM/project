@@ -1,0 +1,316 @@
+Date/Time:       2026-02-15 16:12:27 
+Command line:    C:\Users\Donov\AppData\Local\Programs\Python\Python314\Scripts\briefcase update android
+
+OS Release:      Windows 11
+OS Version:      10.0.26200
+Architecture:    AMD64
+Platform:        Windows-11-10.0.26200-SP0
+
+Python exe:      C:\Users\Donov\AppData\Local\Programs\Python\Python314\python.exe
+Python version:  3.14.2 (tags/v3.14.2:df79316, Dec  5 2025, 17:18:21) [MSC v.1944 64 bit (AMD64)]
+Virtual env:     False
+Conda env:       False
+
+Briefcase:       0.3.26
+Target platform: android
+Target format:   gradle
+
+Environment Variables:
+	ALLUSERSPROFILE=C:\ProgramData
+	APPDATA=C:\Users\Donov\AppData\Roaming
+	CHROME_CRASHPAD_PIPE_NAME=\\.\pipe\crashpad_29660_ORHXVARBSXKXRKVW
+	CODEX_INTERNAL_ORIGINATOR_OVERRIDE=codex_vscode
+	CODEX_SANDBOX_NETWORK_DISABLED=1
+	CODEX_THREAD_ID=019c5e08-e0c4-7e70-a9f4-7d661fb1b6e8
+	COMMONPROGRAMFILES=C:\Program Files\Common Files
+	COMMONPROGRAMFILES(X86)=C:\Program Files (x86)\Common Files
+	COMMONPROGRAMW6432=C:\Program Files\Common Files
+	COMPUTERNAME=MORTY
+	COMSPEC=C:\Windows\system32\cmd.exe
+	DRIVERDATA=C:\Windows\System32\Drivers\DriverData
+	EFC_10004_1592913036=1
+	ELECTRON_RUN_AS_NODE=1
+	HOMEDRIVE=C:
+	HOMEPATH=\Users\Donov
+	LOCALAPPDATA=C:\Users\Donov\AppData\Local
+	LOGONSERVER=\\MORTY
+	NUMBER_OF_PROCESSORS=8
+	ONEDRIVE=C:\Users\Donov\OneDrive
+	ONEDRIVECONSUMER=C:\Users\Donov\OneDrive
+	OS=Windows_NT
+	PATH=C:\Users\Donov\.codex\tmp\arg0\codex-arg0AajZpt;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\Windows\System32\OpenSSH\;C:\Program Files\Git\cmd;C:\Users\Donov\AppData\Local\Programs\Python\Python314\Scripts\;C:\Users\Donov\AppData\Local\Programs\Python\Python314\;C:\Users\Donov\AppData\Local\Programs\Python\Launcher\;C:\Users\Donov\AppData\Local\Microsoft\WindowsApps;C:\Users\Donov\AppData\Local\Programs\Microsoft VS Code\bin;C:\Users\Donov\AppData\Local\Microsoft\WinGet\Packages\Gyan.FFmpeg_Microsoft.Winget.Source_8wekyb3d8bbwe\ffmpeg-8.0.1-full_build\bin;;c:\Users\Donov\.vscode\extensions\openai.chatgpt-0.4.74-win32-x64\bin\windows-x86_64
+	PATHEXT=.COM;.EXE;.BAT;.CMD;.VBS;.VBE;.JS;.JSE;.WSF;.WSH;.MSC;.CPL
+	PROCESSOR_ARCHITECTURE=AMD64
+	PROCESSOR_IDENTIFIER=AMD64 Family 26 Model 104 Stepping 0, AuthenticAMD
+	PROCESSOR_LEVEL=26
+	PROCESSOR_REVISION=6800
+	PROGRAMDATA=C:\ProgramData
+	PROGRAMFILES=C:\Program Files
+	PROGRAMFILES(X86)=C:\Program Files (x86)
+	PROGRAMW6432=C:\Program Files
+	PSMODULEPATH=C:\Users\Donov\OneDrive\Documents\WindowsPowerShell\Modules;C:\Program Files\WindowsPowerShell\Modules;C:\Windows\system32\WindowsPowerShell\v1.0\Modules
+	PUBLIC=C:\Users\Public
+	RUST_LOG=warn
+	SESSIONNAME=Console
+	SYSTEMDRIVE=C:
+	SYSTEMROOT=C:\Windows
+	TEMP=C:\Users\Donov\AppData\Local\Temp
+	TMP=C:\Users\Donov\AppData\Local\Temp
+	USERDOMAIN=MORTY
+	USERDOMAIN_ROAMINGPROFILE=MORTY
+	USERNAME=Donov
+	USERPROFILE=C:\Users\Donov
+	VSCODE_CODE_CACHE_PATH=C:\Users\Donov\AppData\Roaming\Code\CachedData\b6a47e94e326b5c209d118cf0f994d6065585705
+	VSCODE_CRASH_REPORTER_PROCESS_TYPE=extensionHost
+	VSCODE_CWD=C:\Users\Donov\AppData\Local\Programs\Microsoft VS Code
+	VSCODE_ESM_ENTRYPOINT=vs/workbench/api/node/extensionHostProcess
+	VSCODE_HANDLES_UNCAUGHT_ERRORS=true
+	VSCODE_IPC_HOOK=\\.\pipe\299b287f-1.109.3-main-sock
+	VSCODE_NLS_CONFIG={"userLocale":"en-us","osLocale":"en-us","resolvedLanguage":"en","defaultMessagesFile":"C:\\Users\\Donov\\AppData\\Local\\Programs\\Microsoft VS Code\\b6a47e94e3\\resources\\app\\out\\nls.messages.json","locale":"en-us","availableLanguages":{}}
+	VSCODE_PID=29660
+	WINDIR=C:\Windows
+
+pyproject.toml:
+[tool.briefcase]
+project_name = "Book of Mormon Mobile"
+bundle = "org.donov"
+version = "0.1.0"
+url = "https://example.com/book-of-mormon-mobile"
+license.file = "LICENSE"
+author = "Donov"
+author_email = "donov@example.com"
+
+[tool.briefcase.app.mobile_app]
+formal_name = "Book of Mormon Mobile"
+description = "Mobile app for Book of Mormon search and title analysis."
+long_description = "A BeeWare/Toga mobile interface that reuses list_parser.py logic."
+sources = [
+    "mobile_app",
+    "list_parser.py",
+    "book_of_mormon.txt",
+    "titles_of_christ.txt",
+    "chosen.titles.txt",
+    "book_of_mormon.ico",
+]
+requires = [
+    "toga>=0.4.8",
+    "rich>=14.0",
+]
+
+[tool.briefcase.app.mobile_app.android.gradle]
+build_gradle_dependencies = [
+    "androidx.appcompat:appcompat:1.7.0",
+    "androidx.constraintlayout:constraintlayout:2.2.0",
+    "androidx.swiperefreshlayout:swiperefreshlayout:1.1.0",
+    "androidx.vectordrawable:vectordrawable:1.2.0",
+    "androidx.vectordrawable:vectordrawable-animated:1.2.0",
+]
+
+Briefcase Log:
+[16:12:24] Using JDK at C:\Users\Donov\AppData\Local\BeeWare\briefcase\Cache\tools\java17                                                                                java.py:263
+           Using Android SDK at C:\Users\Donov\AppData\Local\BeeWare\briefcase\Cache\tools\android_sdk                                                            android_sdk.py:376
+                                                                                                                                                                        update.py:63
+           [mobile_app] Updating application code...                                                                                                                    update.py:63
+           Installing mobile_app... started                                                                                                                            create.py:743
+           Installing mobile_app... done                                                                                                                               create.py:743
+           Installing list_parser.py... started                                                                                                                        create.py:743
+           Installing list_parser.py... done                                                                                                                           create.py:743
+           Installing book_of_mormon.txt... started                                                                                                                    create.py:743
+           Installing book_of_mormon.txt... done                                                                                                                       create.py:743
+           Installing titles_of_christ.txt... started                                                                                                                  create.py:743
+           Installing titles_of_christ.txt... done                                                                                                                     create.py:743
+           Installing chosen.titles.txt... started                                                                                                                     create.py:743
+           Installing chosen.titles.txt... done                                                                                                                        create.py:743
+           Installing book_of_mormon.ico... started                                                                                                                    create.py:743
+           Installing book_of_mormon.ico... done                                                                                                                       create.py:743
+                                                                                                                                                                        update.py:92
+           [mobile_app] Removing unneeded app content...                                                                                                                update.py:92
+           Removing unneeded app bundle content... started                                                                                                             create.py:907
+           Removing directory app\src\main\python\mobile_app\__pycache__                                                                                               create.py:914
+           Removing unneeded app bundle content... errored                                                                                                             create.py:907
+           Saving log... started                                                                                                                                      console.py:443
+
+Main thread traceback:
+┌─────────────────────────────────────────────────────────────────────── Traceback (most recent call last) ────────────────────────────────────────────────────────────────────────┐
+│ C:\Users\Donov\AppData\Local\Programs\Python\Python314\Lib\site-packages\briefcase\__main__.py:27 in main                                                                        │
+│                                                                                                                                                                                  │
+│   24 │   │   │   Path.cwd() / "pyproject.toml",                                                                                                                                  │
+│   25 │   │   │   overrides=overrides,                                                                                                                                            │
+│   26 │   │   )                                                                                                                                                                   │
+│ > 27 │   │   command(**options)                                                                                                                                                  │
+│   28 │   except HelpText as e:                                                                                                                                                   │
+│   29 │   │   console.info()                                                                                                                                                      │
+│   30 │   │   console.info(str(e))                                                                                                                                                │
+│                                                                                                                                                                                  │
+│ ┌─────────────────────────────────────────────────────────────────── locals ───────────────────────────────────────────────────────────────────┐                                 │
+│ │       command = <briefcase.platforms.android.gradle.GradleUpdateCommand object at 0x00000185204C7380>                                        │                                 │
+│ │       console = <briefcase.console.Console object at 0x00000185204C5A90>                                                                     │                                 │
+│ │ extra_cmdline = []                                                                                                                           │                                 │
+│ │       options = {'update_requirements': False, 'update_support': False, 'update_stub': False, 'update_resources': False, 'test_mode': False} │                                 │
+│ │     overrides = {}                                                                                                                           │                                 │
+│ │        result = 0                                                                                                                            │                                 │
+│ └──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┘                                 │
+│                                                                                                                                                                                  │
+│ C:\Users\Donov\AppData\Local\Programs\Python\Python314\Lib\site-packages\briefcase\commands\update.py:127 in __call__                                                            │
+│                                                                                                                                                                                  │
+│   124 │   │                                                                                                                                                                      │
+│   125 │   │   state = None                                                                                                                                                       │
+│   126 │   │   for _, app_obj in sorted(apps_to_update.items()):                                                                                                                  │
+│ > 127 │   │   │   state = self.update_app(                                                                                                                                       │
+│   128 │   │   │   │   app_obj,                                                                                                                                                   │
+│   129 │   │   │   │   update_requirements=update_requirements,                                                                                                                   │
+│   130 │   │   │   │   update_resources=update_resources,                                                                                                                         │
+│                                                                                                                                                                                  │
+│ ┌────────────────────────────────────────────────── locals ───────────────────────────────────────────────────┐                                                                  │
+│ │                   _ = 'mobile_app'                                                                          │                                                                  │
+│ │                 app = None                                                                                  │                                                                  │
+│ │            app_name = None                                                                                  │                                                                  │
+│ │             app_obj = <org.donov.mobile-app v0.1.0 AppConfig>                                               │                                                                  │
+│ │      apps_to_update = {'mobile_app': <org.donov.mobile-app v0.1.0 AppConfig>}                               │                                                                  │
+│ │            debugger = None                                                                                  │                                                                  │
+│ │             options = {}                                                                                    │                                                                  │
+│ │                self = <briefcase.platforms.android.gradle.GradleUpdateCommand object at 0x00000185204C7380> │                                                                  │
+│ │               state = None                                                                                  │                                                                  │
+│ │           test_mode = False                                                                                 │                                                                  │
+│ │ update_requirements = False                                                                                 │                                                                  │
+│ │    update_resources = False                                                                                 │                                                                  │
+│ │         update_stub = False                                                                                 │                                                                  │
+│ │      update_support = False                                                                                 │                                                                  │
+│ └─────────────────────────────────────────────────────────────────────────────────────────────────────────────┘                                                                  │
+│                                                                                                                                                                                  │
+│ C:\Users\Donov\AppData\Local\Programs\Python\Python314\Lib\site-packages\briefcase\commands\update.py:93 in update_app                                                           │
+│                                                                                                                                                                                  │
+│    90 │   │   │   │   self.install_stub_binary(app=app)                                                                                                                          │
+│    91 │   │                                                                                                                                                                      │
+│    92 │   │   self.console.info("Removing unneeded app content...", prefix=app.app_name)                                                                                         │
+│ >  93 │   │   self.cleanup_app_content(app=app)                                                                                                                                  │
+│    94 │   │                                                                                                                                                                      │
+│    95 │   │   self.console.info("Application updated.", prefix=app.app_name)                                                                                                     │
+│    96                                                                                                                                                                            │
+│                                                                                                                                                                                  │
+│ ┌────────────────────────────────────────────────── locals ───────────────────────────────────────────────────┐                                                                  │
+│ │                 app = <org.donov.mobile-app v0.1.0 AppConfig>                                               │                                                                  │
+│ │             options = {}                                                                                    │                                                                  │
+│ │                self = <briefcase.platforms.android.gradle.GradleUpdateCommand object at 0x00000185204C7380> │                                                                  │
+│ │ update_requirements = False                                                                                 │                                                                  │
+│ │    update_resources = False                                                                                 │                                                                  │
+│ │         update_stub = False                                                                                 │                                                                  │
+│ │      update_support = False                                                                                 │                                                                  │
+│ └─────────────────────────────────────────────────────────────────────────────────────────────────────────────┘                                                                  │
+│                                                                                                                                                                                  │
+│ C:\Users\Donov\AppData\Local\Programs\Python\Python314\Lib\site-packages\briefcase\commands\create.py:915 in cleanup_app_content                                                 │
+│                                                                                                                                                                                  │
+│    912 │   │   │   │   │   relative_path = path.relative_to(self.bundle_path(app))                                                                                               │
+│    913 │   │   │   │   │   if path.is_dir() and not path.is_symlink():                                                                                                           │
+│    914 │   │   │   │   │   │   self.console.verbose(f"Removing directory {relative_path}")                                                                                       │
+│ >  915 │   │   │   │   │   │   self.tools.shutil.rmtree(path)                                                                                                                    │
+│    916 │   │   │   │   │   else:                                                                                                                                                 │
+│    917 │   │   │   │   │   │   self.console.verbose(f"Removing {relative_path}")                                                                                                 │
+│    918 │   │   │   │   │   │   path.unlink()                                                                                                                                     │
+│                                                                                                                                                                                  │
+│ ┌────────────────────────────────────────────────────────────────────────── locals ──────────────────────────────────────────────────────────────────────────┐                   │
+│ │             app = <org.donov.mobile-app v0.1.0 AppConfig>                                                                                                  │                   │
+│ │            glob = '**/__pycache__'                                                                                                                         │                   │
+│ │            path = WindowsPath('C:/Users/Donov/OneDrive/Desktop/Book_of_Mormon/build/mobile_app/android/gradle/app/src/main/python/mobile_app/__pycache__') │                   │
+│ │ paths_to_remove = ['**/__pycache__']                                                                                                                       │                   │
+│ │   relative_path = WindowsPath('app/src/main/python/mobile_app/__pycache__')                                                                                │                   │
+│ │            self = <briefcase.platforms.android.gradle.GradleUpdateCommand object at 0x00000185204C7380>                                                    │                   │
+│ └────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┘                   │
+│                                                                                                                                                                                  │
+│ C:\Users\Donov\AppData\Local\Programs\Python\Python314\Lib\shutil.py:852 in rmtree                                                                                               │
+│                                                                                                                                                                                  │
+│    849 │   │   │   │   │   exc_info = type(exc), exc, exc.__traceback__                                                                                                          │
+│    850 │   │   │   │   return onerror(func, path, exc_info)                                                                                                                      │
+│    851 │                                                                                                                                                                         │
+│ >  852 │   _rmtree_impl(path, dir_fd, onexc)                                                                                                                                     │
+│    853                                                                                                                                                                           │
+│    854 # Allow introspection of whether or not the hardening against symlink                                                                                                     │
+│    855 # attacks is supported on the current platform                                                                                                                            │
+│                                                                                                                                                                                  │
+│ ┌───────────────────────────────────────────────────────────────────────── locals ─────────────────────────────────────────────────────────────────────────┐                     │
+│ │        dir_fd = None                                                                                                                                     │                     │
+│ │ ignore_errors = False                                                                                                                                    │                     │
+│ │       onerror = None                                                                                                                                     │                     │
+│ │          path = WindowsPath('C:/Users/Donov/OneDrive/Desktop/Book_of_Mormon/build/mobile_app/android/gradle/app/src/main/python/mobile_app/__pycache__') │                     │
+│ └──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┘                     │
+│                                                                                                                                                                                  │
+│ C:\Users\Donov\AppData\Local\Programs\Python\Python314\Lib\shutil.py:711 in _rmtree_unsafe                                                                                       │
+│                                                                                                                                                                                  │
+│    708 │   except FileNotFoundError:                                                                                                                                             │
+│    709 │   │   pass                                                                                                                                                              │
+│    710 │   except OSError as err:                                                                                                                                                │
+│ >  711 │   │   onexc(os.rmdir, path, err)                                                                                                                                        │
+│    712                                                                                                                                                                           │
+│    713 # Version using fd-based APIs to protect against races                                                                                                                    │
+│    714 def _rmtree_safe_fd(path, dir_fd, onexc):                                                                                                                                 │
+│                                                                                                                                                                                  │
+│ ┌─────────────────────────────────────────────────────────────────────────────────── locals ───────────────────────────────────────────────────────────────────────────────────┐ │
+│ │    dir_fd = None                                                                                                                                                             │ │
+│ │  dirnames = []                                                                                                                                                               │ │
+│ │   dirpath = 'C:\\Users\\Donov\\OneDrive\\Desktop\\Book_of_Mormon\\build\\mobile_app\\android\\gradle\\a'+41                                                                  │ │
+│ │ filenames = ['app.cpython-314.pyc', '__main__.cpython-314.pyc']                                                                                                              │ │
+│ │  fullname = 'C:\\Users\\Donov\\OneDrive\\Desktop\\Book_of_Mormon\\build\\mobile_app\\android\\gradle\\a'+66                                                                  │ │
+│ │      name = '__main__.cpython-314.pyc'                                                                                                                                       │ │
+│ │      path = WindowsPath('C:/Users/Donov/OneDrive/Desktop/Book_of_Mormon/build/mobile_app/android/gradle/app/src/main/python/mobile_app/__pycache__')                         │ │
+│ │   results = <generator object walk at 0x0000018520BB55D0>                                                                                                                    │ │
+│ │        st = os.stat_result(st_mode=16749, st_ino=2533274790584929, st_dev=17027029638723470532, st_nlink=1, st_uid=0, st_gid=0, st_size=0, st_atime=1771197052,              │ │
+│ │             st_mtime=1771197052, st_ctime=1771197144)                                                                                                                        │ │
+│ └──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┘ │
+│                                                                                                                                                                                  │
+│ C:\Users\Donov\AppData\Local\Programs\Python\Python314\Lib\shutil.py:707 in _rmtree_unsafe                                                                                       │
+│                                                                                                                                                                                  │
+│    704 │   │   │   except OSError as err:                                                                                                                                        │
+│    705 │   │   │   │   onexc(os.unlink, fullname, err)                                                                                                                           │
+│    706 │   try:                                                                                                                                                                  │
+│ >  707 │   │   os.rmdir(path)                                                                                                                                                    │
+│    708 │   except FileNotFoundError:                                                                                                                                             │
+│    709 │   │   pass                                                                                                                                                              │
+│    710 │   except OSError as err:                                                                                                                                                │
+│                                                                                                                                                                                  │
+│ ┌─────────────────────────────────────────────────────────────────────────────────── locals ───────────────────────────────────────────────────────────────────────────────────┐ │
+│ │    dir_fd = None                                                                                                                                                             │ │
+│ │  dirnames = []                                                                                                                                                               │ │
+│ │   dirpath = 'C:\\Users\\Donov\\OneDrive\\Desktop\\Book_of_Mormon\\build\\mobile_app\\android\\gradle\\a'+41                                                                  │ │
+│ │ filenames = ['app.cpython-314.pyc', '__main__.cpython-314.pyc']                                                                                                              │ │
+│ │  fullname = 'C:\\Users\\Donov\\OneDrive\\Desktop\\Book_of_Mormon\\build\\mobile_app\\android\\gradle\\a'+66                                                                  │ │
+│ │      name = '__main__.cpython-314.pyc'                                                                                                                                       │ │
+│ │      path = WindowsPath('C:/Users/Donov/OneDrive/Desktop/Book_of_Mormon/build/mobile_app/android/gradle/app/src/main/python/mobile_app/__pycache__')                         │ │
+│ │   results = <generator object walk at 0x0000018520BB55D0>                                                                                                                    │ │
+│ │        st = os.stat_result(st_mode=16749, st_ino=2533274790584929, st_dev=17027029638723470532, st_nlink=1, st_uid=0, st_gid=0, st_size=0, st_atime=1771197052,              │ │
+│ │             st_mtime=1771197052, st_ctime=1771197144)                                                                                                                        │ │
+│ └──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┘ │
+└──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┘
+PermissionError: [WinError 5] Access is denied: 'C:\\Users\\Donov\\OneDrive\\Desktop\\Book_of_Mormon\\build\\mobile_app\\android\\gradle\\app\\src\\main\\python\\mobile_app\\__pycache__'
+[16:12:25] Collecting extra information for log... started                                                                                                            console.py:481
+                                                                                                                                                                      console.py:485
+           Extra information:                                                                                                                                         console.py:486
+                                                                                                                                                                   subprocess.py:839
+           >>> Running Command:                                                                                                                                    subprocess.py:839
+           >>>     'C:\Users\Donov\AppData\Local\BeeWare\briefcase\Cache\tools\android_sdk\cmdline-tools\19.0\bin\sdkmanager.bat' --list_installed                 subprocess.py:839
+           >>> Working Directory:                                                                                                                                  subprocess.py:839
+           >>>     C:\Users\Donov\OneDrive\Desktop\Book_of_Mormon                                                                                                  subprocess.py:839
+           >>> Environment Overrides:                                                                                                                              subprocess.py:839
+           >>>     ANDROID_HOME=C:\Users\Donov\AppData\Local\BeeWare\briefcase\Cache\tools\android_sdk                                                             subprocess.py:839
+           >>>     ANDROID_SDK_ROOT=C:\Users\Donov\AppData\Local\BeeWare\briefcase\Cache\tools\android_sdk                                                         subprocess.py:839
+           >>>     JAVA_HOME=C:\Users\Donov\AppData\Local\BeeWare\briefcase\Cache\tools\java17                                                                     subprocess.py:839
+[16:12:27] >>> Command Output:                                                                                                                                     subprocess.py:839
+           >>>     Loading package information...                                                                                                                  subprocess.py:839
+           >>>     Loading local repository...                                                                                                                     subprocess.py:839
+           >>>     [=========                              ] 25% Loading local repository...                                                                       subprocess.py:839
+           >>>     [=========                              ] 25% Fetch remote repository...                                                                        subprocess.py:839
+           >>>     [=======================================] 100% Fetch remote repository...                                                                       subprocess.py:839
+           >>>                                                                                                                                                     subprocess.py:839
+           >>>     Installed packages:                                                                                                                             subprocess.py:839
+           >>>       Path                                        | Version | Description                                | Location                                 subprocess.py:839
+           >>>       -------                                     | ------- | -------                                    | -------                                  subprocess.py:839
+           >>>       build-tools;35.0.0                          | 35.0.0  | Android SDK Build-Tools 35                 | build-tools\35.0.0                       subprocess.py:839
+           >>>       emulator                                    | 36.4.9  | Android Emulator                           | emulator                                 subprocess.py:839
+           >>>       platform-tools                              | 36.0.2  | Android SDK Platform-Tools                 | platform-tools                           subprocess.py:839
+           >>>       platforms;android-35                        | 2       | Android SDK Platform 35                    | platforms\android-35                     subprocess.py:839
+           >>>       system-images;android-31;default;x86_64     | 5       | Intel x86_64 Atom System Image             | system-images\android-31\default\x86_64  subprocess.py:839
+           >>>       system-images;android-35;google_apis;x86_64 | 9       | Google APIs Intel x86_64 Atom System Image |                                          subprocess.py:839
+           system-images\android-35\google_apis\x86_64                                                                                                                              
+           >>>                                                                                                                                                     subprocess.py:839
+           >>> Return code: 0                                                                                                                                      subprocess.py:839
+                                                                                                                                                                   subprocess.py:839
+           Collecting extra information for log... done                                                                                                               console.py:481
