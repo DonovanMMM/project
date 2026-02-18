@@ -58,6 +58,12 @@ function Require-RunningEmulator {
 
 Require-RunningEmulator
 
+# If build is skipped, update is also skipped because there is no new artifact to install.
+if ($SkipBuild -and -not $SkipUpdate) {
+    $SkipUpdate = $true
+    Write-Host "SkipBuild was set; automatically skipping briefcase update."
+}
+
 if (-not $SkipUpdate) {
     try {
         Invoke-External -Command { briefcase update android } -FailureMessage "briefcase update failed"
