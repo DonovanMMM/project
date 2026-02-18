@@ -616,4 +616,4 @@ class BookOfMormonMobileApp(toga.App):
 
 
 def main():
-    return BookOfMormonMobileApp("Book of Mormon Mobile", "org.example.bookofmormonmobile")
+    return BookOfMormonMobileApp("Book of Mormon Mobile", "org.donov.mobile_app")

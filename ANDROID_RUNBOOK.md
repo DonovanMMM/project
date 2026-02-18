@@ -112,3 +112,13 @@ If emulator is already running and you only want to patch app changes:
 ```powershell
 powershell -ExecutionPolicy Bypass -File .\patch_android_live.ps1
 ```
+
+## Play Store packaging
+
+For release packaging, use the local non-OneDrive workspace:
+```powershell
+cd C:\dev\Book_of_Mormon_local
+powershell -ExecutionPolicy Bypass -File .\release_playstore_aab.ps1
+```
+
+This generates a release `.aab` under `dist\` and prints the SHA256 hash.
