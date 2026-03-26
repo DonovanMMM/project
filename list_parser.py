@@ -4,13 +4,11 @@ from rich.progress import (
     MofNCompleteColumn,
     Progress,
     TextColumn,
-    TimeElapsedColumn,
-    TimeRemainingColumn,
 )
 
-CHOSEN_TITLES_FILEPATH = "C:\\Users\\Donov\\OneDrive\\Desktop\\book_of_mormon\\project\\chosen.titles.txt" # Filepath for chosen titles of Christ
-TITLES_OF_CHRIST_FILEPATH = "C:\\Users\\Donov\\OneDrive\\Desktop\\book_of_mormon\\project\\titles_of_christ.txt" # List of titles of Christ that I personally gathered during my mission
-BOOK_OF_MORMON_FILEPATH = "C:\\Users\\Donov\\OneDrive\\Desktop\\book_of_mormon\\project\\book_of_mormon.txt" # The Book of Mormon in .txt form
+CHOSEN_TITLES_FILEPATH = "C:\\Users\\Donov\\OneDrive\\Documents\\aaa\\Book_of_Mormon\\chosen.titles.txt" # Filepath for chosen titles of Christ
+TITLES_OF_CHRIST_FILEPATH = "C:\\Users\\Donov\\OneDrive\\Documents\\aaa\\Book_of_Mormon\\titles_of_christ.txt" # List of titles of Christ that I personally gathered during my mission
+BOOK_OF_MORMON_FILEPATH = "C:\\Users\\Donov\\OneDrive\\Documents\\aaa\\Book_of_Mormon\\book_of_mormon.txt" # The Book of Mormon in .txt form
 BOOKS = [
         "1 Nephi", "2 Nephi", "Jacob", "Enos", "Jarom", "Omni",
         "Words of Mormon", "Mosiah", "Alma", "Helaman",
@@ -24,12 +22,8 @@ def titles_of_christ_parser(filepath):
     progress_bar = Progress(
         TextColumn("Parsing Titles of Christ..."),
     TextColumn("[progress.percentage]{task.percentage:>3.0f}%"),
-    BarColumn(),
+    BarColumn(bar_width=100),
     MofNCompleteColumn(),
-    TextColumn("•"),
-    TimeElapsedColumn(),
-    TextColumn("/"),
-    TimeRemainingColumn(),
 )
     try:
         names = []
@@ -63,14 +57,9 @@ def book_of_mormon_parser():
     progress_bar = Progress(
         TextColumn("Parsing Book of Mormon..."),
     TextColumn("[progress.percentage]{task.percentage:>3.0f}%"),
-    BarColumn(),
+    BarColumn(bar_width=100),
     MofNCompleteColumn(),
-    TextColumn("•"),
-    TimeElapsedColumn(),
-    TextColumn("/"),
-    TimeRemainingColumn()
 )
-
     with open(BOOK_OF_MORMON_FILEPATH, "r", encoding="utf-8") as book, progress_bar as p:
         for i in p.track(range(39854)):
             for text in book:

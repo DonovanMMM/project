@@ -9,8 +9,8 @@ from tkinter.scrolledtext import ScrolledText
 from rich.progress import Progress
 # "pip install matplotlib" command is neccessary for the import to work
 
-BOOK_OF_MORMON_ICON_FILEPATH = "C:\\Users\\Donov\\OneDrive\\Desktop\\book_of_mormon\\project\\book_of_mormon.ico"
-SEARCH_TERM_FILEPATH = "C:\\Users\\Donov\\OneDrive\\Desktop\\book_of_mormon\\project\\search_term.txt"
+BOOK_OF_MORMON_ICON_FILEPATH = "C:\\Users\\Donov\\OneDrive\\Documents\\aaa\\Book_of_Mormon\\book_of_mormon.ico"
+SEARCH_TERM_FILEPATH = "C:\\Users\\Donov\\OneDrive\\Documents\\aaa\\Book_of_Mormon\\search_term.txt"
 DWMWA_USE_IMMERSIVE_DARK_MODE = 20
 
 def dark_title_bar(window):
