@@ -1,4 +1,3 @@
-from my_gui import *
 from rich.progress import (
     BarColumn,
     MofNCompleteColumn,
@@ -6,9 +5,9 @@ from rich.progress import (
     TextColumn,
 )
 
-CHOSEN_TITLES_FILEPATH = "C:\\Users\\Donov\\OneDrive\\Documents\\aaa\\Book_of_Mormon\\chosen.titles.txt" # Filepath for chosen titles of Christ
-TITLES_OF_CHRIST_FILEPATH = "C:\\Users\\Donov\\OneDrive\\Documents\\aaa\\Book_of_Mormon\\titles_of_christ.txt" # List of titles of Christ that I personally gathered during my mission
-BOOK_OF_MORMON_FILEPATH = "C:\\Users\\Donov\\OneDrive\\Documents\\aaa\\Book_of_Mormon\\book_of_mormon.txt" # The Book of Mormon in .txt form
+CHOSEN_TITLES_FILEPATH = "chosen.titles.txt" # Filepath for chosen titles of Christ
+TITLES_OF_CHRIST_FILEPATH = "titles_of_christ.txt" # List of titles of Christ that I personally gathered during my mission
+BOOK_OF_MORMON_FILEPATH = "book_of_mormon.txt" # The Book of Mormon in .txt form
 BOOKS = [
         "1 Nephi", "2 Nephi", "Jacob", "Enos", "Jarom", "Omni",
         "Words of Mormon", "Mosiah", "Alma", "Helaman",
@@ -208,10 +207,3 @@ def counts_per_book(verse_instances=dict):
                     counts_per_book[k] += 1
         new_dict[i] = counts_per_book
     return new_dict
-
-
-def main():
-    build_gui()
-
-if __name__ == "__main__":
-    main()

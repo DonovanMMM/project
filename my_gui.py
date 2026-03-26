@@ -5,12 +5,10 @@ from list_parser import *
 mpl.use("TkAgg")
 import ctypes as ct
 import customtkinter as ctk
-from tkinter.scrolledtext import ScrolledText
-from rich.progress import Progress
 # "pip install matplotlib" command is neccessary for the import to work
 
-BOOK_OF_MORMON_ICON_FILEPATH = "C:\\Users\\Donov\\OneDrive\\Documents\\aaa\\Book_of_Mormon\\book_of_mormon.ico"
-SEARCH_TERM_FILEPATH = "C:\\Users\\Donov\\OneDrive\\Documents\\aaa\\Book_of_Mormon\\search_term.txt"
+BOOK_OF_MORMON_ICON_FILEPATH = "book_of_mormon.ico"
+SEARCH_TERM_FILEPATH = "search_term.txt"
 DWMWA_USE_IMMERSIVE_DARK_MODE = 20
 
 def dark_title_bar(window):
@@ -68,7 +66,6 @@ def pie_chart_creator(counts=dict, amount_of_titles=20):
             get_pie_chart_slice_amount()
     
     #amount_of_titles = get_pie_chart_slice_amount()
-    pie_chart_size_multiplier = float(amount_of_titles / 10)
     sorted_titles = sorted(counts.items(), key=lambda item: item[1])
     shortened_dictionary = dict(sorted_titles[-amount_of_titles:])
     upper_case_dictionary = {}
@@ -188,3 +185,9 @@ def build_gui():
     window.iconbitmap(BOOK_OF_MORMON_ICON_FILEPATH)
     window.configure(bg="gray25")
     window.mainloop()
+
+def main():
+    build_gui()
+
+if __name__ == "__main__":
+    main()
